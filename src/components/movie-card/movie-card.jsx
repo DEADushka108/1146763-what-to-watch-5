@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const titleToLink = (title) => {
-  return `img/${title.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ``).toLowerCase().replace(/ /g, `-`)}.jpg`;
+  return `img/${title.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, ``)
+                     .toLowerCase()
+                     .replace(/ /g, `-`)
+              }.jpg`;
 };
 
 const MovieCard = (props) => {
@@ -19,7 +22,7 @@ const MovieCard = (props) => {
 };
 
 MovieCard.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
 };
 
 export default MovieCard;
