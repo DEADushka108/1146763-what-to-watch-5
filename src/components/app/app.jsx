@@ -3,12 +3,13 @@ import Main from '../main/main.jsx';
 import PropTypes from 'prop-types';
 
 const App = (props) => {
-  const {movieTitle, movieGenre, releaseDate} = props;
+  const {movieTitle, movieGenre, releaseDate, moviesTitles} = props;
 
   return <Main
     title={movieTitle}
     genre={movieGenre}
     date={releaseDate}
+    moviesTitles={moviesTitles}
   />;
 };
 
@@ -16,6 +17,7 @@ App.propTypes = {
   movieTitle: PropTypes.string.isRequired,
   movieGenre: PropTypes.string.isRequired,
   releaseDate: PropTypes.string.isRequired,
+  moviesTitles: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default App;
