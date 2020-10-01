@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MovieCard from '../movie-card/movie-card';
+import MoviesList from '../movies-list/movies-list.jsx';
 
 const Main = (props) => {
-  const {title, genre, date, moviesTitles} = props;
+  const {featuredMovie, moviesList, onMovieClick} = props;
+  const {title, genre, releaseDate} = featuredMovie;
 
   return <React.Fragment>
     <section className="movie-card">
@@ -39,7 +40,7 @@ const Main = (props) => {
             <h2 className="movie-card__title">{title}</h2>
             <p className="movie-card__meta">
               <span className="movie-card__genre">{genre}</span>
-              <span className="movie-card__year">{date}</span>
+              <span className="movie-card__year">{releaseDate}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -98,9 +99,7 @@ const Main = (props) => {
           </li>
         </ul>
 
-        <div className="catalog__movies-list">
-          {moviesTitles.map((movieTitle) => <MovieCard key={movieTitle} title={movieTitle}/>)}
-        </div>
+        <MoviesList movies={moviesList} onClick={onMovieClick}/>
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
@@ -125,10 +124,16 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  moviesTitles: PropTypes.arrayOf(PropTypes.string),
+  featuredMovie: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.number.isRequired,
+  }),
+  moviesList: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+  })).isRequired,
+  onMovieClick: PropTypes.func.isRequired,
 };
 
 export default Main;
