@@ -1,21 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app.jsx';
+import films from './mock/films.js';
 
 const rootElement = document.querySelector(`#root`);
+const {featured, list} = films;
 
 const init = () => {
-  const settings = {
-    movieTitle: `The Grand Budapest Hotel`,
-    movieGenre: `Drama`,
-    releaseDate: `2014`,
-  };
 
   ReactDOM.render(
       <App
-        movieTitle={settings.movieTitle}
-        movieGenre={settings.movieGenre}
-        releaseDate={settings.releaseDate}
+        featuredMovie={featured}
+        moviesList={list}
       />,
       rootElement
   );
