@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const styles = {
   toggler: {
@@ -6,10 +7,11 @@ const styles = {
   }
 };
 
-const PlayerScreen = () => {
+const PlayerScreen = (props) => {
+  const {movieLink} = props;
   return <React.Fragment>
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={movieLink} className="player__video" poster="img/player-poster.jpg"></video>
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -41,6 +43,10 @@ const PlayerScreen = () => {
       </div>
     </div>
   </React.Fragment>;
+};
+
+PlayerScreen.propTypes = {
+  movieLink: PropTypes.string.isRequired,
 };
 
 export default PlayerScreen;

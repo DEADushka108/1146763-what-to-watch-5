@@ -161,11 +161,13 @@ const MovieScreen = (props) => {
 
 MovieScreen.propTypes = {
   movieInfo: PropTypes.shape({
+    id: PropTypes.any.isRequired,
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired,
     cover: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
+    previewSrc: PropTypes.string.isRequired,
     rating: PropTypes.shape({
       score: PropTypes.number.isRequired,
       level: PropTypes.string.isRequired,
