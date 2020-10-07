@@ -1,12 +1,15 @@
 import React, {PureComponent} from 'react';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../utils/const.js';
 // import PropTypes from 'prop-types';
 
+const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
 
 export default class ReviewScreen extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      stars: [false, false, false, false, false],
+      rating: `3`,
       reviewText: null,
     };
 
@@ -16,7 +19,6 @@ export default class ReviewScreen extends PureComponent {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    console.log(this.state);
   }
 
   handleFieldChange(evt) {
@@ -25,7 +27,6 @@ export default class ReviewScreen extends PureComponent {
   }
 
   render() {
-    const {stars} = this.state;
     return (
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
@@ -37,11 +38,11 @@ export default class ReviewScreen extends PureComponent {
 
           <header className="page-header">
             <div className="logo">
-              <a href="main.html" className="logo__link">
+              <Link to={AppRoute.ROOT} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <nav className="breadcrumbs">
@@ -71,18 +72,19 @@ export default class ReviewScreen extends PureComponent {
           <form action="#" className="add-review__form" onSubmit={this.handleSubmit}>
             <div className="rating">
               <div className="rating__stars">
-                {stars.map((star, i) => {
+                {REVIEW_RATINGS.map((rating) => {
                   return (
-                    <React.Fragment key={i}>
-                      <input className="rating__input" id={`star-${i + 1}`} type="radio" name="rating" value={`${i + 1}`}
+                    <React.Fragment key={rating}>
+                      <input className="rating__input" id={`star-${rating}`} type="radio" name="rating" value={`${rating}`}
+                        checked={rating === this.state.rating}
                         onChange={(evt) => {
-                          const value = evt.target.checked;
+                          const value = evt.target.value;
                           this.setState({
-                            stars: [...stars.slice(0, i), value, ...stars.slice(i + 1)],
+                            rating: value,
                           });
                         }}
                       />
-                      <label className="rating__label" htmlFor={`star-${i + 1}`}>Rating {`${i + 1}`}</label>
+                      <label className="rating__label" htmlFor={`star-${rating}`}>Rating {`${rating}`}</label>
                     </React.Fragment>
                   );
                 })}
