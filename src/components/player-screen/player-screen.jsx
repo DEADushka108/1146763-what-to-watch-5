@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const styles = {
   toggler: {
@@ -6,10 +7,12 @@ const styles = {
   }
 };
 
-const PlayerScreen = () => {
+const PlayerScreen = (props) => {
+  const {movieInfo} = props;
+  const {previewSrc} = movieInfo;
   return <React.Fragment>
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={previewSrc} className="player__video" poster="img/player-poster.jpg"></video>
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -41,6 +44,26 @@ const PlayerScreen = () => {
       </div>
     </div>
   </React.Fragment>;
+};
+
+PlayerScreen.propTypes = {
+  movieInfo: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseDate: PropTypes.number.isRequired,
+    cover: PropTypes.string.isRequired,
+    poster: PropTypes.string.isRequired,
+    previewSrc: PropTypes.string.isRequired,
+    rating: PropTypes.shape({
+      score: PropTypes.number.isRequired,
+      level: PropTypes.string.isRequired,
+      count: PropTypes.number.isRequired,
+    }).isRequired,
+    description: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    cast: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default PlayerScreen;
