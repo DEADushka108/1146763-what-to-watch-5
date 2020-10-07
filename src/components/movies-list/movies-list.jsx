@@ -16,22 +16,22 @@ export default class MoviesList extends PureComponent {
   handleActivateMovie(id) {
     this.setState({
       activeCardId: id,
-    })
+    });
   }
 
   handleDisactivateMovie() {
     this.setState({
       activeCardId: null,
-    })
+    });
   }
 
   render() {
     const {movies, onClick} = this.props;
     return <div className="catalog__movies-list">
       {movies.map((movie) => <MovieCard key={movie.id} movieInfo={movie}
-      onClick={() => onClick(movie.id)}
-      onHover={this.handleActivateMovie}
-      onSettle={this.handleDisactivateMovie}
+        onClick={() => onClick(movie.id)}
+        onHover={this.handleActivateMovie}
+        onSettle={this.handleDisactivateMovie}
       />)}
     </div>;
   }
