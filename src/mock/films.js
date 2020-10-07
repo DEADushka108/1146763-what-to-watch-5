@@ -1,3 +1,8 @@
+const MovieLink = {
+  link1: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+  link2: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+};
+
 export default {
   featured: {
     title: `The Grand Budapest Hotel`,
@@ -6,11 +11,13 @@ export default {
   },
   list: [
     {
+      id: 1,
       title: `Macbeth`,
       genre: `Drama`,
       releaseDate: 2015,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/macbeth.jpg`,
+      previewSrc: MovieLink.link1,
       rating: {
         score: 6.6,
         level: `Average`,
@@ -21,11 +28,13 @@ export default {
       cast: `Michael Fassbender, Marion Cotillard, Jack Madigan`,
     },
     {
+      id: 2,
       title: `We need to talk about Kevin`,
       genre: `Drama, Mystery`,
       releaseDate: 2011,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/we-need-to-talk-about-kevin.jpg`,
+      previewSrc: MovieLink.link2,
       rating: {
         score: 7.5,
         level: `Good`,
@@ -38,11 +47,13 @@ export default {
       cast: `Tilda Swinton, John C. Reilly, Ezra Miller`,
     },
     {
+      id: 3,
       title: `Fantastic Beasts: The Crimes of Grindelwald`,
       genre: `Adventure, Fantasy`,
       releaseDate: 2018,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+      previewSrc: MovieLink.link1,
       rating: {
         score: 6.6,
         level: `Average`,
@@ -53,11 +64,13 @@ export default {
       cast: `Eddie Redmayne, Katherine Waterston, Dan Fogler`,
     },
     {
+      id: 4,
       title: `Shutter Island`,
       genre: `Mystery, Thriller`,
       releaseDate: 2010,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/shutter-island.jpg`,
+      previewSrc: MovieLink.link2,
       rating: {
         score: 8.1,
         level: `Good`,
@@ -68,11 +81,13 @@ export default {
       cast: `Leonardo DiCaprio, Emily Mortimer, Mark Ruffalo`,
     },
     {
+      id: 5,
       title: `Snatch`,
       genre: `Comedy, Crime`,
       releaseDate: 2000,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/snatch.jpg`,
+      previewSrc: MovieLink.link1,
       rating: {
         score: 8.3,
         level: `Good`,
@@ -83,11 +98,13 @@ export default {
       cast: `Jason Statham, Brad Pitt, Benicio Del Toro`,
     },
     {
+      id: 6,
       title: `Pulp Fiction`,
       genre: `Crime, Drama`,
       releaseDate: 1994,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/pulp-fiction.jpg`,
+      previewSrc: MovieLink.link2,
       rating: {
         score: 8.9,
         level: `Very Good`,
@@ -98,11 +115,13 @@ export default {
       cast: `John Travolta, Uma Thurman, Samuel L. Jackson`,
     },
     {
+      id: 7,
       title: `Revenant`,
       genre: `Action, Adventure`,
       releaseDate: 2015,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/revenant.jpg`,
+      previewSrc: MovieLink.link1,
       rating: {
         score: 8.0,
         level: `Good`,
@@ -113,11 +132,13 @@ export default {
       cast: `Leonardo DiCaprio, Tom Hardy, Will Poulter`,
     },
     {
+      id: 8,
       title: `Bohemian Rhapsody`,
       genre: `Biography, Music`,
       releaseDate: 2018,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/bohemian-rhapsody.jpg`,
+      previewSrc: MovieLink.link2,
       rating: {
         score: 8.0,
         level: `Good`,
@@ -128,11 +149,13 @@ export default {
       cast: `Rami Malek, Lucy Boynton, Gwilym Lee`,
     },
     {
+      id: 9,
       title: `Aviator`,
       genre: `Biography, Drama`,
       releaseDate: 2004,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/aviator.jpg`,
+      previewSrc: MovieLink.link1,
       rating: {
         score: 7.7,
         level: `Good`,
@@ -143,11 +166,13 @@ export default {
       cast: `Leonardo DiCaprio, Cate Blanchett, Kate Beckinsale`,
     },
     {
+      id: 10,
       title: `What We Do in the Shadows`,
       genre: `Comedy, Fantasy, Horror`,
       releaseDate: 2004,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/what-we-do-in-the-shadows.jpg`,
+      previewSrc: MovieLink.link2,
       rating: {
         score: 7.7,
         level: `Good`,
@@ -158,11 +183,13 @@ export default {
       cast: `Jemaine Clement, Taika Waititi, Cori Gonzalez-Macuer`,
     },
     {
+      id: 11,
       title: `Johnny English`,
       genre: `Comedy, Fantasy, Horror`,
       releaseDate: 2003,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/johnny-english.jpg`,
+      previewSrc: MovieLink.link1,
       rating: {
         score: 6.2,
         level: `Good`,
@@ -173,11 +200,13 @@ export default {
       cast: ` Rowan Atkinson, John Malkovich, Natalie Imbruglia`,
     },
     {
+      id: 12,
       title: `No Country for Old Men`,
       genre: `Crime, Drama, Thriller`,
       releaseDate: 2007,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/no-country-for-old-men.jpg`,
+      previewSrc: MovieLink.link2,
       rating: {
         score: 8.1,
         level: `Very good`,
@@ -188,11 +217,13 @@ export default {
       cast: `Tommy Lee Jones, Javier Bardem, Josh Brolin`,
     },
     {
+      id: 13,
       title: `Moonrise Kingdom`,
       genre: `Comedy, Drama, Romance`,
       releaseDate: 2012,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/moonrise-kingdom.jpg`,
+      previewSrc: MovieLink.link1,
       rating: {
         score: 7.8,
         level: `Good`,
@@ -203,11 +234,13 @@ export default {
       cast: `Jared Gilman, Kara Hayward, Bruce Willis`,
     },
     {
+      id: 14,
       title: `Seven Years in Tibet`,
       genre: `Comedy, Drama, Romance`,
       releaseDate: 1997,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/seven-years-in-tibet.jpg`,
+      previewSrc: MovieLink.link2,
       rating: {
         score: 7.1,
         level: `Good`,
@@ -218,11 +251,13 @@ export default {
       cast: `Brad Pitt, David Thewlis, BD Wong`,
     },
     {
+      id: 15,
       title: `War of the Worlds`,
       genre: `Comedy, Drama, Romance`,
       releaseDate: 2005,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/war-of-the-worlds.jpg`,
+      previewSrc: MovieLink.link1,
       rating: {
         score: 6.5,
         level: `Good`,
@@ -233,11 +268,13 @@ export default {
       cast: `Tom Cruise, Dakota Fanning, Tim Robbins`,
     },
     {
+      id: 16,
       title: `Midnight Special`,
       genre: `Comedy, Drama, Romance`,
       releaseDate: 2016,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/midnight-special.jpg`,
+      previewSrc: MovieLink.link2,
       rating: {
         score: 6.6,
         level: `Good`,
@@ -248,11 +285,13 @@ export default {
       cast: `Michael Shannon, Joel Edgerton, Kirsten Dunst`,
     },
     {
+      id: 17,
       title: `Dardjeeling Limited`,
       genre: `Adventure, Comedy, Drama`,
       releaseDate: 2007,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/dardjeeling-limited.jpg`,
+      previewSrc: MovieLink.link1,
       rating: {
         score: 7.2,
         level: `Good`,
@@ -263,11 +302,13 @@ export default {
       cast: `Owen Wilson, Adrien Brody, Jason Schwartzman`,
     },
     {
+      id: 18,
       title: `Orlando`,
       genre: `Biography, Drama, Fantasy`,
       releaseDate: 1992,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/orlando.jpg`,
+      previewSrc: MovieLink.link2,
       rating: {
         score: 7.2,
         level: `Good`,
@@ -278,11 +319,13 @@ export default {
       cast: `Tilda Swinton, Billy Zane, Quentin Crisp`,
     },
     {
+      id: 19,
       title: `Mindhunter`,
       genre: `Crime, Drama, Thriller`,
       releaseDate: 2017,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/mindhunter.jpg`,
+      previewSrc: MovieLink.link1,
       rating: {
         score: 8.6,
         level: `Very good`,
@@ -291,6 +334,23 @@ export default {
       description: `Set in the late 1970s, two FBI agents are tasked with interviewing serial killers to solve open cases.`,
       director: `Joe Penhall`,
       cast: `Jonathan Groff, Holt McCallany, Anna Torv`,
+    },
+    {
+      id: 20,
+      title: `Midnight Special`,
+      genre: `Comedy, Drama, Romance`,
+      releaseDate: 2016,
+      cover: `img/bg-the-grand-budapest-hotel.jpg`,
+      poster: `img/midnight-special.jpg`,
+      previewSrc: MovieLink.link2,
+      rating: {
+        score: 6.3,
+        level: `Good`,
+        count: 7.1,
+      },
+      description: `A father and son go on the run, pursued by the government and a cult drawn to the child's special powers.`,
+      director: `Jeff Nichols`,
+      cast: `Michael Shannon, Joel Edgerton, Kirsten Dunst`,
     },
   ],
 };
