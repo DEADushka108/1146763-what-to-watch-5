@@ -7,8 +7,9 @@ import UserScreen from '../user-screen/user-screen.jsx';
 import MovieScreen from '../movie-screen/movie-screen.jsx';
 import ReviewScreen from '../review-screen/review-screen.jsx';
 import PlayerScreen from '../player-screen/player-screen.jsx';
-import {findItemById} from '../../utils/utils.js';
+import {findItemById, getRandomArrayElements} from '../../utils/utils.js';
 import {AppRoute} from '../../utils/const.js';
+import {promoMovie, movieDetails} from '../../types/types.js';
 
 const App = (props) => {
   const {featuredMovie, moviesList} = props;
@@ -26,9 +27,12 @@ const App = (props) => {
         <Route exact path={`${AppRoute.LOGIN}`}>
           <LoginScreen />
         </Route>
-        <Route exact path={`${AppRoute.FAVORITE}`}>
-          <UserScreen />
-        </Route>
+        <Route exact path={`${AppRoute.FAVORITE}`} render={({history}) => (
+          <UserScreen
+            moviesList={getRandomArrayElements(moviesList, 10)}
+            onMovieCardClick={(movieId) => history.push(`${AppRoute.MOVIE}/${movieId}`)}
+          />
+        )} />
         <Route exact path={`${AppRoute.MOVIE}/:id/review`} render={(routeProps) => {
           const id = routeProps.match.params.id;
           const movie = findItemById(id, moviesList);
@@ -37,7 +41,9 @@ const App = (props) => {
         <Route exact path={`${AppRoute.MOVIE}/:id`} render={(routeProps) => {
           const id = routeProps.match.params.id;
           const movie = findItemById(id, moviesList);
-          return <MovieScreen movieInfo={movie}/>;
+          return <MovieScreen movieInfo={movie}
+            moviesList={getRandomArrayElements(moviesList, 4)}
+            onMovieCardClick={(movieId) => routeProps.history.push(`${AppRoute.MOVIE}/${movieId}`)}/>;
         }}/>
         <Route exact path={`${AppRoute.PLAYER}/:id`} render={(routeProps) => {
           const id = routeProps.match.params.id;
@@ -50,28 +56,8 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  featuredMovie: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
-  }),
-  moviesList: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
-    cover: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    previewSrc: PropTypes.string.isRequired,
-    rating: PropTypes.shape({
-      score: PropTypes.number.isRequired,
-      level: PropTypes.string.isRequired,
-      count: PropTypes.number.isRequired,
-    }).isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    cast: PropTypes.string.isRequired,
-  })).isRequired,
+  featuredMovie: promoMovie,
+  moviesList: PropTypes.arrayOf(movieDetails).isRequired,
 };
 
 export default App;
