@@ -1,9 +1,11 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {AppRoute} from '../../utils/const';
 
 const MovieScreen = (props) => {
   const {movieInfo} = props;
-  const {title, genre, releaseDate, cover, poster, rating, description, director, cast} = movieInfo;
+  const {id, title, genre, releaseDate, cover, poster, rating, description, director, cast} = movieInfo;
   const {score, level, count} = rating;
 
   return <React.Fragment>
@@ -40,19 +42,19 @@ const MovieScreen = (props) => {
             </p>
 
             <div className="movie-card__buttons">
-              <button className="btn btn--play movie-card__button" type="button">
+              <Link to={`${AppRoute.PLAYER}/${id}`} className="btn btn--play movie-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
-              </button>
-              <button className="btn btn--list movie-card__button" type="button">
+              </Link>
+              <Link to={`${AppRoute.FAVORITE}`} className="btn btn--list movie-card__button" type="button">
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add"></use>
                 </svg>
                 <span>My list</span>
-              </button>
-              <a href="add-review.html" className="btn movie-card__button">Add review</a>
+              </Link>
+              <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
             </div>
           </div>
         </div>
@@ -161,11 +163,13 @@ const MovieScreen = (props) => {
 
 MovieScreen.propTypes = {
   movieInfo: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired,
     cover: PropTypes.string.isRequired,
     poster: PropTypes.string.isRequired,
+    previewSrc: PropTypes.string.isRequired,
     rating: PropTypes.shape({
       score: PropTypes.number.isRequired,
       level: PropTypes.string.isRequired,
