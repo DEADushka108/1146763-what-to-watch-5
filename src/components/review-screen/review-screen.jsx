@@ -86,7 +86,7 @@ export default class ReviewScreen extends PureComponent {
                           });
                         }}
                       />
-                      <label className="rating__label" htmlFor={`star-${rating}`}>Rating {`${rating}`}</label>
+                      <label className="rating__label" htmlFor={`star-${rating}`}> {`Rating ${rating}`}</label>
                     </React.Fragment>
                   );
                 })}
