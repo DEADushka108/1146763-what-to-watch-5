@@ -1,4 +1,5 @@
 import React from 'react';
+import {movieDetails} from '../../types/types';
 
 const styles = {
   toggler: {
@@ -6,10 +7,12 @@ const styles = {
   }
 };
 
-const PlayerScreen = () => {
+const PlayerScreen = (props) => {
+  const {movieInfo} = props;
+  const {previewSrc} = movieInfo;
   return <React.Fragment>
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={previewSrc} className="player__video" poster="img/player-poster.jpg"></video>
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -41,6 +44,10 @@ const PlayerScreen = () => {
       </div>
     </div>
   </React.Fragment>;
+};
+
+PlayerScreen.propTypes = {
+  movieInfo: movieDetails
 };
 
 export default PlayerScreen;
