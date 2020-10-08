@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {AppRoute} from '../../utils/const';
+import {movieDetails} from '../../types/types';
 
 const MovieCard = (props) => {
   const {movieInfo, onHover, onSettle, onClick} = props;
@@ -18,11 +19,7 @@ const MovieCard = (props) => {
 };
 
 MovieCard.propTypes = {
-  movieInfo: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-  }).isRequired,
+  movieInfo: movieDetails,
   onHover: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
   onSettle: PropTypes.func.isRequired,

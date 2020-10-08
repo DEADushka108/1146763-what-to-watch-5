@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import MovieCard from '../movie-card/movie-card.jsx';
+import {movieDetails} from '../../types/types.js';
 
 export default class MoviesList extends PureComponent {
   constructor(props) {
@@ -38,10 +39,6 @@ export default class MoviesList extends PureComponent {
 }
 
 MoviesList.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.any.isRequired,
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-  })).isRequired,
+  movies: PropTypes.arrayOf(movieDetails).isRequired,
   onClick: PropTypes.func.isRequired,
 };

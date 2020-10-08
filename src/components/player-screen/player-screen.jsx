@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {movieDetails} from '../../types/types';
 
 const styles = {
   toggler: {
@@ -47,23 +47,7 @@ const PlayerScreen = (props) => {
 };
 
 PlayerScreen.propTypes = {
-  movieInfo: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseDate: PropTypes.number.isRequired,
-    cover: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    previewSrc: PropTypes.string.isRequired,
-    rating: PropTypes.shape({
-      score: PropTypes.number.isRequired,
-      level: PropTypes.string.isRequired,
-      count: PropTypes.number.isRequired,
-    }).isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    cast: PropTypes.string.isRequired,
-  }).isRequired,
+  movieInfo: movieDetails
 };
 
 export default PlayerScreen;

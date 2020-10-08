@@ -36,11 +36,13 @@ const App = (props) => {
         <Route exact path={`${AppRoute.MOVIE}/:id/review`} render={(routeProps) => {
           const id = routeProps.match.params.id;
           const movie = findItemById(id, moviesList);
+
           return <ReviewScreen movieInfo={movie}/>;
         }}/>
         <Route exact path={`${AppRoute.MOVIE}/:id`} render={(routeProps) => {
           const id = routeProps.match.params.id;
           const movie = findItemById(id, moviesList);
+
           return <MovieScreen movieInfo={movie}
             moviesList={getRandomArrayElements(moviesList, 4)}
             onMovieCardClick={(movieId) => routeProps.history.push(`${AppRoute.MOVIE}/${movieId}`)}/>;
@@ -48,6 +50,7 @@ const App = (props) => {
         <Route exact path={`${AppRoute.PLAYER}/:id`} render={(routeProps) => {
           const id = routeProps.match.params.id;
           const movie = findItemById(id, moviesList);
+
           return <PlayerScreen movieInfo={movie}/>;
         }} />
       </Switch>

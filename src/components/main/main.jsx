@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MoviesList from '../movies-list/movies-list.jsx';
+import {movieDetails} from '../../types/types.js';
 
 const Main = (props) => {
   const {featuredMovie, moviesList, onMovieCardClick} = props;
@@ -129,11 +130,7 @@ Main.propTypes = {
     genre: PropTypes.string.isRequired,
     releaseDate: PropTypes.number.isRequired,
   }),
-  moviesList: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-  })).isRequired,
+  moviesList: PropTypes.arrayOf(movieDetails).isRequired,
   onMovieCardClick: PropTypes.func.isRequired,
 };
 

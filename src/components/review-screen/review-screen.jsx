@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../utils/const.js';
-import PropTypes from 'prop-types';
+import {movieDetails} from '../../types/types.js';
 
 const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
 
@@ -109,10 +109,5 @@ export default class ReviewScreen extends PureComponent {
 }
 
 ReviewScreen.propTypes = {
-  movieInfo: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired,
-    cover: PropTypes.string.isRequired,
-  }).isRequired,
+  movieInfo: movieDetails,
 };
