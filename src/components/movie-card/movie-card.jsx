@@ -9,14 +9,16 @@ const MovieCard = (props) => {
   const {id, title} = movieInfo;
   let timeout;
 
-  return <article className="small-movie-card catalog__movies-card" onClick={() => onClick(id)}
-    onMouseEnter={() => {
-      timeout = setTimeout(onPlayStatusChange, 1000);
-    }} onMouseLeave={() => {
-      clearTimeout(timeout);
-      onPlayStatusChange();
-    }}>
-    {children}
+  return <article className="small-movie-card catalog__movies-card" >
+    <div className="small-movie-card__image" onClick={() => onClick(id)}
+      onMouseEnter={() => {
+        timeout = setTimeout(onPlayStatusChange, 1000);
+      }} onMouseLeave={() => {
+        clearTimeout(timeout);
+        onPlayStatusChange();
+      }}>
+      {children}
+    </div>
     <h3 className="small-movie-card__title">
       <Link to={`${AppRoute.MOVIE}/${id}`} className="small-movie-card__link">{title}</Link>
     </h3>
