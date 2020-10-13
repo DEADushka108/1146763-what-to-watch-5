@@ -8,7 +8,7 @@ export default {
     {
       id: 1,
       title: `Macbeth`,
-      genre: `Drama`,
+      genre: [`Drama`],
       releaseDate: 2015,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -42,7 +42,7 @@ export default {
     {
       id: 2,
       title: `We need to talk about Kevin`,
-      genre: `Drama, Mystery`,
+      genre: [`Drama`, `Mystery`],
       releaseDate: 2011,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -78,7 +78,7 @@ export default {
     {
       id: 3,
       title: `Fantastic Beasts: The Crimes of Grindelwald`,
-      genre: `Adventure, Fantasy`,
+      genre: [`Adventure`, `Fantasy`],
       releaseDate: 2018,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -112,7 +112,7 @@ export default {
     {
       id: 4,
       title: `Shutter Island`,
-      genre: `Mystery, Thriller`,
+      genre: [`Mystery`, `Thriller`],
       releaseDate: 2010,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -146,7 +146,7 @@ export default {
     {
       id: 5,
       title: `Snatch`,
-      genre: `Comedy, Crime`,
+      genre: [`Comedy`, `Crime`],
       releaseDate: 2000,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -180,7 +180,7 @@ export default {
     {
       id: 6,
       title: `Pulp Fiction`,
-      genre: `Crime, Drama`,
+      genre: [`Crime`, `Drama`],
       releaseDate: 1994,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -214,7 +214,7 @@ export default {
     {
       id: 7,
       title: `Revenant`,
-      genre: `Action, Adventure`,
+      genre: [`Action`, `Adventure`],
       releaseDate: 2015,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -248,7 +248,7 @@ export default {
     {
       id: 8,
       title: `Bohemian Rhapsody`,
-      genre: `Biography, Music`,
+      genre: [`Biography`, `Music`],
       releaseDate: 2018,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -282,7 +282,7 @@ export default {
     {
       id: 9,
       title: `Aviator`,
-      genre: `Biography, Drama`,
+      genre: [`Biography`, `Drama`],
       releaseDate: 2004,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -316,7 +316,7 @@ export default {
     {
       id: 10,
       title: `What We Do in the Shadows`,
-      genre: `Comedy, Fantasy, Horror`,
+      genre: [`Comedy`, `Fantasy`, `Horror`],
       releaseDate: 2004,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -350,7 +350,7 @@ export default {
     {
       id: 11,
       title: `Johnny English`,
-      genre: `Comedy, Fantasy, Horror`,
+      genre: [`Comedy`, `Fantasy`, `Horror`],
       releaseDate: 2003,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -384,7 +384,7 @@ export default {
     {
       id: 12,
       title: `No Country for Old Men`,
-      genre: `Crime, Drama, Thriller`,
+      genre: [`Crime`, `Drama`, `Thriller`],
       releaseDate: 2007,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -418,7 +418,7 @@ export default {
     {
       id: 13,
       title: `Moonrise Kingdom`,
-      genre: `Comedy, Drama, Romance`,
+      genre: [`Comedy`, `Drama`, `Romance`],
       releaseDate: 2012,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -452,7 +452,7 @@ export default {
     {
       id: 14,
       title: `Seven Years in Tibet`,
-      genre: `Comedy, Drama, Romance`,
+      genre: [`Comedy`, `Drama`, `Romance`],
       releaseDate: 1997,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -486,7 +486,7 @@ export default {
     {
       id: 15,
       title: `War of the Worlds`,
-      genre: `Comedy, Drama, Romance`,
+      genre: [`Comedy`, `Drama`, `Romance`],
       releaseDate: 2005,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -520,7 +520,7 @@ export default {
     {
       id: 16,
       title: `Midnight Special`,
-      genre: `Comedy, Drama, Romance`,
+      genre: [`Comedy`, `Drama`, `Romance`],
       releaseDate: 2016,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -554,7 +554,7 @@ export default {
     {
       id: 17,
       title: `Dardjeeling Limited`,
-      genre: `Adventure, Comedy, Drama`,
+      genre: [`Adventure`, `Comedy`, `Drama`],
       releaseDate: 2007,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -588,7 +588,7 @@ export default {
     {
       id: 18,
       title: `Orlando`,
-      genre: `Biography, Drama, Fantasy`,
+      genre: [`Biography`, `Drama`, `Fantasy`],
       releaseDate: 1992,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -622,7 +622,7 @@ export default {
     {
       id: 19,
       title: `Mindhunter`,
-      genre: `Crime, Drama, Thriller`,
+      genre: [`Crime`, `Drama`, `Thriller`],
       releaseDate: 2017,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
@@ -656,7 +656,7 @@ export default {
     {
       id: 20,
       title: `Midnight Special`,
-      genre: `Comedy, Drama, Romance`,
+      genre: [`Comedy`, `Drama`, `Romance`],
       releaseDate: 2016,
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,

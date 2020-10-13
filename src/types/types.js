@@ -9,7 +9,7 @@ export const promoMovie = PropTypes.shape({
 export const movieDetails = PropTypes.shape({
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
+  genre: PropTypes.array.isRequired,
   releaseDate: PropTypes.number.isRequired,
   runTime: PropTypes.string.isRequired,
   cover: PropTypes.string.isRequired,

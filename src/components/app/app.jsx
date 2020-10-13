@@ -44,7 +44,7 @@ const App = (props) => {
           const movie = findItemById(id, moviesList);
 
           return <MovieScreen movieInfo={movie}
-            moviesList={getRandomArrayElements(moviesList, 4)}
+            moviesList={moviesList}
             onMovieCardClick={(movieId) => routeProps.history.push(`${AppRoute.MOVIE}/${movieId}`)}/>;
         }}/>
         <Route exact path={`${AppRoute.PLAYER}/:id`} render={(routeProps) => {

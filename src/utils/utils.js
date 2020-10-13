@@ -20,3 +20,22 @@ export const getRandomArrayElements = (array, max) => {
 
   return newArray.slice(0, max);
 };
+
+const getAllGenres = (list) => {
+  return list.map((item) => {
+    return item.genre;
+  });
+};
+
+export const getUniqueGenresList = (list) => {
+  const genresList = getAllGenres(list).flat();
+  const uniqueGenresList = [...new Set(genresList.sort())].slice(0, 9);
+
+  return [`All genres`, ...uniqueGenresList];
+};
+
+export const findSimilarMovies = (list, genre, title) => {
+  return list.filter((item) => {
+    return item.genre[0] === genre[0] && item.title !== title;
+  });
+};

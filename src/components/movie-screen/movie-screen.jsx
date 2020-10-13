@@ -6,6 +6,7 @@ import {movieDetails} from '../../types/types';
 import MoviesList from '../movies-list/movies-list';
 import Tabs from '../tabs/tabs.jsx';
 import Tab from '../tab/tab.jsx';
+import {findSimilarMovies} from '../../utils/utils';
 
 const TabNames = {
   OVERVIEW: `Overview`,
@@ -17,6 +18,8 @@ const MovieScreen = (props) => {
   const {movieInfo, moviesList, onMovieCardClick} = props;
   const {id, title, genre, releaseDate, runTime, cover, poster, rating, description, director, cast, reviews} = movieInfo;
   const {score, level, count} = rating;
+
+  const similarMovies = findSimilarMovies(moviesList, genre, title).slice(0, 4);
 
   return <React.Fragment>
     <section className="movie-card movie-card--full">
@@ -47,7 +50,7 @@ const MovieScreen = (props) => {
           <div className="movie-card__desc">
             <h2 className="movie-card__title">{title}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{genre} </span>
+              <span className="movie-card__genre">{genre.join(`, `)} </span>
               <span className="movie-card__year">{releaseDate}</span>
             </p>
 
@@ -150,7 +153,7 @@ const MovieScreen = (props) => {
       <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
 
-        <MoviesList movies={moviesList} onClick={onMovieCardClick}/>
+        <MoviesList movies={similarMovies} onClick={onMovieCardClick}/>
       </section>
 
       <footer className="page-footer">
