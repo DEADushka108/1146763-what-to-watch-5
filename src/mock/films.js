@@ -1,8 +1,3 @@
-const MovieLink = {
-  link1: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-  link2: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-};
-
 export default {
   featured: {
     title: `The Grand Budapest Hotel`,
@@ -18,7 +13,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/macbeth.jpg`,
-      previewSrc: MovieLink.link1,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 6.6,
         level: `Average`,
@@ -52,7 +47,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/we-need-to-talk-about-kevin.jpg`,
-      previewSrc: MovieLink.link2,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 7.5,
         level: `Good`,
@@ -88,7 +83,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-      previewSrc: MovieLink.link1,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 6.6,
         level: `Average`,
@@ -122,7 +117,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/shutter-island.jpg`,
-      previewSrc: MovieLink.link1,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 8.1,
         level: `Good`,
@@ -156,7 +151,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/snatch.jpg`,
-      previewSrc: MovieLink.link2,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 8.3,
         level: `Good`,
@@ -190,7 +185,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/pulp-fiction.jpg`,
-      previewSrc: MovieLink.link1,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 8.9,
         level: `Very Good`,
@@ -224,7 +219,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/revenant.jpg`,
-      previewSrc: MovieLink.link2,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 8.0,
         level: `Good`,
@@ -258,7 +253,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/bohemian-rhapsody.jpg`,
-      previewSrc: MovieLink.link1,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 8.0,
         level: `Good`,
@@ -292,7 +287,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/aviator.jpg`,
-      previewSrc: MovieLink.link2,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 7.7,
         level: `Good`,
@@ -326,7 +321,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/what-we-do-in-the-shadows.jpg`,
-      previewSrc: MovieLink.link1,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 7.7,
         level: `Good`,
@@ -360,7 +355,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/johnny-english.jpg`,
-      previewSrc: MovieLink.link2,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 6.2,
         level: `Good`,
@@ -394,7 +389,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/no-country-for-old-men.jpg`,
-      previewSrc: MovieLink.link1,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 8.1,
         level: `Very good`,
@@ -428,7 +423,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/moonrise-kingdom.jpg`,
-      previewSrc: MovieLink.link2,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 7.8,
         level: `Good`,
@@ -462,7 +457,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/seven-years-in-tibet.jpg`,
-      previewSrc: MovieLink.link1,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 7.1,
         level: `Good`,
@@ -496,7 +491,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/war-of-the-worlds.jpg`,
-      previewSrc: MovieLink.link2,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 6.5,
         level: `Good`,
@@ -530,7 +525,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/midnight-special.jpg`,
-      previewSrc: MovieLink.link1,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 6.6,
         level: `Good`,
@@ -564,7 +559,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/dardjeeling-limited.jpg`,
-      previewSrc: MovieLink.link2,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 7.2,
         level: `Good`,
@@ -598,7 +593,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/orlando.jpg`,
-      previewSrc: MovieLink.link1,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 7.2,
         level: `Good`,
@@ -632,7 +627,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/mindhunter.jpg`,
-      previewSrc: MovieLink.link2,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 8.6,
         level: `Very good`,
@@ -666,7 +661,7 @@ export default {
       runTime: `2h 15m`,
       cover: `img/bg-the-grand-budapest-hotel.jpg`,
       poster: `img/midnight-special.jpg`,
-      previewSrc: MovieLink.link1,
+      previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
       rating: {
         score: 6.6,
         level: `Good`,
