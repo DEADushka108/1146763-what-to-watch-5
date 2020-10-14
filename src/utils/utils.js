@@ -28,14 +28,14 @@ const getAllGenres = (list) => {
 };
 
 export const getUniqueGenresList = (list) => {
-  const genresList = getAllGenres(list).flat();
-  const uniqueGenresList = [...new Set(genresList.sort())].slice(0, 9);
+  const genresList = getAllGenres(list).flat().sort();
+  const uniqueGenresList = [...new Set(genresList)].slice(0, 9);
 
   return [`All genres`, ...uniqueGenresList];
 };
 
 export const findSimilarMovies = (list, genre, title) => {
   return list.filter((item) => {
-    return item.genre[0] === genre[0] && item.title !== title;
+    return item.genre.some((it) => it === genre[0]) && item.title !== title;
   });
 };

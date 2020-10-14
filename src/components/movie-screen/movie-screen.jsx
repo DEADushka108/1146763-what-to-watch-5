@@ -18,6 +18,7 @@ const MovieScreen = (props) => {
   const {movieInfo, moviesList, onMovieCardClick} = props;
   const {id, title, genre, releaseDate, runTime, cover, poster, rating, description, director, cast, reviews} = movieInfo;
   const {score, level, count} = rating;
+  const genreList = genre.join(`, `);
 
   const similarMovies = findSimilarMovies(moviesList, genre, title).slice(0, 4);
 
@@ -50,7 +51,7 @@ const MovieScreen = (props) => {
           <div className="movie-card__desc">
             <h2 className="movie-card__title">{title}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{genre.join(`, `)} </span>
+              <span className="movie-card__genre">{genreList} </span>
               <span className="movie-card__year">{releaseDate}</span>
             </p>
 
@@ -117,7 +118,7 @@ const MovieScreen = (props) => {
                   </p>
                   <p className="movie-card__details-item">
                     <strong className="movie-card__details-name">Genre</strong>
-                    <span className="movie-card__details-value">{genre}</span>
+                    <span className="movie-card__details-value">{genreList}</span>
                   </p>
                   <p className="movie-card__details-item">
                     <strong className="movie-card__details-name">Released</strong>
