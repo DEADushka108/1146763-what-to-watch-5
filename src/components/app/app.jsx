@@ -2,6 +2,8 @@ import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../store/reducer.js';
 import LoginScreen from '../login-screen/login-screen.jsx';
 import UserScreen from '../user-screen/user-screen.jsx';
 import MovieScreen from '../movie-screen/movie-screen.jsx';
@@ -12,7 +14,7 @@ import {AppRoute} from '../../utils/const.js';
 import {promoMovie, movieDetails} from '../../types/types.js';
 
 const App = (props) => {
-  const {featuredMovie, moviesList} = props;
+  const {featuredMovie, moviesList, onGenreClick, filteredMoviesList} = props;
 
   return (
     <BrowserRouter>
@@ -21,7 +23,9 @@ const App = (props) => {
           <Main
             featuredMovie={featuredMovie}
             moviesList={moviesList}
+            filteredMoviesList={filteredMoviesList}
             onMovieCardClick={(movieId) => history.push(`${AppRoute.MOVIE}/${movieId}`)}
+            onGenreClick={onGenreClick}
           />
         )}/>;
         <Route exact path={`${AppRoute.LOGIN}`}>
@@ -44,7 +48,7 @@ const App = (props) => {
           const movie = findItemById(id, moviesList);
 
           return <MovieScreen movieInfo={movie}
-            moviesList={getRandomArrayElements(moviesList, 4)}
+            filteredMoviesList={filteredMoviesList}
             onMovieCardClick={(movieId) => routeProps.history.push(`${AppRoute.MOVIE}/${movieId}`)}/>;
         }}/>
         <Route exact path={`${AppRoute.PLAYER}/:id`} render={(routeProps) => {
@@ -61,6 +65,22 @@ const App = (props) => {
 App.propTypes = {
   featuredMovie: promoMovie,
   moviesList: PropTypes.arrayOf(movieDetails).isRequired,
+  filteredMoviesList: PropTypes.arrayOf(movieDetails).isRequired,
+  onGenreClick: PropTypes.func.isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  featuredMovie: state.featuredMovie,
+  moviesList: state.moviesList,
+  filteredMoviesList: state.filteredMoviesList,
+  activeGenre: state.activeGenre,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGenreClick(list, genre) {
+    dispatch(ActionCreator.getFilteredMoviesList(list, genre));
+  },
+});
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
