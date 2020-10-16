@@ -11,25 +11,21 @@ const initialState = {
 };
 
 const ActionType = {
-  GET_FILTERED_MOVIE_LIST: `GET_FILTERED_MOVIE_LIST`,
+  SET_ACTIVE_GENRE: `SET_ACTIVE_GENRE`,
   SET_MOVIES_COUNT: `SET_MOVIES_COUNT`,
 };
 
-const ActionCreator = {
-  getFilteredMoviesList: (list, genre) => {
-    const filteredList = genre === FilterSettings.DEFAULT_VALUE ? list : list.filter((it) => {
-      return it.genre === genre;
-    });
+const filterMoviesByGenre = (list, genre) => {
+  return genre === FilterSettings.DEFAULT_VALUE ? list : list.filter((it) => {
+    return it.genre === genre;
+  });
+};
 
-    return {
-      type: ActionType.GET_FILTERED_MOVIE_LIST,
-      payload: {
-        filteredList,
-        genre,
-        moviesCount: MAX_MOVIES_COUNT,
-      },
-    };
-  },
+const ActionCreator = {
+  getFilteredMoviesList: (genre) => ({
+    type: ActionType.SET_ACTIVE_GENRE,
+    payload: genre,
+  }),
   setMoviesCount: () => ({
     type: ActionType.SET_MOVIES_COUNT,
     payload: MAX_MOVIES_COUNT,
@@ -38,11 +34,11 @@ const ActionCreator = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.GET_FILTERED_MOVIE_LIST:
+    case ActionType.SET_ACTIVE_GENRE:
       return extend(state, {
-        filteredMoviesList: action.payload.filteredList,
-        activeGenre: action.payload.genre,
-        moviesCount: action.payload.moviesCount,
+        filteredMoviesList: filterMoviesByGenre(state.moviesList, action.payload),
+        activeGenre: action.payload,
+        moviesCount: MAX_MOVIES_COUNT,
       });
     case ActionType.SET_MOVIES_COUNT:
       return extend(state, {

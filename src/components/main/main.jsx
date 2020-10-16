@@ -6,7 +6,7 @@ import GenresList from '../genres-list/genres-list.jsx';
 import ShowMoreButton from '../show-more-button/show-more-button.jsx';
 
 const Main = (props) => {
-  const {featuredMovie, moviesList, filteredMoviesList, moviesCount, onShowMoreButtonClick, onMovieCardClick, onGenreClick} = props;
+  const {featuredMovie, moviesList, filteredMoviesList, moviesCount, onMovieCardClick} = props;
   const {title, genre, releaseDate} = featuredMovie;
 
   return <React.Fragment>
@@ -69,12 +69,12 @@ const Main = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <GenresList moviesList={moviesList} onClick={onGenreClick}/>
+        <GenresList moviesList={moviesList}/>
 
         <MoviesList movies={filteredMoviesList} count={moviesCount} onClick={onMovieCardClick}/>
 
         <div className="catalog__more">
-          <ShowMoreButton list={filteredMoviesList} count={moviesCount} onClick={onShowMoreButtonClick} />
+          <ShowMoreButton list={filteredMoviesList} count={moviesCount} />
         </div>
       </section>
 
@@ -105,8 +105,6 @@ Main.propTypes = {
   filteredMoviesList: PropTypes.arrayOf(movieDetails).isRequired,
   moviesCount: PropTypes.number.isRequired,
   onMovieCardClick: PropTypes.func.isRequired,
-  onGenreClick: PropTypes.func.isRequired,
-  onShowMoreButtonClick: PropTypes.func.isRequired,
 };
 
 export default Main;

@@ -3,7 +3,6 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import Main from '../main/main.jsx';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/reducer.js';
 import LoginScreen from '../login-screen/login-screen.jsx';
 import UserScreen from '../user-screen/user-screen.jsx';
 import MovieScreen from '../movie-screen/movie-screen.jsx';
@@ -14,7 +13,7 @@ import {AppRoute} from '../../utils/const.js';
 import {promoMovie, movieDetails} from '../../types/types.js';
 
 const App = (props) => {
-  const {featuredMovie, moviesList, moviesCount, onGenreClick, filteredMoviesList, onShowMoreButtonClick} = props;
+  const {featuredMovie, moviesList, moviesCount, filteredMoviesList} = props;
 
   return (
     <BrowserRouter>
@@ -25,9 +24,7 @@ const App = (props) => {
             moviesList={moviesList}
             filteredMoviesList={filteredMoviesList}
             onMovieCardClick={(movieId) => history.push(`${AppRoute.MOVIE}/${movieId}`)}
-            onGenreClick={onGenreClick}
             moviesCount={moviesCount}
-            onShowMoreButtonClick={onShowMoreButtonClick}
           />
         )}/>;
         <Route exact path={`${AppRoute.LOGIN}`}>
@@ -69,9 +66,7 @@ App.propTypes = {
   featuredMovie: promoMovie,
   moviesList: PropTypes.arrayOf(movieDetails).isRequired,
   filteredMoviesList: PropTypes.arrayOf(movieDetails).isRequired,
-  onGenreClick: PropTypes.func.isRequired,
   moviesCount: PropTypes.number.isRequired,
-  onShowMoreButtonClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -82,14 +77,5 @@ const mapStateToProps = (state) => ({
   moviesCount: state.moviesCount,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onGenreClick(list, genre) {
-    dispatch(ActionCreator.getFilteredMoviesList(list, genre));
-  },
-  onShowMoreButtonClick() {
-    dispatch(ActionCreator.setMoviesCount());
-  },
-});
-
 export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

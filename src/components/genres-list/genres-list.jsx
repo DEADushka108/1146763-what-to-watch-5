@@ -2,8 +2,10 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {FilterSettings} from '../../utils/const.js';
 import {movieDetails} from '../../types/types.js';
+import {ActionCreator} from '../../store/reducer.js';
+import {connect} from 'react-redux';
 
-export default class GenresList extends PureComponent {
+class GenresList extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -26,13 +28,13 @@ export default class GenresList extends PureComponent {
       return it.genre;
     });
 
-    genresList.unshift(FilterSettings.DEFAULT_VALUE);
-    const uniqueGenresList = Array.from(new Set(genresList.slice(0, FilterSettings.MAX_COUNT)));
+    const uniqueGenresList = Array.from(new Set(genresList)).sort().slice(0, FilterSettings.MAX_COUNT);
+    uniqueGenresList.unshift(FilterSettings.DEFAULT_VALUE);
 
     return <ul className="catalog__genres-list">
       {uniqueGenresList.map((genre, index) => {
         return <li key={`${genre}-${index}`} className={`catalog__genres-item ${(activeTab === index) ? `catalog__genres-item--active` : ``}`} onClick={() => {
-          onClick(moviesList, genre);
+          onClick(genre);
           this._handleGenreTabClick(index);
         }}>
           <a href="#" className="catalog__genres-link">{genre}</a>
@@ -46,3 +48,12 @@ GenresList.propTypes = {
   moviesList: PropTypes.arrayOf(movieDetails).isRequired,
   onClick: PropTypes.func.isRequired,
 };
+
+const mapDispatchToProps = (dispatch) => ({
+  onClick(genre) {
+    dispatch(ActionCreator.getFilteredMoviesList(genre));
+  },
+});
+
+export {GenresList};
+export default connect(null, mapDispatchToProps)(GenresList);
