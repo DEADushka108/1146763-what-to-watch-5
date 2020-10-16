@@ -14,7 +14,7 @@ import {AppRoute} from '../../utils/const.js';
 import {promoMovie, movieDetails} from '../../types/types.js';
 
 const App = (props) => {
-  const {featuredMovie, moviesList, onGenreClick, filteredMoviesList} = props;
+  const {featuredMovie, moviesList, moviesCount, onGenreClick, filteredMoviesList, onShowMoreButtonClick} = props;
 
   return (
     <BrowserRouter>
@@ -26,6 +26,8 @@ const App = (props) => {
             filteredMoviesList={filteredMoviesList}
             onMovieCardClick={(movieId) => history.push(`${AppRoute.MOVIE}/${movieId}`)}
             onGenreClick={onGenreClick}
+            moviesCount={moviesCount}
+            onShowMoreButtonClick={onShowMoreButtonClick}
           />
         )}/>;
         <Route exact path={`${AppRoute.LOGIN}`}>
@@ -49,6 +51,7 @@ const App = (props) => {
 
           return <MovieScreen movieInfo={movie}
             filteredMoviesList={filteredMoviesList}
+            moviesCount={moviesCount}
             onMovieCardClick={(movieId) => routeProps.history.push(`${AppRoute.MOVIE}/${movieId}`)}/>;
         }}/>
         <Route exact path={`${AppRoute.PLAYER}/:id`} render={(routeProps) => {
@@ -67,6 +70,8 @@ App.propTypes = {
   moviesList: PropTypes.arrayOf(movieDetails).isRequired,
   filteredMoviesList: PropTypes.arrayOf(movieDetails).isRequired,
   onGenreClick: PropTypes.func.isRequired,
+  moviesCount: PropTypes.number.isRequired,
+  onShowMoreButtonClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -74,11 +79,15 @@ const mapStateToProps = (state) => ({
   moviesList: state.moviesList,
   filteredMoviesList: state.filteredMoviesList,
   activeGenre: state.activeGenre,
+  moviesCount: state.moviesCount,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreClick(list, genre) {
     dispatch(ActionCreator.getFilteredMoviesList(list, genre));
+  },
+  onShowMoreButtonClick() {
+    dispatch(ActionCreator.setMoviesCount());
   },
 });
 

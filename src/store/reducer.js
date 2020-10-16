@@ -1,4 +1,4 @@
-import {FilterSettings} from '../utils/const.js';
+import {FilterSettings, MAX_MOVIES_COUNT} from '../utils/const.js';
 import {extend} from '../utils/utils.js';
 import {featuredMovie, moviesList} from '../mock/films.js';
 
@@ -7,10 +7,12 @@ const initialState = {
   moviesList,
   filteredMoviesList: moviesList,
   activeGenre: FilterSettings.DEFAULT_VALUE,
+  moviesCount: MAX_MOVIES_COUNT,
 };
 
 const ActionType = {
   GET_FILTERED_MOVIE_LIST: `GET_FILTERED_MOVIE_LIST`,
+  SET_MOVIES_COUNT: `SET_MOVIES_COUNT`,
 };
 
 const ActionCreator = {
@@ -24,9 +26,14 @@ const ActionCreator = {
       payload: {
         filteredList,
         genre,
+        moviesCount: MAX_MOVIES_COUNT,
       },
     };
   },
+  setMoviesCount: () => ({
+    type: ActionType.SET_MOVIES_COUNT,
+    payload: MAX_MOVIES_COUNT,
+  })
 };
 
 const reducer = (state = initialState, action) => {
@@ -35,6 +42,11 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         filteredMoviesList: action.payload.filteredList,
         activeGenre: action.payload.genre,
+        moviesCount: action.payload.moviesCount,
+      });
+    case ActionType.SET_MOVIES_COUNT:
+      return extend(state, {
+        moviesCount: state.moviesCount + action.payload,
       });
   }
   return state;
