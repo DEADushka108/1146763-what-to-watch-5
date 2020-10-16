@@ -5,3 +5,7 @@ export const AppRoute = {
   FAVORITE: `/mylist`,
   ROOT: `/`,
 };
+export const FilterSettings = {
+  DEFAULT_VALUE: `All genres`,
+  MAX_COUNT: 10,
+};

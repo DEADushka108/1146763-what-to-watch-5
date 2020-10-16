@@ -1,18 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 import App from './components/app/app.jsx';
-import films from './mock/films.js';
+import {reducer} from './store/reducer.js';
 
 const rootElement = document.querySelector(`#root`);
-const {featured, list} = films;
+const store = createStore(
+    reducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f);
 
 const init = () => {
 
   ReactDOM.render(
-      <App
-        featuredMovie={featured}
-        moviesList={list}
-      />,
+      <Provider store={store}>
+        <App />
+      </Provider>,
       rootElement
   );
 };

@@ -20,3 +20,7 @@ export const getRandomArrayElements = (array, max) => {
 
   return newArray.slice(0, max);
 };
+
+export const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};
