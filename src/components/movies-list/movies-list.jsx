@@ -1,44 +1,29 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import MovieCard from '../movie-card/movie-card.jsx';
 import {movieDetails} from '../../types/types.js';
+import withVideo from '../../hocs/with-video/with-video.jsx';
 
-export default class MoviesList extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeCardId: null,
-    };
+const MovieCardWrapped = withVideo(MovieCard);
 
-    this.handleActivateMovie = this.handleActivateMovie.bind(this);
-    this.handleDisactivateMovie = this.handleDisactivateMovie.bind(this);
-  }
+const MoviesList = (props) => {
+  const {movies, onClick} = props;
+  const moviesToShow = movies.slice(0, 8);
 
-  handleActivateMovie(id) {
-    this.setState({
-      activeCardId: id,
-    });
-  }
-
-  handleDisactivateMovie() {
-    this.setState({
-      activeCardId: null,
-    });
-  }
-
-  render() {
-    const {movies, onClick} = this.props;
-    return <div className="catalog__movies-list">
-      {movies.map((movie) => <MovieCard key={movie.id} movieInfo={movie}
-        onClick={() => onClick(movie.id)}
-        onHover={this.handleActivateMovie}
-        onSettle={this.handleDisactivateMovie}
-      />)}
-    </div>;
-  }
-}
+  return <div className="catalog__movies-list">
+    {moviesToShow.map((movie) => {
+      const {id, previewSrc, poster} = movie;
+      return <MovieCardWrapped key={id} movieInfo={movie} src={previewSrc} poster={poster}
+        isPlaying={false}
+        isMuted={true}
+        onClick={() => onClick(id)}
+      />;
+    })}
+  </div>;
+};
 
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(movieDetails).isRequired,
   onClick: PropTypes.func.isRequired,
 };
+export default MoviesList;
