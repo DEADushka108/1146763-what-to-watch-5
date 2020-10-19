@@ -10,17 +10,16 @@ import ReviewScreen from '../review-screen/review-screen.jsx';
 import PlayerScreen from '../player-screen/player-screen.jsx';
 import {findItemById, getRandomArrayElements, filterMoviesByGenre} from '../../utils/utils.js';
 import {AppRoute} from '../../utils/const.js';
-import {promoMovie, movieDetails} from '../../types/types.js';
+import {movieDetails} from '../../types/types.js';
 
 const App = (props) => {
-  const {featuredMovie, moviesList, moviesCount, activeGenre} = props;
+  const {moviesList, moviesCount, activeGenre} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={`${AppRoute.ROOT}`} render={({history}) => (
           <Main
-            featuredMovie={featuredMovie}
             moviesList={moviesList}
             filteredMoviesList={filterMoviesByGenre(moviesList, activeGenre)}
             onMovieCardClick={(movieId) => history.push(`${AppRoute.MOVIE}/${movieId}`)}
@@ -46,7 +45,8 @@ const App = (props) => {
           const id = routeProps.match.params.id;
           const movie = findItemById(id, moviesList);
 
-          return <MovieScreen movieInfo={movie}
+          return <MovieScreen
+            movieInfo={movie}
             filteredMoviesList={filterMoviesByGenre(moviesList, activeGenre)}
             moviesCount={moviesCount}
             onMovieCardClick={(movieId) => routeProps.history.push(`${AppRoute.MOVIE}/${movieId}`)}/>;
@@ -63,14 +63,12 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  featuredMovie: promoMovie,
   moviesList: PropTypes.arrayOf(movieDetails).isRequired,
   activeGenre: PropTypes.string.isRequired,
   moviesCount: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  featuredMovie: state.featuredMovie,
   moviesList: state.moviesList,
   activeGenre: state.activeGenre,
   moviesCount: state.moviesCount,
