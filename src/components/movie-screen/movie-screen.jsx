@@ -6,6 +6,9 @@ import {movieDetails} from '../../types/types';
 import MoviesList from '../movies-list/movies-list';
 import Tabs from '../tabs/tabs.jsx';
 import Tab from '../tab/tab.jsx';
+import withActiveItem from '../../hocs/with-active-item/with-active-item';
+
+const TabsWrapped = withActiveItem(Tabs);
 
 const TabNames = {
   OVERVIEW: `Overview`,
@@ -14,7 +17,7 @@ const TabNames = {
 };
 
 const MovieScreen = (props) => {
-  const {movieInfo, filteredMoviesList, onMovieCardClick} = props;
+  const {movieInfo, filteredMoviesList, onMovieCardClick, moviesCount} = props;
   const {id, title, genre, releaseDate, runTime, cover, poster, rating, description, director, cast, reviews} = movieInfo;
   const {score, level, count} = rating;
 
@@ -76,7 +79,7 @@ const MovieScreen = (props) => {
             <img src={poster} alt={title} width="218" height="327" />
           </div>
 
-          <Tabs>
+          <TabsWrapped>
             <Tab title={TabNames.OVERVIEW}>
               <div className="movie-rating">
                 <div className="movie-rating__score">{score}</div>
@@ -141,7 +144,7 @@ const MovieScreen = (props) => {
                 </div>
               </div>
             </Tab>
-          </Tabs>
+          </TabsWrapped>
         </div>
       </div>
     </section>
@@ -150,7 +153,7 @@ const MovieScreen = (props) => {
       <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
 
-        <MoviesList movies={filteredMoviesList} onClick={onMovieCardClick}/>
+        <MoviesList movies={filteredMoviesList} count={moviesCount} onClick={onMovieCardClick}/>
       </section>
 
       <footer className="page-footer">
