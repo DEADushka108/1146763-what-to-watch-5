@@ -1,9 +1,9 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import {FilterSettings} from '../../utils/const.js';
 import {movieDetails} from '../../types/types.js';
 import {ActionCreator} from '../../store/reducer.js';
 import {connect} from 'react-redux';
+import {getUniqueGenresList} from '../../utils/utils.js';
 
 class GenresList extends PureComponent {
   constructor(props) {
@@ -24,12 +24,7 @@ class GenresList extends PureComponent {
   render() {
     const {moviesList, onClick} = this.props;
     const {activeTab} = this.state;
-    const genresList = moviesList.map((it) => {
-      return it.genre;
-    });
-
-    const uniqueGenresList = Array.from(new Set(genresList)).sort().slice(0, FilterSettings.MAX_COUNT);
-    uniqueGenresList.unshift(FilterSettings.DEFAULT_VALUE);
+    const uniqueGenresList = getUniqueGenresList(moviesList);
 
     return <ul className="catalog__genres-list">
       {uniqueGenresList.map((genre, index) => {
@@ -51,7 +46,7 @@ GenresList.propTypes = {
 
 const mapDispatchToProps = (dispatch) => ({
   onClick(genre) {
-    dispatch(ActionCreator.getFilteredMoviesList(genre));
+    dispatch(ActionCreator.setActiveGenre(genre));
   },
 });
 
