@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 
@@ -26,7 +26,7 @@ const Tabs = (props) => {
       return index === activeItem ? content : null;
     })}
   </div>;
-}
+};
 
 Tabs.propTypes = {
   children: PropTypes.oneOfType([

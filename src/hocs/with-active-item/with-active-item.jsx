@@ -1,12 +1,12 @@
 import React, {PureComponent} from 'react';
 
 const withActiveItem = (Component) => {
-  class withActiveItem extends PureComponent {
+  class WithActiveItem extends PureComponent {
     constructor(props) {
       super(props);
       this.state = {
         activeItem: 0,
-      }
+      };
       this.handleActiveItemChange = this.handleActiveItemChange.bind(this);
     }
 
@@ -27,9 +27,9 @@ const withActiveItem = (Component) => {
     }
   }
 
-  withActiveItem.propTypes = {};
+  WithActiveItem.propTypes = {};
 
-  return withActiveItem;
+  return WithActiveItem;
 };
 
 export default withActiveItem;

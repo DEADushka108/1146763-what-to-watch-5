@@ -7,6 +7,7 @@ import MoviesList from '../movies-list/movies-list';
 import Tabs from '../tabs/tabs.jsx';
 import Tab from '../tab/tab.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
+import {getRatingLevel} from '../../utils/utils';
 
 const TabsWrapped = withActiveItem(Tabs);
 
@@ -19,7 +20,7 @@ const TabNames = {
 const MovieScreen = (props) => {
   const {movieInfo, filteredMoviesList, onMovieCardClick, moviesCount} = props;
   const {id, title, genre, releaseDate, runTime, cover, poster, rating, description, director, cast, reviews} = movieInfo;
-  const {score, level, count} = rating;
+  const {score, count} = rating;
 
   return <React.Fragment>
     <section className="movie-card movie-card--full">
@@ -84,7 +85,7 @@ const MovieScreen = (props) => {
               <div className="movie-rating">
                 <div className="movie-rating__score">{score}</div>
                 <p className="movie-rating__meta">
-                  <span className="movie-rating__level">{level}</span>
+                  <span className="movie-rating__level">{getRatingLevel(score)}</span>
                   <span className="movie-rating__count">{count} ratings</span>
                 </p>
               </div>
@@ -175,6 +176,7 @@ const MovieScreen = (props) => {
 
 MovieScreen.propTypes = {
   movieInfo: movieDetails,
+  moviesCount: PropTypes.number.isRequired,
   filteredMoviesList: PropTypes.arrayOf(movieDetails).isRequired,
   onMovieCardClick: PropTypes.func.isRequired,
 };
