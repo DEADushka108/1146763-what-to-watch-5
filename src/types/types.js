@@ -17,7 +17,6 @@ export const movieDetails = PropTypes.shape({
   previewSrc: PropTypes.string.isRequired,
   rating: PropTypes.shape({
     score: PropTypes.number.isRequired,
-    level: PropTypes.string.isRequired,
     count: PropTypes.number.isRequired,
   }).isRequired,
   description: PropTypes.string.isRequired,
