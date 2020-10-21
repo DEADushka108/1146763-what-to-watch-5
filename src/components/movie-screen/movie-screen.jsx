@@ -14,7 +14,7 @@ const TabNames = {
 };
 
 const MovieScreen = (props) => {
-  const {movieInfo, moviesList, onMovieCardClick} = props;
+  const {movieInfo, filteredMoviesList, onMovieCardClick} = props;
   const {id, title, genre, releaseDate, runTime, cover, poster, rating, description, director, cast, reviews} = movieInfo;
   const {score, level, count} = rating;
 
@@ -150,7 +150,7 @@ const MovieScreen = (props) => {
       <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
 
-        <MoviesList movies={moviesList} onClick={onMovieCardClick}/>
+        <MoviesList movies={filteredMoviesList} onClick={onMovieCardClick}/>
       </section>
 
       <footer className="page-footer">
@@ -172,7 +172,7 @@ const MovieScreen = (props) => {
 
 MovieScreen.propTypes = {
   movieInfo: movieDetails,
-  moviesList: PropTypes.arrayOf(movieDetails).isRequired,
+  filteredMoviesList: PropTypes.arrayOf(movieDetails).isRequired,
   onMovieCardClick: PropTypes.func.isRequired,
 };
 

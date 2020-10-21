@@ -5,3 +5,9 @@ export const AppRoute = {
   FAVORITE: `/mylist`,
   ROOT: `/`,
 };
+export const FilterSettings = {
+  DEFAULT_VALUE: `All genres`,
+  MAX_COUNT: 9,
+};
+
+export const MAX_MOVIES_COUNT = 8;
