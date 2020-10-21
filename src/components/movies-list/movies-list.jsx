@@ -12,7 +12,7 @@ const MoviesList = (props) => {
 
   return <div className="catalog__movies-list">
     {moviesToShow.map((movie) => {
-      const {id, previewSrc, poster} = movie;
+      const {id} = movie;
       return <MovieCardSmallWrapped key={id} movie={movie}
         isPreview={true}
         isMuted={true}

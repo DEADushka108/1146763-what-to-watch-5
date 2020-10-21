@@ -6,11 +6,13 @@ import GenresList from '../genres-list/genres-list.jsx';
 import ShowMoreButton from '../show-more-button/show-more-button.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import MovieCard from '../movie-card/movie-card.jsx';
+import {filterMoviesByGenre} from '../../utils/utils.js';
 
 const GenresListWrapped = withActiveItem(GenresList);
 
 const Main = (props) => {
-  const {moviesList, filteredMoviesList, moviesCount, onMovieCardClick} = props;
+  const {moviesList, activeGenre, onMovieCardClick, moviesCount, onMoviesCountChange} = props;
+  const filteredMoviesList = filterMoviesByGenre(moviesList, activeGenre);
 
   return <React.Fragment>
     <MovieCard/>
@@ -24,7 +26,7 @@ const Main = (props) => {
         <MoviesList movies={filteredMoviesList} count={moviesCount} onClick={onMovieCardClick}/>
 
         <div className="catalog__more">
-          <ShowMoreButton list={filteredMoviesList} count={moviesCount} />
+          <ShowMoreButton list={filteredMoviesList} count={moviesCount} onClick={onMoviesCountChange}/>
         </div>
       </section>
 
@@ -47,9 +49,10 @@ const Main = (props) => {
 
 Main.propTypes = {
   moviesList: PropTypes.arrayOf(movieDetails).isRequired,
-  filteredMoviesList: PropTypes.arrayOf(movieDetails).isRequired,
+  activeGenre: PropTypes.string.isRequired,
   moviesCount: PropTypes.number.isRequired,
   onMovieCardClick: PropTypes.func.isRequired,
+  onMoviesCountChange: PropTypes.func.isRequired,
 };
 
 export default Main;

@@ -26,7 +26,7 @@ const withVideo = (Component) => {
       const {movie} = this.props;
 
       if (movie) {
-        this._handleVideoMount()
+        this._handleVideoMount();
       }
     }
 
@@ -49,7 +49,7 @@ const withVideo = (Component) => {
       const {isPlaying} = this.state;
       const video = this._videoRef.current;
 
-      if(!video) {
+      if (!video) {
         return;
       }
 
