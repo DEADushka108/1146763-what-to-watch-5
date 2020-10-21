@@ -14,6 +14,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/macbeth.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 6.6,
       count: 120,
@@ -47,6 +48,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/we-need-to-talk-about-kevin.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 7.5,
       count: 134,
@@ -82,6 +84,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 6.6,
       count: 300,
@@ -115,6 +118,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/shutter-island.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 8.1,
       count: 257,
@@ -148,6 +152,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/snatch.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 8.3,
       count: 300,
@@ -181,6 +186,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/pulp-fiction.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 8.9,
       count: 578,
@@ -214,6 +220,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/revenant.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 8.0,
       count: 1001,
@@ -247,6 +254,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/bohemian-rhapsody.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 10,
       count: 240,
@@ -280,6 +288,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/aviator.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 7.7,
       count: 328,
@@ -313,6 +322,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/what-we-do-in-the-shadows.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 7.7,
       count: 151,
@@ -346,6 +356,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/johnny-english.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 6.2,
       count: 151,
@@ -379,6 +390,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/no-country-for-old-men.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 8.1,
       count: 835,
@@ -412,6 +424,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/moonrise-kingdom.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 7.8,
       count: 312,
@@ -445,6 +458,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/seven-years-in-tibet.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 7.1,
       count: 125,
@@ -478,6 +492,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/war-of-the-worlds.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 6.5,
       count: 410,
@@ -511,6 +526,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/midnight-special.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 6.6,
       count: 73,
@@ -544,6 +560,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/dardjeeling-limited.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 7.2,
       count: 177,
@@ -577,6 +594,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/orlando.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 7.2,
       count: 14,
@@ -610,6 +628,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/mindhunter.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 8.6,
       count: 200,
@@ -643,6 +662,7 @@ const moviesList = [
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     poster: `img/midnight-special.jpg`,
     previewSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    videoSrc: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 6.6,
       count: 73,

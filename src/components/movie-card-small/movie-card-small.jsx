@@ -7,8 +7,8 @@ import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/reducer.js';
 
 const MovieCardSmall = (props) => {
-  const {movieInfo, children, onPlayStatusChange, onClick, onGenreClick} = props;
-  const {id, title, genre} = movieInfo;
+  const {movie, children, onPlayStatusChange, onClick, onGenreClick} = props;
+  const {id, title, genre} = movie;
   let timeout;
 
   return <article className="small-movie-card catalog__movies-card" >
@@ -31,7 +31,7 @@ const MovieCardSmall = (props) => {
 };
 
 MovieCardSmall.propTypes = {
-  movieInfo: movieDetails,
+  movie: movieDetails,
   onClick: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
