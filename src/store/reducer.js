@@ -15,9 +15,12 @@ const ActionType = {
 };
 
 const ActionCreator = {
-  setActiveGenre: (genre) => ({
+  setActiveGenre: (genre, count) => ({
     type: ActionType.SET_ACTIVE_GENRE,
-    payload: genre,
+    payload: {
+      genre,
+      count,
+    }
   }),
   setMoviesCount: () => ({
     type: ActionType.SET_MOVIES_COUNT,
@@ -29,8 +32,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SET_ACTIVE_GENRE:
       return extend(state, {
-        activeGenre: action.payload,
-        moviesCount: MAX_MOVIES_COUNT,
+        activeGenre: action.payload.genre,
+        moviesCount: action.payload.count,
       });
     case ActionType.SET_MOVIES_COUNT:
       return extend(state, {

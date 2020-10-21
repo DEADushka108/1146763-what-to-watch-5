@@ -1,4 +1,4 @@
-import {FilterSettings} from './const.js';
+import {FilterSettings, Rating, RatingLevel} from './const.js';
 
 export const findItemById = (id, list) => {
   return list.find((item) => {
@@ -43,4 +43,28 @@ export const getUniqueGenresList = (list) => {
   const genresList = getGenresList(list);
   const uniqueGenresList = Array.from(new Set(genresList)).sort().slice(0, FilterSettings.MAX_COUNT);
   return [FilterSettings.DEFAULT_VALUE, ...uniqueGenresList];
+};
+
+export const getRatingLevel = (score) => {
+  if (score < Rating.BAD) {
+    return RatingLevel.BAD;
+  }
+
+  if (score >= Rating.BAD && score < Rating.NORMAL) {
+    return RatingLevel.NORMAL;
+  }
+
+  if (score >= Rating.NORMAL && score < Rating.GOOD) {
+    return RatingLevel.GOOD;
+  }
+
+  if (score >= Rating.GOOD && score < Rating.VERY_GOOD) {
+    return RatingLevel.VERY_GOOD;
+  }
+
+  if (score === Rating.VERY_GOOD) {
+    return RatingLevel.AWESOME;
+  }
+
+  return ``;
 };

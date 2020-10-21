@@ -1,55 +1,40 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 
-export default class Tabs extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeTab: 0,
-    };
+const Tabs = (props) => {
+  const {children, activeItem, onActiveItemChange} = props;
 
-    this.handleTabClick = this.handleTabClick.bind(this);
-  }
+  return <div className="movie-card__desc">
+    <nav className="movie-nav movie-card__nav">
+      <ul className="movie-nav__list">
+        {children.map((child, index) => {
+          const {title} = child.props;
+          return <li key={`${title}-${index}`}
+            className={`movie-nav__item ${(activeItem === index) ? `movie-nav__item--active` : ``}`}
+            onClick={() => {
+              onActiveItemChange(index);
+            }}>
+            <a className="movie-nav__link">{title}</a>
+          </li>;
+        })}
+      </ul>
+    </nav>
+    {children.map((child, index) => {
+      const {children: content} = child.props;
 
-  handleTabClick(index) {
-    this.setState({
-      activeTab: index,
-    });
-  }
-
-  render() {
-    const {children} = this.props;
-    const {activeTab} = this.state;
-
-    return <div className="movie-card__desc">
-      <nav className="movie-nav movie-card__nav">
-        <ul className="movie-nav__list">
-          {children.map((child, index) => {
-            const {title} = child.props;
-
-            return <li key={`${title}-${index}`}
-              className={`movie-nav__item ${(activeTab === index) ? `movie-nav__item--active` : ``}`}
-              onClick={() => {
-                this.handleTabClick(index);
-              }}>
-              <a className="movie-nav__link">{title}</a>
-            </li>;
-          })}
-        </ul>
-      </nav>
-      {children.map((child, index) => {
-        const {children: content} = child.props;
-
-        return index === activeTab ? content : null;
-      })}
-    </div>;
-  }
-}
+      return index === activeItem ? content : null;
+    })}
+  </div>;
+};
 
 Tabs.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  activeItem: PropTypes.number.isRequired,
+  onActiveItemChange: PropTypes.func.isRequired,
 };
+
+export default Tabs;

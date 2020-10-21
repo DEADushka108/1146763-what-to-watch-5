@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MovieCard from '../movie-card/movie-card.jsx';
+import MovieCardSmall from '../movie-card-small/movie-card-small.jsx';
 import {movieDetails} from '../../types/types.js';
 import withVideo from '../../hocs/with-video/with-video.jsx';
 
-const MovieCardWrapped = withVideo(MovieCard);
+const MovieCardSmallWrapped = withVideo(MovieCardSmall);
 
 const MoviesList = (props) => {
   const {movies, count, onClick} = props;
@@ -13,7 +13,7 @@ const MoviesList = (props) => {
   return <div className="catalog__movies-list">
     {moviesToShow.map((movie) => {
       const {id, previewSrc, poster} = movie;
-      return <MovieCardWrapped key={id} movieInfo={movie} src={previewSrc} poster={poster}
+      return <MovieCardSmallWrapped key={id} movieInfo={movie} src={previewSrc} poster={poster}
         isPlaying={false}
         isMuted={true}
         onClick={() => onClick(id)}
