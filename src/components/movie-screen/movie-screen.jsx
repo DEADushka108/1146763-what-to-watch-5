@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {AppRoute, MOVIE_SCREEN_COUNT} from '../../utils/const';
+import {AppRoute} from '../../utils/const';
 import {movieDetails} from '../../types/types';
 import MoviesList from '../movies-list/movies-list';
 import Tabs from '../tabs/tabs.jsx';
@@ -18,7 +18,7 @@ const TabNames = {
 };
 
 const MovieScreen = (props) => {
-  const {movieInfo, filteredMoviesList, onMovieCardClick} = props;
+  const {movieInfo, filteredMoviesList, onMovieCardClick, moviesCount} = props;
   const {id, title, genre, releaseDate, runTime, cover, poster, rating, description, director, cast, reviews} = movieInfo;
   const {score, count} = rating;
 
@@ -154,7 +154,7 @@ const MovieScreen = (props) => {
       <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
 
-        <MoviesList movies={filteredMoviesList} count={MOVIE_SCREEN_COUNT} onClick={onMovieCardClick}/>
+        <MoviesList movies={filteredMoviesList} count={moviesCount} onClick={onMovieCardClick}/>
       </section>
 
       <footer className="page-footer">

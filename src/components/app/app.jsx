@@ -12,22 +12,21 @@ import {findItemById, getRandomArrayElements, filterMoviesByGenre} from '../../u
 import {AppRoute} from '../../utils/const.js';
 import {movieDetails} from '../../types/types.js';
 import withVideo from '../../hocs/with-video/with-video.jsx';
-import withMoviesCount from '../../hocs/with-movies-count/with-movies-count.jsx';
 
 const PlayerScreenWrapped = withVideo(PlayerScreen);
-const MainWrapped = withMoviesCount(Main);
 
 const App = (props) => {
-  const {moviesList, activeGenre} = props;
+  const {moviesList, moviesCount, activeGenre} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={`${AppRoute.ROOT}`} render={({history}) => (
-          <MainWrapped
+          <Main
             moviesList={moviesList}
-            activeGenre={activeGenre}
+            filteredMoviesList={filterMoviesByGenre(moviesList, activeGenre)}
             onMovieCardClick={(movieId) => history.push(`${AppRoute.MOVIE}/${movieId}`)}
+            moviesCount={moviesCount}
           />
         )}/>;
         <Route exact path={`${AppRoute.LOGIN}`}>
@@ -52,6 +51,7 @@ const App = (props) => {
           return <MovieScreen
             movieInfo={movie}
             filteredMoviesList={filterMoviesByGenre(moviesList, activeGenre)}
+            moviesCount={moviesCount}
             onMovieCardClick={(movieId) => routeProps.history.push(`${AppRoute.MOVIE}/${movieId}`)}/>;
         }}/>
         <Route exact path={`${AppRoute.PLAYER}/:id`} render={(routeProps) => {
@@ -68,11 +68,13 @@ const App = (props) => {
 App.propTypes = {
   moviesList: PropTypes.arrayOf(movieDetails).isRequired,
   activeGenre: PropTypes.string.isRequired,
+  moviesCount: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   moviesList: state.moviesList,
   activeGenre: state.activeGenre,
+  moviesCount: state.moviesCount,
 });
 
 export {App};
