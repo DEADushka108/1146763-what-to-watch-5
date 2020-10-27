@@ -20,3 +20,13 @@ export const movieDetails = PropTypes.shape({
   backgroundImage: PropTypes.string.isRequired,
   backgroundColor: PropTypes.string.isRequired,
 }).isRequired;
+
+export const reviewsDetails = PropTypes.shape({
+  author: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+  }),
+  text: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+}).isRequired;
