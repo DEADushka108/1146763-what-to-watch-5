@@ -24,7 +24,7 @@ const Operation = {
         dispatch(ActionCreator.loadReviews(createReviewsList(response.data)));
       });
   }
-}
+};
 
 
 const reducer = (state = initialState, action) => {

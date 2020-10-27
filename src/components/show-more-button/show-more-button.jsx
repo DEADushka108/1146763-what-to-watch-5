@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ActionCreator} from '../../store/reducer';
+import {ActionCreator} from '../../store/movies/movies';
 import {connect} from 'react-redux';
 
 const ShowMoreButton = (props) => {

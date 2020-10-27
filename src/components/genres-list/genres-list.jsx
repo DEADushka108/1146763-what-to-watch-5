@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {movieDetails} from '../../types/types.js';
-import {ActionCreator} from '../../store/reducer.js';
+import {ActionCreator} from '../../store/movies/movies';
 import {connect} from 'react-redux';
 import {getUniqueGenresList} from '../../utils/utils.js';
-import {MAX_MOVIES_COUNT} from '../../utils/const.js';
 
 const GenresList = (props) => {
   const {moviesList, activeItem, onActiveItemChange, onGenreClick} = props;
@@ -13,7 +12,7 @@ const GenresList = (props) => {
   return <ul className="catalog__genres-list">
     {uniqueGenresList.map((genre, index) => {
       return <li key={`${genre}-${index}`} className={`catalog__genres-item ${(activeItem === index) ? `catalog__genres-item--active` : ``}`} onClick={() => {
-        onGenreClick(genre, MAX_MOVIES_COUNT);
+        onGenreClick(genre);
         onActiveItemChange(index);
       }}>
         <a href="#" className="catalog__genres-link">{genre}</a>
@@ -30,8 +29,8 @@ GenresList.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onGenreClick(genre, count) {
-    dispatch(ActionCreator.setActiveGenre(genre, count));
+  onGenreClick(genre) {
+    dispatch(ActionCreator.setActiveGenre(genre));
   },
 });
 

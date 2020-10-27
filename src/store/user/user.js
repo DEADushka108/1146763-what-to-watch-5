@@ -9,9 +9,9 @@ const initialState = {
 };
 
 const ActionType = {
-  REQUIRE_AUTHORIZATION: 'REQUIRE_AUTHORIZATION',
-  LOAD_FAVORITE_LIST: 'LOAD_FAVORITE_LIST',
-}
+  REQUIRE_AUTHORIZATION: `REQUIRE_AUTHORIZATION`,
+  LOAD_FAVORITE_LIST: `LOAD_FAVORITE_LIST`,
+};
 
 const ActionCreator = {
   requireAuthorization: (status) => ({
@@ -34,14 +34,14 @@ const Operation = {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
       });
   },
-  login: ({login, password}) => (dispatch, _getState, api) => {
+  login: (userData) => (dispatch, _getState, api) => {
     return api.post(URL.LOGIN, {
-      email: login,
-      password: password,
+      email: userData.login,
+      password: userData.password,
     })
       .then(() => {
-        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH))
-      })
+        dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      });
   },
   loadFavoriteList: () => (dispatch, _getState, api) => {
     return api.get(URL.FAVORITE)

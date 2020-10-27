@@ -1,20 +1,17 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {AppRoute, MOVIE_SCREEN_COUNT} from '../../utils/const';
+import {AppRoute} from '../../utils/const';
 import {movieDetails} from '../../types/types';
-import {connect} from 'react-redux';
-import {ActionCreator} from '../../store/reducer.js';
 
 const MovieCardSmall = (props) => {
-  const {movie, children, onPlayStatusChange, onClick, onGenreClick} = props;
-  const {id, title, genre} = movie;
+  const {movie, children, onPlayStatusChange, onClick} = props;
+  const {id, title} = movie;
   let timeout;
 
   return <article className="small-movie-card catalog__movies-card" >
     <div className="small-movie-card__image" onClick={() => {
       onClick(id);
-      onGenreClick(genre, MOVIE_SCREEN_COUNT);
     }}
     onMouseEnter={() => {
       timeout = setTimeout(onPlayStatusChange, 1000);
@@ -38,14 +35,6 @@ MovieCardSmall.propTypes = {
     PropTypes.node,
   ]).isRequired,
   onPlayStatusChange: PropTypes.func.isRequired,
-  onGenreClick: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  onGenreClick(genre, count) {
-    dispatch(ActionCreator.setActiveGenre(genre, count));
-  },
-});
-
-export {MovieCardSmall};
-export default connect(null, mapDispatchToProps)(MovieCardSmall);
+export default MovieCardSmall;

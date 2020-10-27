@@ -21,17 +21,17 @@ const getMoviesCount = (state) => {
 };
 
 const getActiveGenre = (state) => {
-  return state[NameSpace.MOVIES].activeGenre
-}
+  return state[NameSpace.MOVIES].activeGenre;
+};
 
 const getFilteredList = createSelector(
-  getMoviesList,
-  getActiveGenre,
-  (list, genre) => {
-    return genre === FilterSettings.DEFAULT_VALUE ? list : list.filter((it) => {
-      return it.genre === genre;
-    });
-  }
+    getMoviesList,
+    getActiveGenre,
+    (list, genre) => {
+      return genre === FilterSettings.DEFAULT_VALUE ? list : list.filter((it) => {
+        return it.genre === genre;
+      });
+    }
 );
 
-export {getFeaturedMovie, getMovieById, getActiveGenre, getMoviesCount, getFilteredList, getMoviesList}
+export {getFeaturedMovie, getMovieById, getActiveGenre, getMoviesCount, getFilteredList, getMoviesList};

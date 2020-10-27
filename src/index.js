@@ -16,12 +16,12 @@ const init = () => {
   ])
   .then(() => {
     ReactDOM.render(
-      <Provider store={store}>
-        <App />
-      </Provider>,
-      rootElement
+        <Provider store={store}>
+          <App />
+        </Provider>,
+        rootElement
     );
-  })
+  });
 };
 
 init();

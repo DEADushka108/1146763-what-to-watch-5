@@ -25,12 +25,9 @@ const ActionCreator = {
     type: ActionType.LOAD_MOVIES,
     payload: moviesList,
   }),
-  setActiveGenre: (genre, count) => ({
+  setActiveGenre: (genre) => ({
     type: ActionType.SET_ACTIVE_GENRE,
-    payload: {
-      genre,
-      count,
-    }
+    payload: genre,
   }),
   setMoviesCount: () => ({
     type: ActionType.SET_MOVIES_COUNT,
@@ -43,15 +40,15 @@ const Operation = {
     return api.get(URL.MOVIES)
       .then((response) => {
         dispatch(ActionCreator.loadFeaturedMovie(createMovie(response.data[0])));
-      })
+      });
   },
   loadMovies: () => (dispatch, _getState, api) => {
     return api.get(URL.MOVIES)
       .then((response) => {
         dispatch(ActionCreator.loadMovies(createMoviesList(response.data)));
-      })
+      });
   }
-}
+};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -65,8 +62,8 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.SET_ACTIVE_GENRE:
       return extend(state, {
-        activeGenre: action.payload.genre,
-        moviesCount: action.payload.count,
+        activeGenre: action.payload,
+        moviesCount: MAX_MOVIES_COUNT,
       });
     case ActionType.SET_MOVIES_COUNT:
       return extend(state, {
