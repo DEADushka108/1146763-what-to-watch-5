@@ -1,46 +1,11 @@
-import {FilterSettings, MAX_MOVIES_COUNT} from '../utils/const.js';
-import {extend} from '../utils/utils.js';
-import {featuredMovie, moviesList} from '../mock/films.js';
+import {combineReducers} from 'redux';
+import {reducer as movies} from './movies/movies.js';
+import {reducer as reviews} from './reviews/reviews.js';
+import {reducer as user} from './user/user.js'
+import NameSpace from './name-space.js';
 
-const initialState = {
-  featuredMovie,
-  moviesList,
-  activeGenre: FilterSettings.DEFAULT_VALUE,
-  moviesCount: MAX_MOVIES_COUNT,
-};
-
-const ActionType = {
-  SET_ACTIVE_GENRE: `SET_ACTIVE_GENRE`,
-  SET_MOVIES_COUNT: `SET_MOVIES_COUNT`,
-};
-
-const ActionCreator = {
-  setActiveGenre: (genre, count) => ({
-    type: ActionType.SET_ACTIVE_GENRE,
-    payload: {
-      genre,
-      count,
-    }
-  }),
-  setMoviesCount: () => ({
-    type: ActionType.SET_MOVIES_COUNT,
-    payload: MAX_MOVIES_COUNT,
-  })
-};
-
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case ActionType.SET_ACTIVE_GENRE:
-      return extend(state, {
-        activeGenre: action.payload.genre,
-        moviesCount: action.payload.count,
-      });
-    case ActionType.SET_MOVIES_COUNT:
-      return extend(state, {
-        moviesCount: state.moviesCount + action.payload,
-      });
-  }
-  return state;
-};
-
-export {reducer, ActionType, ActionCreator};
+export default combineReducers({
+  [NameSpace.MOVIES]: movies,
+  [NameSpace.REVIEWS]: reviews,
+  [NameSpace.USER]: user,
+});
