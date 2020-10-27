@@ -1,14 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {promoMovie} from '../../types/types';
+import {movieDetails} from '../../types/types';
+import {getFeaturedMovie} from '../../store/movies/selectors.js';
 
 const MovieCard = (props) => {
   const {featuredMovie} = props;
-  const {title, genre, releaseDate} = featuredMovie;
+  const {title, genre, releaseDate, cover, backgroundImage, backgroundColor} = featuredMovie;
 
-  return <section className="movie-card">
+  return <section className="movie-card" style={{background: backgroundColor}}>
     <div className="movie-card__bg">
-      <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+      <img src={backgroundImage} alt={title} />
     </div>
 
     <h1 className="visually-hidden">WTW</h1>
@@ -32,8 +33,7 @@ const MovieCard = (props) => {
     <div className="movie-card__wrap">
       <div className="movie-card__info">
         <div className="movie-card__poster">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
-            height="327"/>
+          <img src={cover} alt={title} width="218" height="327"/>
         </div>
 
         <div className="movie-card__desc">
@@ -64,11 +64,11 @@ const MovieCard = (props) => {
 };
 
 MovieCard.propTypes = {
-  featuredMovie: promoMovie,
+  featuredMovie: movieDetails,
 };
 
 const mapStateToProps = (state) => ({
-  featuredMovie: state.featuredMovie,
+  featuredMovie: getFeaturedMovie(state),
 });
 
 export {MovieCard};

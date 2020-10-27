@@ -12,6 +12,7 @@ import {findItemById, getRandomArrayElements, filterMoviesByGenre} from '../../u
 import {AppRoute} from '../../utils/const.js';
 import {movieDetails} from '../../types/types.js';
 import withVideo from '../../hocs/with-video/with-video.jsx';
+import {getMoviesList, getMoviesCount, getActiveGenre} from '../../store/movies/selectors.js';
 
 const PlayerScreenWrapped = withVideo(PlayerScreen);
 
@@ -72,9 +73,9 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  moviesList: state.moviesList,
-  activeGenre: state.activeGenre,
-  moviesCount: state.moviesCount,
+  moviesList: getMoviesList(state),
+  activeGenre: getActiveGenre(state),
+  moviesCount: getMoviesCount(state),
 });
 
 export {App};

@@ -27,3 +27,18 @@ export const RatingLevel = {
   VERY_GOOD: `Very good`,
   AWESOME: `Awesome`,
 };
+
+export const URL = {
+  MOVIES: `/films`,
+  FEATURED: `/films/promo`,
+  FAVORITE: `/favorite`,
+  REVIEWS: `/comments`,
+  LOGIN: `/login`,
+};
+
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
+

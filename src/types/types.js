@@ -1,17 +1,11 @@
 import PropTypes from "prop-types";
 
-export const promoMovie = PropTypes.shape({
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  releaseDate: PropTypes.number.isRequired,
-});
-
 export const movieDetails = PropTypes.shape({
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   releaseDate: PropTypes.number.isRequired,
-  runTime: PropTypes.string.isRequired,
+  runTime: PropTypes.number.isRequired,
   cover: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
   previewSrc: PropTypes.string.isRequired,
@@ -22,13 +16,7 @@ export const movieDetails = PropTypes.shape({
   }).isRequired,
   description: PropTypes.string.isRequired,
   director: PropTypes.string.isRequired,
-  cast: PropTypes.string.isRequired,
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape({
-        author: PropTypes.string.isRequired,
-        text: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-        rating: PropTypes.number.isRequired,
-      })
-  ).isRequired,
+  cast: PropTypes.array.isRequired,
+  backgroundImage: PropTypes.string.isRequired,
+  backgroundColor: PropTypes.string.isRequired,
 }).isRequired;
