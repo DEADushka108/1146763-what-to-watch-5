@@ -30,7 +30,7 @@ const UserScreen = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <MoviesList movies={moviesList} onClick={onMovieCardClick}/>
+        <MoviesList movies={moviesList} count={moviesList.length} onClick={onMovieCardClick}/>
       </section>
 
       <footer className="page-footer">

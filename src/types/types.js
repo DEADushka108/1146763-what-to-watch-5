@@ -30,3 +30,10 @@ export const reviewsDetails = PropTypes.shape({
   date: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
 }).isRequired;
+
+export const userDetails = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired,
+}).isRequired;

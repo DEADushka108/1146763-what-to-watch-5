@@ -14,6 +14,10 @@ const getFavoriteList = (state) => {
   return state[NameSpace.USER].favoriteList;
 };
 
+const getUserInfo = (state) => {
+  return state[NameSpace.USER].userInfo;
+};
+
 const getAuthorization = createSelector(
     getAuthorizationStatus,
     (status) => {
@@ -21,4 +25,4 @@ const getAuthorization = createSelector(
     }
 );
 
-export {getAuthorizationChecked, getAuthorizationStatus, getFavoriteList, getAuthorization};
+export {getAuthorizationChecked, getUserInfo, getAuthorizationStatus, getFavoriteList, getAuthorization};
