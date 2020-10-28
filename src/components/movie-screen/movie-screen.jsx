@@ -11,6 +11,7 @@ import {getRatingLevel} from '../../utils/utils';
 import {getReviews} from '../../store/reviews/selectors';
 import {connect} from 'react-redux';
 import {getMoviesList} from '../../store/movies/selectors';
+import UserBlock from '../user-block/user-block';
 
 const TabsWrapped = withActiveItem(Tabs);
 
@@ -48,11 +49,7 @@ const MovieScreen = (props) => {
             </Link>
           </div>
 
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
+          <UserBlock/>
         </header>
 
         <div className="movie-card__wrap">

@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import {movieDetails} from '../../types/types';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../utils/const';
+import {getFavoriteList} from '../../store/user/selectors';
+import {connect} from 'react-redux';
+import UserBlock from '../user-block/user-block';
 
 const UserScreen = (props) => {
   const {moviesList, onMovieCardClick} = props;
@@ -20,11 +23,7 @@ const UserScreen = (props) => {
 
         <h1 className="page-title user-page__title">My list</h1>
 
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
-        </div>
+        <UserBlock/>
       </header>
 
       <section className="catalog">
@@ -43,7 +42,7 @@ const UserScreen = (props) => {
         </div>
 
         <div className="copyright">
-          <p>© 2019 What to watch Ltd.</p>
+          <p>© 2020 What to watch Ltd.</p>
         </div>
       </footer>
     </div>
@@ -55,4 +54,9 @@ UserScreen.propTypes = {
   onMovieCardClick: PropTypes.func.isRequired,
 };
 
-export default UserScreen;
+const mapStateToProps = (state) => ({
+  moviesList: getFavoriteList(state),
+});
+
+export {UserScreen};
+export default connect(mapStateToProps)(UserScreen);

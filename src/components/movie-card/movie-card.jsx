@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {movieDetails} from '../../types/types';
 import {getFeaturedMovie} from '../../store/movies/selectors.js';
+import UserBlock from '../user-block/user-block';
 
 const MovieCard = (props) => {
   const {featuredMovie} = props;
@@ -23,11 +24,7 @@ const MovieCard = (props) => {
         </a>
       </div>
 
-      <div className="user-block">
-        <div className="user-block__avatar">
-          <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-        </div>
-      </div>
+      <UserBlock/>
     </header>
 
     <div className="movie-card__wrap">
