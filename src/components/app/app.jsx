@@ -9,7 +9,7 @@ import UserScreen from '../user-screen/user-screen.jsx';
 import MovieScreen from '../movie-screen/movie-screen.jsx';
 import ReviewScreen from '../review-screen/review-screen.jsx';
 import PlayerScreen from '../player-screen/player-screen.jsx';
-import {findItemById, getRandomArrayElements, filterMoviesByGenre} from '../../utils/utils.js';
+import {findItemById, filterMoviesByGenre} from '../../utils/utils.js';
 import {AppRoute} from '../../utils/const.js';
 import {movieDetails} from '../../types/types.js';
 import withVideo from '../../hocs/with-video/with-video.jsx';
@@ -38,7 +38,6 @@ const App = (props) => {
         </Route>
         <PrivateRoute exact path={`${AppRoute.FAVORITE}`} render={() => (
           <UserScreen
-            moviesList={getRandomArrayElements(moviesList, 10)}
             onMovieCardClick={(movieId) => history.push(`${AppRoute.MOVIE}/${movieId}`)}
           />
         )} />

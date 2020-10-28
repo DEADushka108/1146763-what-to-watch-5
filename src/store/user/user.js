@@ -2,12 +2,11 @@ import {extend} from '../../utils/utils.js';
 import {URL, AuthorizationStatus, AppRoute} from '../../utils/const.js';
 import {createMoviesList} from '../../services/adapters/movies.js';
 import {createUserInfo} from '../../services/adapters/user.js';
-import {redirectToRoute} from '../common-action.js';
+import {redirectToRoute} from '../redirect/redirect-action.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   favoriteList: [],
-  isAuthorizationChecked: false,
   userInfo: {
     id: null,
     name: null,
@@ -42,7 +41,7 @@ const Operation = {
     return api.get(URL.LOGIN)
       .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        diaspatch(ActionCreator.getUserInfo(createUserInfo(response.data)));
+        dispatch(ActionCreator.getUserInfo(createUserInfo(response.data)));
       })
       .catch(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
@@ -56,7 +55,7 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.getUserInfo(createUserInfo(response.data)));
-        dispatch(redirectToRoute(AppRoute.FAVORITE));
+        dispatch(redirectToRoute(AppRoute.ROOT));
       });
   },
   loadFavoriteList: () => (dispatch, _getState, api) => {
@@ -71,7 +70,6 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.REQUIRE_AUTHORIZATION:
       return extend(state, {
-        isAuthorizationChecked: true,
         authorizationStatus: action.payload,
       });
     case ActionType.LOAD_FAVORITE_LIST:

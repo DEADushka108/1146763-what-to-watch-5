@@ -37,9 +37,9 @@ const ActionCreator = {
 
 const Operation = {
   loadFeaturedMovie: () => (dispatch, _getState, api) => {
-    return api.get(URL.MOVIES)
+    return api.get(URL.FEATURED)
       .then((response) => {
-        dispatch(ActionCreator.loadFeaturedMovie(createMovie(response.data[0])));
+        dispatch(ActionCreator.loadFeaturedMovie(createMovie(response.data)));
       });
   },
   loadMovies: () => (dispatch, _getState, api) => {

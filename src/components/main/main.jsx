@@ -46,7 +46,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  activeGenre:PropTypes.string.isRequired,
+  activeGenre: PropTypes.string.isRequired,
   filteredMoviesList: PropTypes.arrayOf(movieDetails).isRequired,
   moviesCount: PropTypes.number.isRequired,
   onMovieCardClick: PropTypes.func.isRequired,

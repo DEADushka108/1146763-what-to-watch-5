@@ -80,9 +80,9 @@ class LoginScreen extends PureComponent {
           <p>© 2020 What to watch Ltd.</p>
         </div>
       </footer>
-    </div>
+    </div>;
   }
-};
+}
 
 LoginScreen.propTypes = {
   isAuthorized: PropTypes.bool.isRequired,
@@ -99,5 +99,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export {LoginScreen}
+export {LoginScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

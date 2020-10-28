@@ -28,4 +28,5 @@ MoviesList.propTypes = {
   count: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
 };
+
 export default MoviesList;
