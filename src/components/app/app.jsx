@@ -27,7 +27,7 @@ const App = (props) => {
       <Switch>
         <Route exact path={`${AppRoute.ROOT}`} render={() => (
           <Main
-            moviesList={moviesList}
+            activeGenre={activeGenre}
             filteredMoviesList={filterMoviesByGenre(moviesList, activeGenre)}
             onMovieCardClick={(movieId) => history.push(`${AppRoute.MOVIE}/${movieId}`)}
             moviesCount={moviesCount}
