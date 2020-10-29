@@ -31,7 +31,7 @@ const withRating = (Component) => {
 
   WithRating.proptypes = {};
 
-  return WithRating
+  return WithRating;
 };
 
 export default withRating;

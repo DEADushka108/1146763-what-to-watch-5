@@ -60,7 +60,7 @@ const Operation = {
       });
   },
   updateMovieStatus: (id, status) => (_dispatch, _getState, api) => {
-    return api.post(`${URL.FAVORITE}/${id}/${status}`)
+    return api.post(`${URL.FAVORITE}/${id}/${status}`);
   }
 };
 
@@ -91,7 +91,7 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         featuredMovie: action.payload.featuredMovie,
         moviesList: action.payload.moviesList,
-      })
+      });
   }
   return state;
 };

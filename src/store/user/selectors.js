@@ -16,7 +16,7 @@ const getUserInfo = (state) => {
 
 const getLoginStatus = (state) => {
   return state[NameSpace.USER].loginStatus;
-}
+};
 
 const getAuthorization = createSelector(
     getAuthorizationStatus,

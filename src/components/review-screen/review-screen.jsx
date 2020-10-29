@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {AppRoute, HttpCode} from '../../utils/const.js';
 import {movieDetails} from '../../types/types.js';
@@ -6,7 +7,7 @@ import {redirectToRoute} from '../../store/redirect/redirect-action.js';
 import UserBlock from '../user-block/user-block.jsx';
 import {getPostStatus} from '../../store/reviews/selectors.js';
 import {Operation as ReviewsOperation} from '../../store/reviews/reviews.js';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
 
@@ -41,7 +42,7 @@ class ReviewScreen extends PureComponent {
   }
 
   render() {
-    const {movieInfo, status, match, isValid, onRatingChange, onTextInput, onValidityCheck, rating} = this.props;
+    const {movieInfo, status, isValid, onRatingChange, onTextInput, onValidityCheck, rating} = this.props;
     const {id, title, cover, backgroundImage, backgroundColor} = movieInfo;
     return (
       <section className="movie-card movie-card--full" style={{backgroundColor: `${backgroundColor}`}}>
@@ -81,7 +82,7 @@ class ReviewScreen extends PureComponent {
         </div>
 
         <div className="add-review">
-        {status === HttpCode.SERVER_ERROR && <p className="movie-card__text">Error {status} occurred. Please try again later.</p>}
+          {status === HttpCode.SERVER_ERROR && <p className="movie-card__text">Error {status} occurred. Please try again later.</p>}
           <form action="#" className="add-review__form" onSubmit={this.handleSubmit}>
             <div className="rating">
               <div className="rating__stars">
@@ -122,6 +123,19 @@ class ReviewScreen extends PureComponent {
 
 ReviewScreen.propTypes = {
   movieInfo: movieDetails,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
+  rating: PropTypes.string,
+  text: PropTypes.string,
+  isValid: PropTypes.bool,
+  status: PropTypes.number,
+  onSubmit: PropTypes.func.isRequired,
+  onRatingChange: PropTypes.func.isRequired,
+  onTextInput: PropTypes.func.isRequired,
+  onValidityCheck: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

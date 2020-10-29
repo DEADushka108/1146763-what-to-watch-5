@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
 const Review = {
@@ -32,7 +32,7 @@ const withValidation = (Component) => {
         this.setState({
           isValid: true,
         });
-      return;
+        return;
       }
 
       this.setState({

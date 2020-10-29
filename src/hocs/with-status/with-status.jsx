@@ -6,7 +6,7 @@ const withStatus = (Component) => {
     constructor(props) {
       super(props);
 
-      this.state ={
+      this.state = {
         isFavorite: this.props.isFavorite,
       };
 

@@ -28,7 +28,7 @@ const onReviewError = (status) => {
 
 const onServerError = () => {
   store.dispatch(MoviesAction.updateStatus(HttpCode.SERVER_ERROR));
-}
+};
 
 const api = createAPI(onUnauthorized, onError, onLoginError, onReviewError, onServerError);
 const store = createStore(

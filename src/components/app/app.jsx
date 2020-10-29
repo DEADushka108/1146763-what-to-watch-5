@@ -40,12 +40,12 @@ const App = (props) => {
         )}/>;
         <Route exact path={`${AppRoute.LOGIN}`}>
           <LoginScreen />
-        </Route>
+        </Route>;
         <PrivateRoute exact path={`${AppRoute.FAVORITE}`} render={() => {
           loadFavoriteList();
           return <UserScreen
             onMovieCardClick={(movieId) => history.push(`${AppRoute.MOVIE}/${movieId}`)}
-          />
+          />;
         }} />
         <PrivateRoute exact path={`${AppRoute.MOVIE}/:id/review`} render={(routeProps) => {
           const id = routeProps.match.params.id;
@@ -78,6 +78,7 @@ App.propTypes = {
   activeGenre: PropTypes.string.isRequired,
   moviesCount: PropTypes.number.isRequired,
   loadReviews: PropTypes.func.isRequired,
+  loadFavoriteList: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
