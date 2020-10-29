@@ -2,16 +2,16 @@ import {createSelector} from 'reselect';
 import {AuthorizationStatus} from '../../utils/const.js';
 import NameSpace from '../name-space.js';
 
-const getAuthorizationChecked = (state) => {
-  return state[NameSpace.USER].isAuthorizationChecked;
-};
-
 const getAuthorizationStatus = (state) => {
   return state[NameSpace.USER].authorizationStatus;
 };
 
 const getFavoriteList = (state) => {
   return state[NameSpace.USER].favoriteList;
+};
+
+const getUserInfo = (state) => {
+  return state[NameSpace.USER].userInfo;
 };
 
 const getAuthorization = createSelector(
@@ -21,4 +21,4 @@ const getAuthorization = createSelector(
     }
 );
 
-export {getAuthorizationChecked, getAuthorizationStatus, getFavoriteList, getAuthorization};
+export {getUserInfo, getAuthorizationStatus, getFavoriteList, getAuthorization};

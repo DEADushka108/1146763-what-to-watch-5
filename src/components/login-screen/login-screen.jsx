@@ -1,10 +1,42 @@
-import React from 'react';
+import React, {createRef, PureComponent} from 'react';
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import history from '../../routing/history.js';
 import {AppRoute} from '../../utils/const.js';
+import {getAuthorization} from '../../store/user/selectors.js';
+import {Operation as UserOperation} from '../../store/user/user.js';
+import {connect} from 'react-redux';
 
-const LoginScreen = () => {
-  return <React.Fragment>
-    <div className="user-page">
+class LoginScreen extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this._loginRef = createRef();
+    this._passwordRef = createRef();
+    this._handleSubmit = this._handleSubmit.bind(this);
+  }
+
+  componentDidUpdate() {
+    const {isAuthorized} = this.props;
+
+    if (isAuthorized) {
+      history.push(AppRoute.ROOT);
+    }
+  }
+
+  _handleSubmit(evt) {
+    const {onSubmit} = this.props;
+
+    evt.preventDefault();
+
+    onSubmit({
+      login: this._loginRef.current.value,
+      password: this._passwordRef.current.value,
+    });
+  }
+
+  render() {
+    return <div className="user-page">
       <header className="page-header user-page__head">
         <div className="logo">
           <Link to={`${AppRoute.ROOT}`} className="logo__link">
@@ -18,14 +50,14 @@ const LoginScreen = () => {
       </header>
 
       <div className="sign-in user-page__content">
-        <form action="#" className="sign-in__form">
+        <form action="#" className="sign-in__form" onSubmit={this._handleSubmit}>
           <div className="sign-in__fields">
             <div className="sign-in__field">
-              <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
+              <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" ref={this._loginRef}/>
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
             <div className="sign-in__field">
-              <input className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" />
+              <input className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" ref={this._passwordRef}/>
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>
           </div>
@@ -37,19 +69,35 @@ const LoginScreen = () => {
 
       <footer className="page-footer">
         <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
+          <Link to={AppRoute.ROOT} className="logo__link logo__link--light">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
 
         <div className="copyright">
           <p>© 2020 What to watch Ltd.</p>
         </div>
       </footer>
-    </div>
-  </React.Fragment>;
+    </div>;
+  }
+}
+
+LoginScreen.propTypes = {
+  isAuthorized: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };
 
-export default LoginScreen;
+const mapStateToProps = (state) => ({
+  isAuthorized: getAuthorization(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(userData) {
+    dispatch(UserOperation.login(userData));
+  },
+});
+
+export {LoginScreen};
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

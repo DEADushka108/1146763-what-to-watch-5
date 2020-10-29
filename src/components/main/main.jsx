@@ -4,13 +4,13 @@ import MoviesList from '../movies-list/movies-list.jsx';
 import {movieDetails} from '../../types/types.js';
 import GenresList from '../genres-list/genres-list.jsx';
 import ShowMoreButton from '../show-more-button/show-more-button.jsx';
-import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import MovieCard from '../movie-card/movie-card.jsx';
+import withActiveGenre from '../../hocs/with-active-genre/with-active-genre.jsx';
 
-const GenresListWrapped = withActiveItem(GenresList);
+const GenresListWrapped = withActiveGenre(GenresList);
 
 const Main = (props) => {
-  const {moviesList, filteredMoviesList, moviesCount, onMovieCardClick} = props;
+  const {filteredMoviesList, moviesCount, onMovieCardClick, activeGenre} = props;
 
   return <React.Fragment>
     <MovieCard/>
@@ -19,7 +19,7 @@ const Main = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <GenresListWrapped moviesList={moviesList}/>
+        <GenresListWrapped genre={activeGenre}/>
 
         <MoviesList movies={filteredMoviesList} count={moviesCount} onClick={onMovieCardClick}/>
 
@@ -46,7 +46,7 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  moviesList: PropTypes.arrayOf(movieDetails).isRequired,
+  activeGenre: PropTypes.string.isRequired,
   filteredMoviesList: PropTypes.arrayOf(movieDetails).isRequired,
   moviesCount: PropTypes.number.isRequired,
   onMovieCardClick: PropTypes.func.isRequired,

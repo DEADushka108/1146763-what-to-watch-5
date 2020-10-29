@@ -1,16 +1,24 @@
 import {extend} from '../../utils/utils.js';
-import {URL, AuthorizationStatus} from '../../utils/const.js';
+import {URL, AuthorizationStatus, AppRoute} from '../../utils/const.js';
 import {createMoviesList} from '../../services/adapters/movies.js';
+import {createUserInfo} from '../../services/adapters/user.js';
+import {redirectToRoute} from '../redirect/redirect-action.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   favoriteList: [],
-  isAuthorizationChecked: false,
+  userInfo: {
+    id: null,
+    name: null,
+    email: null,
+    avatar: null,
+  },
 };
 
 const ActionType = {
   REQUIRE_AUTHORIZATION: `REQUIRE_AUTHORIZATION`,
   LOAD_FAVORITE_LIST: `LOAD_FAVORITE_LIST`,
+  GET_USER_INFO: `GET_USER_INFO`,
 };
 
 const ActionCreator = {
@@ -22,13 +30,18 @@ const ActionCreator = {
     type: ActionType.LOAD_FAVORITE_LIST,
     payload: list,
   }),
+  getUserInfo: (userInfo) => ({
+    type: ActionType.GET_USER_INFO,
+    payload: userInfo,
+  })
 };
 
 const Operation = {
   checkAuthorization: () => (dispatch, _getState, api) => {
     return api.get(URL.LOGIN)
-      .then(() => {
+      .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.getUserInfo(createUserInfo(response.data)));
       })
       .catch(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
@@ -39,8 +52,10 @@ const Operation = {
       email: userData.login,
       password: userData.password,
     })
-      .then(() => {
+      .then((response) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.getUserInfo(createUserInfo(response.data)));
+        dispatch(redirectToRoute(AppRoute.ROOT));
       });
   },
   loadFavoriteList: () => (dispatch, _getState, api) => {
@@ -55,12 +70,15 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.REQUIRE_AUTHORIZATION:
       return extend(state, {
-        isAuthorizationChecked: true,
         authorizationStatus: action.payload,
       });
     case ActionType.LOAD_FAVORITE_LIST:
       return extend(state, {
         favoriteList: action.payload,
+      });
+    case ActionType.GET_USER_INFO:
+      return extend(state, {
+        userInfo: action.payload,
       });
   }
 
