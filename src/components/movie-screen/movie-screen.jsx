@@ -12,8 +12,11 @@ import {getReviews} from '../../store/reviews/selectors';
 import {connect} from 'react-redux';
 import {getMoviesList} from '../../store/movies/selectors';
 import UserBlock from '../user-block/user-block';
+import withStatus from '../../hocs/with-status/with-status';
+import FavoriteButton from '../favorite-button/favorite-button';
 
 const TabsWrapped = withActiveItem(Tabs);
+const FavoriteButtonWrapped = withStatus(FavoriteButton);
 
 const TabNames = {
   OVERVIEW: `Overview`,
@@ -23,7 +26,7 @@ const TabNames = {
 
 const MovieScreen = (props) => {
   const {movieInfo, moviesList, onMovieCardClick, reviews} = props;
-  const {id, title, genre, releaseDate, runTime, cover, rating, description, director, cast, backgroundImage, backgroundColor} = movieInfo;
+  const {id, isFavorite, title, genre, releaseDate, runTime, cover, rating, description, director, cast, backgroundImage, backgroundColor} = movieInfo;
   const {score, count} = rating;
   const similarMoviesList = moviesList.filter((item) => {
     return item.genre === genre && item.title !== title;
@@ -67,12 +70,7 @@ const MovieScreen = (props) => {
                 </svg>
                 <span>Play</span>
               </Link>
-              <Link to={`${AppRoute.FAVORITE}`} className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
-                <span>My list</span>
-              </Link>
+              <FavoriteButtonWrapped id={id} isFavorite={isFavorite}/>
               <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
             </div>
           </div>

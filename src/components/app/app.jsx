@@ -16,11 +16,16 @@ import withVideo from '../../hocs/with-video/with-video.jsx';
 import {getMoviesList, getMoviesCount, getActiveGenre} from '../../store/movies/selectors.js';
 import PrivateRoute from '../../routing/private-route.jsx';
 import {Operation as ReviewsOperation} from '../../store/reviews/reviews';
+import {Operation as UserOperation} from '../../store/user/user.js';
+import withRating from '../../hocs/with-rating/with-rating.jsx';
+import withText from '../../hocs/with-text/with-text.jsx';
+import withValidation from '../../hocs/with-validation/with-validation.jsx';
 
 const PlayerScreenWrapped = withVideo(PlayerScreen);
+const ReviewScreenWrapped = withRating(withText(withValidation(ReviewScreen)));
 
 const App = (props) => {
-  const {moviesList, moviesCount, activeGenre, loadReviews} = props;
+  const {moviesList, moviesCount, activeGenre, loadReviews, loadFavoriteList} = props;
 
   return (
     <BrowserRouter history={history}>
@@ -36,16 +41,17 @@ const App = (props) => {
         <Route exact path={`${AppRoute.LOGIN}`}>
           <LoginScreen />
         </Route>
-        <PrivateRoute exact path={`${AppRoute.FAVORITE}`} render={() => (
-          <UserScreen
+        <PrivateRoute exact path={`${AppRoute.FAVORITE}`} render={() => {
+          loadFavoriteList();
+          return <UserScreen
             onMovieCardClick={(movieId) => history.push(`${AppRoute.MOVIE}/${movieId}`)}
           />
-        )} />
+        }} />
         <PrivateRoute exact path={`${AppRoute.MOVIE}/:id/review`} render={(routeProps) => {
           const id = routeProps.match.params.id;
           const movie = findItemById(id, moviesList);
 
-          return <ReviewScreen movieInfo={movie}/>;
+          return <ReviewScreenWrapped movieInfo={movie} {...routeProps}/>;
         }}/>
         <Route exact path={`${AppRoute.MOVIE}/:id`} render={(routeProps) => {
           const id = routeProps.match.params.id;
@@ -83,6 +89,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   loadReviews(id) {
     dispatch(ReviewsOperation.loadReviews(id));
+  },
+  loadFavoriteList() {
+    dispatch(UserOperation.loadFavoriteList());
   }
 });
 
