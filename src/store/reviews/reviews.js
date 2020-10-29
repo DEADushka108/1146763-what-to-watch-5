@@ -1,19 +1,25 @@
 import {extend} from '../../utils/utils.js';
 import {createReviewsList} from '../../services/adapters/reviews';
-import {URL} from '../../utils/const.js';
+import {HttpCode, URL} from '../../utils/const.js';
 
 const initialState = {
   reviews: [],
+  postStatus: 0,
 };
 
 const ActionType = {
   LOAD_REVIEWS: `LOAD_REVIEWS`,
+  UPDATE_POST_STATUS: `UPDATE_POST_STATUS`,
 };
 
 const ActionCreator = {
   loadReviews: (reviews) => ({
     type: ActionType.LOAD_REVIEWS,
     payload: reviews,
+  }),
+  updatePostStatus: (status) => ({
+    type: ActionType.UPDATE_POST_STATUS,
+    payload: status,
   }),
 };
 
@@ -22,6 +28,15 @@ const Operation = {
     return api.get(`${URL.REVIEWS}/${id}`)
       .then((response) => {
         dispatch(ActionCreator.loadReviews(createReviewsList(response.data)));
+      });
+  },
+  postReview: (review) => (dispatch, _getState, api) => {
+    return api.post(`${URL.REVIEWS}/${review.id}`, {
+      rating: review.rating,
+      comment: review.text,
+    })
+      .then(() => {
+        dispatch(ActionCreator.updatePostStatus(HttpCode.OK));
       });
   }
 };
@@ -32,6 +47,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_REVIEWS:
       return extend(state, {
         reviews: action.payload,
+      });
+    case ActionType.UPDATE_POST_STATUS:
+      return extend(state, {
+        postStatus: action.payload,
       });
   }
 

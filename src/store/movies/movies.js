@@ -1,4 +1,4 @@
-import {FilterSettings, MAX_MOVIES_COUNT, URL} from '../../utils/const.js';
+import {FilterSettings, HttpCode, MAX_MOVIES_COUNT, URL} from '../../utils/const.js';
 import {extend} from '../../utils/utils.js';
 import {createMovie, createMoviesList} from '../../services/adapters/movies';
 
@@ -7,6 +7,7 @@ const initialState = {
   moviesList: [],
   activeGenre: FilterSettings.DEFAULT_VALUE,
   moviesCount: MAX_MOVIES_COUNT,
+  status: HttpCode.OK,
 };
 
 const ActionType = {
@@ -14,6 +15,8 @@ const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
   SET_ACTIVE_GENRE: `SET_ACTIVE_GENRE`,
   SET_MOVIES_COUNT: `SET_MOVIES_COUNT`,
+  UPDATE_STATUS: `UPDATE_STATUS`,
+  UPDATE_MOVIE_STATUS: `UPDATE_MOVIE_STATUS`,
 };
 
 const ActionCreator = {
@@ -32,7 +35,15 @@ const ActionCreator = {
   setMoviesCount: () => ({
     type: ActionType.SET_MOVIES_COUNT,
     payload: MAX_MOVIES_COUNT,
-  })
+  }),
+  updateStatus: (status) => ({
+    type: ActionType.UPDATE_STATUS,
+    payload: status,
+  }),
+  updateMovieStatus: (movie) => ({
+    type: ActionType.UPDATE_MOVIE_STATUS,
+    payload: movie,
+  }),
 };
 
 const Operation = {
@@ -47,6 +58,9 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.loadMovies(createMoviesList(response.data)));
       });
+  },
+  updateMovieStatus: (id, status) => (_dispatch, _getState, api) => {
+    return api.post(`${URL.FAVORITE}/${id}/${status}`)
   }
 };
 
@@ -69,6 +83,15 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         moviesCount: state.moviesCount + action.payload,
       });
+    case ActionType.UPDATE_STATUS:
+      return extend(state, {
+        status: action.payload,
+      });
+    case ActionType.UPDATE_MOVIE_STATUS:
+      return extend(state, {
+        featuredMovie: action.payload.featuredMovie,
+        moviesList: action.payload.moviesList,
+      })
   }
   return state;
 };

@@ -1,5 +1,5 @@
 import {extend} from '../../utils/utils.js';
-import {URL, AuthorizationStatus, AppRoute} from '../../utils/const.js';
+import {URL, AuthorizationStatus, AppRoute, HttpCode} from '../../utils/const.js';
 import {createMoviesList} from '../../services/adapters/movies.js';
 import {createUserInfo} from '../../services/adapters/user.js';
 import {redirectToRoute} from '../redirect/redirect-action.js';
@@ -13,12 +13,14 @@ const initialState = {
     email: null,
     avatar: null,
   },
+  loginStatus: HttpCode.OK,
 };
 
 const ActionType = {
   REQUIRE_AUTHORIZATION: `REQUIRE_AUTHORIZATION`,
   LOAD_FAVORITE_LIST: `LOAD_FAVORITE_LIST`,
   GET_USER_INFO: `GET_USER_INFO`,
+  UPDATE_LOGIN_STATUS: `UPDATE_LOGIN_STATUS`,
 };
 
 const ActionCreator = {
@@ -33,6 +35,10 @@ const ActionCreator = {
   getUserInfo: (userInfo) => ({
     type: ActionType.GET_USER_INFO,
     payload: userInfo,
+  }),
+  updateLoginStatus: (status) => ({
+    type: ActionType.UPDATE_LOGIN_STATUS,
+    payload: status,
   })
 };
 
@@ -79,6 +85,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.GET_USER_INFO:
       return extend(state, {
         userInfo: action.payload,
+      });
+    case ActionType.UPDATE_LOGIN_STATUS:
+      return extend(state, {
+        loginStatus: action.payload,
       });
   }
 
