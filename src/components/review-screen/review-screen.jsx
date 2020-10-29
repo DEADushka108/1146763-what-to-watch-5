@@ -20,11 +20,11 @@ class ReviewScreen extends PureComponent {
 
   componentDidUpdate(prevProps) {
     const {status: prevStatus} = prevProps;
-    const {match, status} = this.props;
+    const {match, status, redirect} = this.props;
     const id = Number(match.params.id);
 
     if (status !== prevStatus && status === HttpCode.OK) {
-      redirectToRoute(`${AppRoute.MOVIE}/${id}`);
+      redirect(`${AppRoute.MOVIE}/${id}`);
     }
   }
 
@@ -136,6 +136,7 @@ ReviewScreen.propTypes = {
   onRatingChange: PropTypes.func.isRequired,
   onTextInput: PropTypes.func.isRequired,
   onValidityCheck: PropTypes.func.isRequired,
+  redirect: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -145,7 +146,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(review) {
     dispatch(ReviewsOperation.postReview(review));
-  }
+  },
+  redirect(route) {
+    dispatch(redirectToRoute(route));
+  },
 });
 
 export {ReviewScreen};

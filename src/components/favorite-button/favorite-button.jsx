@@ -2,6 +2,9 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {Operation as MoviesOperation} from '../../store/movies/movies.js';
 import {connect} from 'react-redux';
+import {getAuthorization}  from '../../store/user/selectors.js';
+import {redirectToRoute} from '../../store/redirect/redirect-action.js';
+import {AppRoute} from '../../utils/const.js';
 
 class FavoriteButton extends PureComponent {
   constructor(props) {
@@ -10,7 +13,12 @@ class FavoriteButton extends PureComponent {
   }
 
   _handleButtonClick() {
-    const {id, onClick, isFavorite, onFavoriteStatusChange} = this.props;
+    const {id, onClick, isFavorite, onFavoriteStatusChange, isAuthorized, redirect} = this.props;
+
+    if (!isAuthorized) {
+      redirect(AppRoute.LOGIN);
+      return;
+    }
 
     onClick(id, isFavorite ? 0 : 1);
     onFavoriteStatusChange();
@@ -33,13 +41,22 @@ FavoriteButton.propTypes = {
   isFavorite: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   onFavoriteStatusChange: PropTypes.func.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
+  redirect: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  isAuthorized: getAuthorization(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onClick(id, status) {
     dispatch(MoviesOperation.updateMovieStatus(id, status));
   },
+  redirect(route) {
+    dispatch(redirectToRoute(route));
+  },
 });
 
 export {FavoriteButton};
-export default connect(null, mapDispatchToProps)(FavoriteButton);
+export default connect(mapStateToProps, mapDispatchToProps)(FavoriteButton);
