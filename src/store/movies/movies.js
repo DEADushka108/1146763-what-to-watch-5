@@ -59,8 +59,11 @@ const Operation = {
         dispatch(ActionCreator.loadMovies(createMoviesList(response.data)));
       });
   },
-  updateMovieStatus: (id, status) => (_dispatch, _getState, api) => {
-    return api.post(`${URL.FAVORITE}/${id}/${status}`);
+  updateMovieStatus: (id, status) => (dispatch, _getState, api) => {
+    return api.post(`${URL.FAVORITE}/${id}/${status}`)
+      .then((response) => {
+        dispatch(ActionCreator.updateMovieStatus(createMovie(response.data)));
+      });
   }
 };
 
@@ -89,8 +92,8 @@ const reducer = (state = initialState, action) => {
       });
     case ActionType.UPDATE_MOVIE_STATUS:
       return extend(state, {
-        featuredMovie: action.payload.featuredMovie,
-        moviesList: action.payload.moviesList,
+        featuredMovie: state.featuredMovie.id === action.payload.id ? action.payload : state.featuredMovie,
+        moviesList: state.moviesList.map((movie) => (movie.id === action.payload.id) ? action.payload : movie),
       });
   }
   return state;
