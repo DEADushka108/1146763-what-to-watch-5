@@ -16,7 +16,6 @@ import withVideo from '../../hocs/with-video/with-video.jsx';
 import {getMoviesList, getMoviesCount, getActiveGenre} from '../../store/movies/selectors.js';
 import PrivateRoute from '../../routing/private-route.jsx';
 import {Operation as ReviewsOperation} from '../../store/reviews/reviews';
-import {Operation as UserOperation} from '../../store/user/user.js';
 import withRating from '../../hocs/with-rating/with-rating.jsx';
 import withText from '../../hocs/with-text/with-text.jsx';
 import withValidation from '../../hocs/with-validation/with-validation.jsx';
@@ -25,7 +24,7 @@ const PlayerScreenWrapped = withVideo(PlayerScreen);
 const ReviewScreenWrapped = withRating(withText(withValidation(ReviewScreen)));
 
 const App = (props) => {
-  const {moviesList, moviesCount, activeGenre, loadReviews, loadFavoriteList} = props;
+  const {moviesList, moviesCount, activeGenre, loadReviews} = props;
 
   return (
     <BrowserRouter history={history}>
@@ -34,7 +33,6 @@ const App = (props) => {
           <Main
             activeGenre={activeGenre}
             filteredMoviesList={filterMoviesByGenre(moviesList, activeGenre)}
-            onMovieCardClick={(movieId) => history.push(`${AppRoute.MOVIE}/${movieId}`)}
             moviesCount={moviesCount}
           />
         )}/>;
@@ -42,10 +40,7 @@ const App = (props) => {
           <LoginScreen />
         </Route>;
         <PrivateRoute exact path={`${AppRoute.FAVORITE}`} render={() => {
-          loadFavoriteList();
-          return <UserScreen
-            onMovieCardClick={(movieId) => history.push(`${AppRoute.MOVIE}/${movieId}`)}
-          />;
+          return <UserScreen/>;
         }} />
         <PrivateRoute exact path={`${AppRoute.MOVIE}/:id/review`} render={(routeProps) => {
           const id = routeProps.match.params.id;
@@ -60,7 +55,7 @@ const App = (props) => {
 
           return <MovieScreen
             movieInfo={movie}
-            onMovieCardClick={(movieId) => routeProps.history.push(`${AppRoute.MOVIE}/${movieId}`)}/>;
+          />;
         }}/>
         <Route exact path={`${AppRoute.PLAYER}/:id`} render={(routeProps) => {
           const id = routeProps.match.params.id;
@@ -78,7 +73,6 @@ App.propTypes = {
   activeGenre: PropTypes.string.isRequired,
   moviesCount: PropTypes.number.isRequired,
   loadReviews: PropTypes.func.isRequired,
-  loadFavoriteList: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -90,9 +84,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   loadReviews(id) {
     dispatch(ReviewsOperation.loadReviews(id));
-  },
-  loadFavoriteList() {
-    dispatch(UserOperation.loadFavoriteList());
   }
 });
 

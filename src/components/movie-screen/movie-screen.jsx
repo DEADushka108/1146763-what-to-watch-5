@@ -25,7 +25,7 @@ const TabNames = {
 };
 
 const MovieScreen = (props) => {
-  const {movieInfo, moviesList, onMovieCardClick, reviews} = props;
+  const {movieInfo, moviesList, reviews} = props;
   const {id, isFavorite, title, genre, releaseDate, runTime, cover, rating, description, director, cast, backgroundImage, backgroundColor} = movieInfo;
   const {score, count} = rating;
   const similarMoviesList = moviesList.filter((item) => {
@@ -163,7 +163,7 @@ const MovieScreen = (props) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <MoviesList movies={similarMoviesList} count={MOVIE_SCREEN_COUNT} onClick={onMovieCardClick}/>
+          <MoviesList movies={similarMoviesList} count={MOVIE_SCREEN_COUNT}/>
         </section>
       }
       <footer className="page-footer">
@@ -187,7 +187,6 @@ MovieScreen.propTypes = {
   movieInfo: movieDetails,
   moviesList: PropTypes.arrayOf(movieDetails).isRequired,
   reviews: PropTypes.arrayOf(reviewsDetails).isRequired,
-  onMovieCardClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
