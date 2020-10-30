@@ -6,7 +6,7 @@ const withRating = (Component) => {
       super(props);
 
       this.state = {
-        rating: `0`,
+        rating: `1`,
       };
 
       this._handleRatingChange = this._handleRatingChange.bind(this);

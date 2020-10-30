@@ -7,7 +7,7 @@ import withVideo from '../../hocs/with-video/with-video.jsx';
 const MovieCardSmallWrapped = withVideo(MovieCardSmall);
 
 const MoviesList = (props) => {
-  const {movies, count, onClick} = props;
+  const {movies, count} = props;
   const moviesToShow = movies.slice(0, count);
 
   return <div className="catalog__movies-list">
@@ -17,7 +17,6 @@ const MoviesList = (props) => {
         isPreview={true}
         isMuted={true}
         isPlaying={false}
-        onClick={() => onClick(id)}
       />;
     })}
   </div>;
@@ -26,7 +25,6 @@ const MoviesList = (props) => {
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(movieDetails).isRequired,
   count: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired,
 };
 
 export default MoviesList;

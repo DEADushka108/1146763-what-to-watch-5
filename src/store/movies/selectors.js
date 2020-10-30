@@ -28,6 +28,10 @@ const getStatus = (state) => {
   return state[NameSpace.MOVIES].status;
 };
 
+const getMovie = (state) => {
+  return state[NameSpace.MOVIES].activeMovie;
+};
+
 const getFilteredList = createSelector(
     getMoviesList,
     getActiveGenre,
@@ -38,4 +42,4 @@ const getFilteredList = createSelector(
     }
 );
 
-export {getFeaturedMovie, getMovieById, getActiveGenre, getMoviesCount, getFilteredList, getMoviesList, getStatus};
+export {getFeaturedMovie, getMovie, getMovieById, getActiveGenre, getMoviesCount, getFilteredList, getMoviesList, getStatus};

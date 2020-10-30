@@ -8,11 +8,13 @@ const initialState = {
   activeGenre: FilterSettings.DEFAULT_VALUE,
   moviesCount: MAX_MOVIES_COUNT,
   status: HttpCode.OK,
+  activeMovie: {},
 };
 
 const ActionType = {
   LOAD_FEATURED_MOVIE: `LOAD_FEATURED_MOVIE`,
   LOAD_MOVIES: `LOAD_MOVIES`,
+  LOAD_MOVIE: `LOAD_MOVIE`,
   SET_ACTIVE_GENRE: `SET_ACTIVE_GENRE`,
   SET_MOVIES_COUNT: `SET_MOVIES_COUNT`,
   UPDATE_STATUS: `UPDATE_STATUS`,
@@ -27,6 +29,10 @@ const ActionCreator = {
   loadMovies: (moviesList) => ({
     type: ActionType.LOAD_MOVIES,
     payload: moviesList,
+  }),
+  loadMovie: (movie) => ({
+    type: ActionType.LOAD_MOVIE,
+    payload: movie,
   }),
   setActiveGenre: (genre) => ({
     type: ActionType.SET_ACTIVE_GENRE,
@@ -64,6 +70,12 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.updateMovieStatus(createMovie(response.data)));
       });
+  },
+  loadMovie: (id) => (dispatch, _getState, api) => {
+    return api.get(`${URL.MOVIES}/${id}`)
+      .then((response) => {
+        dispatch(ActionCreator.loadMovie(createMovie(response.data)));
+      });
   }
 };
 
@@ -76,6 +88,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_MOVIES:
       return extend(state, {
         moviesList: action.payload,
+      });
+    case ActionType.LOAD_MOVIE:
+      return extend(state, {
+        activeMovie: action.payload,
       });
     case ActionType.SET_ACTIVE_GENRE:
       return extend(state, {

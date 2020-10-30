@@ -10,7 +10,7 @@ import withActiveGenre from '../../hocs/with-active-genre/with-active-genre.jsx'
 const GenresListWrapped = withActiveGenre(GenresList);
 
 const Main = (props) => {
-  const {filteredMoviesList, moviesCount, onMovieCardClick, activeGenre} = props;
+  const {filteredMoviesList, moviesCount, activeGenre} = props;
 
   return <React.Fragment>
     <MovieCard/>
@@ -21,7 +21,7 @@ const Main = (props) => {
 
         <GenresListWrapped genre={activeGenre}/>
 
-        <MoviesList movies={filteredMoviesList} count={moviesCount} onClick={onMovieCardClick}/>
+        <MoviesList movies={filteredMoviesList} count={moviesCount}/>
 
         <div className="catalog__more">
           <ShowMoreButton list={filteredMoviesList} count={moviesCount} />
@@ -49,7 +49,6 @@ Main.propTypes = {
   activeGenre: PropTypes.string.isRequired,
   filteredMoviesList: PropTypes.arrayOf(movieDetails).isRequired,
   moviesCount: PropTypes.number.isRequired,
-  onMovieCardClick: PropTypes.func.isRequired,
 };
 
 export default Main;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import MoviesList from '../movies-list/movies-list';
 import PropTypes from 'prop-types';
 import {movieDetails} from '../../types/types';
@@ -7,56 +7,81 @@ import {AppRoute} from '../../utils/const';
 import {getFavoriteList} from '../../store/user/selectors';
 import {connect} from 'react-redux';
 import UserBlock from '../user-block/user-block';
+import {Operation as UserOperation} from '../../store/user/user.js';
 
-const UserScreen = (props) => {
-  const {moviesList, onMovieCardClick} = props;
-  return <React.Fragment>
-    <div className="user-page">
-      <header className="page-header user-page__head">
-        <div className="logo">
-          <Link to={AppRoute.ROOT} className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
+class UserScreen extends PureComponent {
+  constructor(props) {
+    super(props);
 
-        <h1 className="page-title user-page__title">My list</h1>
+    this._handleMoviesLoad = this._handleMoviesLoad.bind(this);
+  }
 
-        <UserBlock/>
-      </header>
+  _handleMoviesLoad() {
+    const {loadFavoriteList} = this.props;
+    loadFavoriteList();
+  }
 
-      <section className="catalog">
-        <h2 className="catalog__title visually-hidden">Catalog</h2>
+  componentDidMount() {
+    this._handleMoviesLoad();
+  }
 
-        <MoviesList movies={moviesList} count={moviesList.length} onClick={onMovieCardClick}/>
-      </section>
+  render() {
+    const {moviesList} = this.props;
 
-      <footer className="page-footer">
-        <div className="logo">
-          <Link to={AppRoute.ROOT} className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </Link>
-        </div>
+    return <React.Fragment>
+      <div className="user-page">
+        <header className="page-header user-page__head">
+          <div className="logo">
+            <Link to={AppRoute.ROOT} className="logo__link">
+              <span className="logo__letter logo__letter--1">W</span>
+              <span className="logo__letter logo__letter--2">T</span>
+              <span className="logo__letter logo__letter--3">W</span>
+            </Link>
+          </div>
 
-        <div className="copyright">
-          <p>© 2020 What to watch Ltd.</p>
-        </div>
-      </footer>
-    </div>
-  </React.Fragment>;
-};
+          <h1 className="page-title user-page__title">My list</h1>
+
+          <UserBlock/>
+        </header>
+
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">Catalog</h2>
+
+          <MoviesList movies={moviesList} count={moviesList.length}/>
+        </section>
+
+        <footer className="page-footer">
+          <div className="logo">
+            <Link to={AppRoute.ROOT} className="logo__link logo__link--light">
+              <span className="logo__letter logo__letter--1">W</span>
+              <span className="logo__letter logo__letter--2">T</span>
+              <span className="logo__letter logo__letter--3">W</span>
+            </Link>
+          </div>
+
+          <div className="copyright">
+            <p>© 2020 What to watch Ltd.</p>
+          </div>
+        </footer>
+      </div>
+    </React.Fragment>;
+  }
+}
 
 UserScreen.propTypes = {
   moviesList: PropTypes.arrayOf(movieDetails).isRequired,
-  onMovieCardClick: PropTypes.func.isRequired,
+  loadFavoriteList: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   moviesList: getFavoriteList(state),
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  loadFavoriteList() {
+    dispatch(UserOperation.loadFavoriteList());
+  }
+});
+
 export {UserScreen};
-export default connect(mapStateToProps)(UserScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(UserScreen);
