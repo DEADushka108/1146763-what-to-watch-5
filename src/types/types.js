@@ -32,8 +32,8 @@ export const reviewsDetails = PropTypes.shape({
 }).isRequired;
 
 export const userDetails = PropTypes.shape({
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
-  avatar: PropTypes.string.isRequired,
-}).isRequired;
+  id: PropTypes.number,
+  name: PropTypes.string,
+  email: PropTypes.string,
+  avatar: PropTypes.string,
+});

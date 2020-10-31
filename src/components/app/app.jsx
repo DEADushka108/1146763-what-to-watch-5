@@ -16,8 +16,12 @@ import withVideo from '../../hocs/with-video/with-video.jsx';
 import {getMoviesList, getMoviesCount, getActiveGenre} from '../../store/movies/selectors.js';
 import PrivateRoute from '../../routing/private-route.jsx';
 import {Operation as ReviewsOperation} from '../../store/reviews/reviews';
+import withRating from '../../hocs/with-rating/with-rating.jsx';
+import withText from '../../hocs/with-text/with-text.jsx';
+import withValidation from '../../hocs/with-validation/with-validation.jsx';
 
 const PlayerScreenWrapped = withVideo(PlayerScreen);
+const ReviewScreenWrapped = withRating(withText(withValidation(ReviewScreen)));
 
 const App = (props) => {
   const {moviesList, moviesCount, activeGenre, loadReviews} = props;
@@ -29,23 +33,20 @@ const App = (props) => {
           <Main
             activeGenre={activeGenre}
             filteredMoviesList={filterMoviesByGenre(moviesList, activeGenre)}
-            onMovieCardClick={(movieId) => history.push(`${AppRoute.MOVIE}/${movieId}`)}
             moviesCount={moviesCount}
           />
         )}/>;
         <Route exact path={`${AppRoute.LOGIN}`}>
           <LoginScreen />
-        </Route>
-        <PrivateRoute exact path={`${AppRoute.FAVORITE}`} render={() => (
-          <UserScreen
-            onMovieCardClick={(movieId) => history.push(`${AppRoute.MOVIE}/${movieId}`)}
-          />
-        )} />
+        </Route>;
+        <PrivateRoute exact path={`${AppRoute.FAVORITE}`} render={() => {
+          return <UserScreen/>;
+        }} />
         <PrivateRoute exact path={`${AppRoute.MOVIE}/:id/review`} render={(routeProps) => {
           const id = routeProps.match.params.id;
           const movie = findItemById(id, moviesList);
 
-          return <ReviewScreen movieInfo={movie}/>;
+          return <ReviewScreenWrapped movieInfo={movie} {...routeProps}/>;
         }}/>
         <Route exact path={`${AppRoute.MOVIE}/:id`} render={(routeProps) => {
           const id = routeProps.match.params.id;
@@ -54,7 +55,7 @@ const App = (props) => {
 
           return <MovieScreen
             movieInfo={movie}
-            onMovieCardClick={(movieId) => routeProps.history.push(`${AppRoute.MOVIE}/${movieId}`)}/>;
+          />;
         }}/>
         <Route exact path={`${AppRoute.PLAYER}/:id`} render={(routeProps) => {
           const id = routeProps.match.params.id;

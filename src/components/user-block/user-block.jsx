@@ -12,7 +12,7 @@ const UserBlock = (props) => {
 
   return <div className="user-block">
     {isAuthorized ? <Link to={AppRoute.FAVORITE}><div className="user-block__avatar">
-      <img src={`https://htmlacademy-react-3.appspot.com/${avatar}`} alt={name} width="63" height="63"/>
+      <img src={avatar} alt={name} width="63" height="63"/>
     </div></Link> : <Link to={AppRoute.LOGIN} className="user-block__link">Sign in</Link>}
   </div>;
 };
