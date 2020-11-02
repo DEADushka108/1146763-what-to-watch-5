@@ -68,3 +68,7 @@ export const getRatingLevel = (score) => {
 
   return ``;
 };
+
+export const isEmpty = (obj) => {
+  return Boolean(Object.keys(obj).length);
+};

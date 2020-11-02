@@ -6,6 +6,8 @@ import GenresList from '../genres-list/genres-list.jsx';
 import ShowMoreButton from '../show-more-button/show-more-button.jsx';
 import MovieCard from '../movie-card/movie-card.jsx';
 import withActiveGenre from '../../hocs/with-active-genre/with-active-genre.jsx';
+import {getActiveGenre, getFilteredList, getMoviesCount} from '../../store/movies/selectors.js';
+import {connect} from 'react-redux';
 
 const GenresListWrapped = withActiveGenre(GenresList);
 
@@ -51,4 +53,11 @@ Main.propTypes = {
   moviesCount: PropTypes.number.isRequired,
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  activeGenre: getActiveGenre(state),
+  filteredMoviesList: getFilteredList(state),
+  moviesCount: getMoviesCount(state),
+});
+
+export {Main};
+export default connect(mapStateToProps)(Main);
