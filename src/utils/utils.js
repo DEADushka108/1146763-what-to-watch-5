@@ -10,37 +10,14 @@ const addLeadingZero = (value) => {
   return Number(value) < 10 ? `0${value}` : `${value}`;
 };
 
-const shuffleArray = (array) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-
-  return array;
-};
-
 export const findItemById = (id, list) => {
   return list.find((item) => {
     return item.id === Number(id);
   });
 };
 
-export const getRandomArrayElements = (array, max) => {
-  const newArray = array.slice();
-
-  shuffleArray(newArray);
-
-  return newArray.slice(0, max);
-};
-
 export const extend = (a, b) => {
   return Object.assign({}, a, b);
-};
-
-export const filterMoviesByGenre = (list, genre) => {
-  return genre === FilterSettings.DEFAULT_VALUE ? list : list.filter((it) => {
-    return it.genre === genre;
-  });
 };
 
 export const getUniqueGenresList = (list) => {
@@ -84,9 +61,9 @@ export const formatTime = (time) => {
 };
 
 export const getTimeString = (time) => {
-  const hours = Math.floor(time / 3600);
-  const minutes = Math.floor(time / 60) % 60;
-  const seconds = Math.floor(time % 60);
+  const hours = Math.floor(time / (MINUTES_PER_HOUR * MINUTES_PER_HOUR));
+  const minutes = Math.floor(time / MINUTES_PER_HOUR) % MINUTES_PER_HOUR;
+  const seconds = Math.floor(time % MINUTES_PER_HOUR);
 
   return `${addLeadingZero(hours)}:${addLeadingZero(minutes)}:${addLeadingZero(seconds)}`;
 };

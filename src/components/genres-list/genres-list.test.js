@@ -14,7 +14,6 @@ it(`Should render GenresList component correctly`, () => {
           onGenreChange={noop}
           onGenreClick={noop}
           activeGenre={FilterSettings.DEFAULT_VALUE}
-          onActiveGenreChange={noop}
         />
     ).toJSON();
 
