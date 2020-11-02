@@ -1,9 +1,13 @@
 import {FilterSettings, Rating, RatingLevel, MINUTES_PER_HOUR} from './const.js';
 
-export const findItemById = (id, list) => {
-  return list.find((item) => {
-    return item.id === Number(id);
+const getGenresList = (list) => {
+  return list.map((it) => {
+    return it.genre;
   });
+};
+
+const addLeadingZero = (value) => {
+  return Number(value) < 10 ? `0${value}` : `${value}`;
 };
 
 const shuffleArray = (array) => {
@@ -13,6 +17,12 @@ const shuffleArray = (array) => {
   }
 
   return array;
+};
+
+export const findItemById = (id, list) => {
+  return list.find((item) => {
+    return item.id === Number(id);
+  });
 };
 
 export const getRandomArrayElements = (array, max) => {
@@ -30,12 +40,6 @@ export const extend = (a, b) => {
 export const filterMoviesByGenre = (list, genre) => {
   return genre === FilterSettings.DEFAULT_VALUE ? list : list.filter((it) => {
     return it.genre === genre;
-  });
-};
-
-const getGenresList = (list) => {
-  return list.map((it) => {
-    return it.genre;
   });
 };
 
@@ -77,10 +81,6 @@ export const formatTime = (time) => {
   const hours = Math.trunc(time / MINUTES_PER_HOUR);
   const minutes = time % MINUTES_PER_HOUR;
   return `${hours}h ${minutes}m`;
-};
-
-const addLeadingZero = (value) => {
-  return Number(value) < 10 ? `0${value}` : `${value}`;
 };
 
 export const getTimeString = (time) => {
