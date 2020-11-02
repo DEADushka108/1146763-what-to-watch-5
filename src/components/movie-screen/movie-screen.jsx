@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import moment from 'moment';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {AppRoute, MOVIE_SCREEN_COUNT} from '../../utils/const';
@@ -7,7 +8,7 @@ import MoviesList from '../movies-list/movies-list';
 import Tabs from '../tabs/tabs.jsx';
 import Tab from '../tab/tab.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item';
-import {getRatingLevel, isEmpty} from '../../utils/utils';
+import {formatTime, getRatingLevel, isEmpty} from '../../utils/utils';
 import {getReviews} from '../../store/reviews/selectors';
 import {Operation as ReviewsOperation} from '../../store/reviews/reviews.js';
 import {Operation as MoviesOperation} from '../../store/movies/movies.js';
@@ -64,6 +65,7 @@ class MovieScreen extends PureComponent {
       this._handleMovieLoad();
     }
   }
+
   render() {
     const {movieInfo} = this.props;
 
@@ -163,7 +165,7 @@ class MovieScreen extends PureComponent {
                   <div className="movie-card__text-col">
                     <p className="movie-card__details-item">
                       <strong className="movie-card__details-name">Run Time</strong>
-                      <span className="movie-card__details-value">{runTime}</span>
+                      <span className="movie-card__details-value">{formatTime(runTime)}</span>
                     </p>
                     <p className="movie-card__details-item">
                       <strong className="movie-card__details-name">Genre</strong>
@@ -189,7 +191,7 @@ class MovieScreen extends PureComponent {
 
                           <footer className="review__details">
                             <cite className="review__author">{name}</cite>
-                            <time className="review__date" dateTime={date}>{date}</time>
+                            <time className="review__date" dateTime={date}>{moment(date).format(`MMMM DD, YYYY`)}</time>
                           </footer>
                         </blockquote>
 

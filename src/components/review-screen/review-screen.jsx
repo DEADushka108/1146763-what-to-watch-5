@@ -7,7 +7,10 @@ import {redirectToRoute} from '../../store/redirect/redirect-action.js';
 import UserBlock from '../user-block/user-block.jsx';
 import {getPostStatus} from '../../store/reviews/selectors.js';
 import {Operation as ReviewsOperation} from '../../store/reviews/reviews.js';
+import {Operation as MoviesOperation} from '../../store/movies/movies.js';
 import {connect} from 'react-redux';
+import {getActiveMovie} from '../../store/movies/selectors.js';
+import {isEmpty} from '../../utils/utils.js';
 
 const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
 
@@ -16,15 +19,32 @@ class ReviewScreen extends PureComponent {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this._handleMovieLoad = this._handleMovieLoad.bind(this);
+  }
+
+  _handleMovieLoad() {
+    const {match, loadMovie} = this.props;
+    const id = Number(match.params.id);
+
+    loadMovie(id);
+  }
+
+  componentDidMount() {
+    this._handleMovieLoad();
   }
 
   componentDidUpdate(prevProps) {
-    const {status: prevStatus} = prevProps;
+    const {status: prevStatus, match: prevMatch} = prevProps;
+    const prevId = Number(prevMatch.params.id);
     const {match, status, redirect} = this.props;
     const id = Number(match.params.id);
 
     if (status !== prevStatus && status === HttpCode.OK) {
       redirect(`${AppRoute.MOVIE}/${id}`);
+    }
+
+    if (id !== prevId) {
+      this._handleMovieLoad();
     }
   }
 
@@ -42,7 +62,13 @@ class ReviewScreen extends PureComponent {
   }
 
   render() {
-    const {movieInfo, status, isValid, onRatingChange, onTextInput, onValidityCheck, rating} = this.props;
+    const {movieInfo} = this.props;
+
+    if (!isEmpty(movieInfo)) {
+      return null;
+    }
+
+    const {status, isValid, onRatingChange, onTextInput, onValidityCheck, rating} = this.props;
     const {id, title, cover, backgroundImage, backgroundColor} = movieInfo;
     return (
       <section className="movie-card movie-card--full" style={{backgroundColor: `${backgroundColor}`}}>
@@ -137,10 +163,12 @@ ReviewScreen.propTypes = {
   onTextInput: PropTypes.func.isRequired,
   onValidityCheck: PropTypes.func.isRequired,
   redirect: PropTypes.func.isRequired,
+  loadMovie: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   status: getPostStatus(state),
+  movieInfo: getActiveMovie(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -149,6 +177,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   redirect(route) {
     dispatch(redirectToRoute(route));
+  },
+  loadMovie(id) {
+    dispatch(MoviesOperation.loadMovie(id));
   },
 });
 

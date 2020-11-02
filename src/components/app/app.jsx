@@ -38,10 +38,7 @@ const App = (props) => {
           return <UserScreen/>;
         }} />
         <PrivateRoute exact path={`${AppRoute.MOVIE}/:id/review`} render={(routeProps) => {
-          const id = routeProps.match.params.id;
-          const movie = findItemById(id, moviesList);
-
-          return <ReviewScreenWrapped movieInfo={movie} {...routeProps}/>;
+          return <ReviewScreenWrapped {...routeProps}/>;
         }}/>
         <Route exact path={`${AppRoute.MOVIE}/:id`} render={(routeProps) => {
           return <MovieScreen {...routeProps}/>;
@@ -50,7 +47,7 @@ const App = (props) => {
           const id = routeProps.match.params.id;
           const movie = findItemById(id, moviesList);
 
-          return <PlayerScreenWrapped movie={movie} isPreview={false} isPlaying={false} isMuted={false}/>;
+          return <PlayerScreenWrapped movie={movie} isPreview={false} isPlaying={false} isMuted={false} {...routeProps}/>;
         }} />
       </Switch>
     </BrowserRouter>

@@ -1,4 +1,4 @@
-import {FilterSettings, Rating, RatingLevel} from './const.js';
+import {FilterSettings, Rating, RatingLevel, MINUTES_PER_HOUR} from './const.js';
 
 export const findItemById = (id, list) => {
   return list.find((item) => {
@@ -71,4 +71,22 @@ export const getRatingLevel = (score) => {
 
 export const isEmpty = (obj) => {
   return Boolean(Object.keys(obj).length);
+};
+
+export const formatTime = (time) => {
+  const hours = Math.trunc(time / MINUTES_PER_HOUR);
+  const minutes = time % MINUTES_PER_HOUR;
+  return `${hours}h ${minutes}m`;
+};
+
+const addLeadingZero = (value) => {
+  return Number(value) < 10 ? `0${value}` : `${value}`;
+};
+
+export const getTimeString = (time) => {
+  const hours = Math.floor(time / 3600);
+  const minutes = Math.floor(time / 60) % 60;
+  const seconds = Math.floor(time % 60);
+
+  return `${addLeadingZero(hours)}:${addLeadingZero(minutes)}:${addLeadingZero(seconds)}`;
 };
