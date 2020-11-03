@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {AppRoute} from '../../utils/const';
 import {movieDetails} from '../../types/types';
-import {redirectToRoute} from '../../store/redirect/redirect-action';
+import {redirectToRoute} from '../../store/redirect/redirect.js';
 import {connect} from 'react-redux';
 
 const MovieCardSmall = (props) => {

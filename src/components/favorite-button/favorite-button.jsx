@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Operation as MoviesOperation} from '../../store/movies/movies.js';
 import {connect} from 'react-redux';
 import {getAuthorization} from '../../store/user/selectors.js';
-import {redirectToRoute} from '../../store/redirect/redirect-action.js';
+import {redirectToRoute} from '../../store/redirect/redirect.js';
 import {AppRoute} from '../../utils/const.js';
 
 class FavoriteButton extends PureComponent {

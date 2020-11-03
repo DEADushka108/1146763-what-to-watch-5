@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {AppRoute, HttpCode} from '../../utils/const.js';
 import {movieDetails} from '../../types/types.js';
-import {redirectToRoute} from '../../store/redirect/redirect-action.js';
+import {redirectToRoute} from '../../store/redirect/redirect.js';
 import UserBlock from '../user-block/user-block.jsx';
 import {getPostStatus} from '../../store/reviews/selectors.js';
 import {Operation as ReviewsOperation} from '../../store/reviews/reviews.js';
@@ -22,15 +22,21 @@ class ReviewScreen extends PureComponent {
     this._handleMovieLoad = this._handleMovieLoad.bind(this);
   }
 
-  _handleMovieLoad() {
-    const {match, loadMovie} = this.props;
-    const id = Number(match.params.id);
+  _handleMovieLoad(id) {
+    const {loadMovie} = this.props;
 
     loadMovie(id);
   }
 
   componentDidMount() {
-    this._handleMovieLoad();
+    const {match, movieInfo} = this.props;
+    const routeId = Number(match.params.id);
+
+    if (routeId === movieInfo.id) {
+      return;
+    }
+
+    this._handleMovieLoad(routeId);
   }
 
   componentDidUpdate(prevProps) {
