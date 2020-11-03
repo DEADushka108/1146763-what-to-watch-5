@@ -2,17 +2,12 @@ import {extend} from '../../utils/utils.js';
 import {URL, AuthorizationStatus, AppRoute, HttpCode} from '../../utils/const.js';
 import {createMoviesList} from '../../services/adapters/movies.js';
 import {createUserInfo} from '../../services/adapters/user.js';
-import {redirectToRoute} from '../redirect/redirect-action.js';
+import {redirectToRoute} from '../redirect/redirect.js';
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   favoriteList: [],
-  userInfo: {
-    id: null,
-    name: null,
-    email: null,
-    avatar: null,
-  },
+  userInfo: {},
   loginStatus: HttpCode.OK,
 };
 
