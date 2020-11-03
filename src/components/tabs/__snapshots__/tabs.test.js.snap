@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render Tabs component correctly 1`] = `
+<div
+  className="movie-card__desc"
+>
+  <nav
+    className="movie-nav movie-card__nav"
+  >
+    <ul
+      className="movie-nav__list"
+    >
+      <li
+        className="movie-nav__item movie-nav__item--active"
+        onClick={[Function]}
+      >
+        <a
+          className="movie-nav__link"
+        />
+      </li>
+    </ul>
+  </nav>
+  <div />
+</div>
+`;
