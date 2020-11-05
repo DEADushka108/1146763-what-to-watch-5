@@ -5,11 +5,9 @@ import {movieDetails} from '../../types/types.js';
 import GenresList from '../genres-list/genres-list.jsx';
 import ShowMoreButton from '../show-more-button/show-more-button.jsx';
 import MovieCard from '../movie-card/movie-card.jsx';
-import withActiveGenre from '../../hocs/with-active-genre/with-active-genre.jsx';
 import {getActiveGenre, getFilteredList, getMoviesCount} from '../../store/movies/selectors.js';
 import {connect} from 'react-redux';
 
-const GenresListWrapped = withActiveGenre(GenresList);
 
 const Main = (props) => {
   const {filteredMoviesList, moviesCount, activeGenre} = props;
@@ -21,7 +19,7 @@ const Main = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <GenresListWrapped genre={activeGenre}/>
+        <GenresList currentGenre={activeGenre}/>
 
         <MoviesList movies={filteredMoviesList} count={moviesCount}/>
 
