@@ -1,11 +1,11 @@
 import React, {createRef, PureComponent} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import history from '../../routing/history.js';
 import {AppRoute, HttpCode} from '../../utils/const.js';
 import {getAuthorization, getLoginStatus} from '../../store/user/selectors.js';
 import {ActionCreator as UserAction, Operation as UserOperation} from '../../store/user/user.js';
 import {connect} from 'react-redux';
+import {redirectToRoute} from '../../store/redirect/redirect.js';
 
 class LoginScreen extends PureComponent {
   constructor(props) {
@@ -18,10 +18,10 @@ class LoginScreen extends PureComponent {
   }
 
   componentDidUpdate() {
-    const {isAuthorized} = this.props;
+    const {isAuthorized, redirect} = this.props;
 
     if (isAuthorized) {
-      history.push(AppRoute.ROOT);
+      redirect(AppRoute.ROOT);
     }
   }
 
@@ -106,6 +106,7 @@ LoginScreen.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   loginStatus: PropTypes.number.isRequired,
   onFocus: PropTypes.func.isRequired,
+  redirect: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -119,6 +120,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onFocus() {
     dispatch(UserAction.updateLoginStatus(HttpCode.OK));
+  },
+  redirect(route) {
+    dispatch(redirectToRoute(route));
   },
 });
 

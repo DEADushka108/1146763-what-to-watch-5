@@ -4,10 +4,10 @@ import Main from '../main/main.jsx';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import history from '../../routing/history';
-import LoginScreen from '../login-screen/login-screen.jsx';
-import UserScreen from '../user-screen/user-screen.jsx';
-import MovieScreen from '../movie-screen/movie-screen.jsx';
-import ReviewScreen from '../review-screen/review-screen.jsx';
+import LoginScreen from '../login-screen/login-screen.hook.jsx';
+import UserScreen from '../user-screen/user-screen.hook.jsx';
+import MovieScreen from '../movie-screen/movie-screen.hook.jsx';
+import ReviewScreen from '../review-screen/review-screen.hook.jsx';
 import PlayerScreen from '../player-screen/player-screen.jsx';
 import {findItemById} from '../../utils/utils.js';
 import {AppRoute} from '../../utils/const.js';
@@ -15,12 +15,8 @@ import {movieDetails} from '../../types/types.js';
 import withVideo from '../../hocs/with-video/with-video.jsx';
 import {getMoviesList} from '../../store/movies/selectors.js';
 import PrivateRoute from '../../routing/private-route.jsx';
-import withRating from '../../hocs/with-rating/with-rating.jsx';
-import withText from '../../hocs/with-text/with-text.jsx';
-import withValidation from '../../hocs/with-validation/with-validation.jsx';
 
 const PlayerScreenWrapped = withVideo(PlayerScreen);
-const ReviewScreenWrapped = withRating(withText(withValidation(ReviewScreen)));
 
 const App = (props) => {
   const {moviesList} = props;
@@ -38,7 +34,7 @@ const App = (props) => {
           return <UserScreen/>;
         }} />
         <PrivateRoute exact path={`${AppRoute.MOVIE}/:id/review`} render={(routeProps) => {
-          return <ReviewScreenWrapped {...routeProps}/>;
+          return <ReviewScreen {...routeProps}/>;
         }}/>
         <Route exact path={`${AppRoute.MOVIE}/:id`} render={(routeProps) => {
           return <MovieScreen {...routeProps}/>;

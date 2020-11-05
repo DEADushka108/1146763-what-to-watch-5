@@ -2,12 +2,11 @@ import React, {PureComponent} from 'react';
 import moment from 'moment';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {AppRoute, MOVIE_SCREEN_COUNT} from '../../utils/const';
+import {AppRoute, MOVIE_SCREEN_COUNT, TabNames} from '../../utils/const';
 import {movieDetails, reviewsDetails} from '../../types/types';
 import MoviesList from '../movies-list/movies-list';
 import Tabs from '../tabs/tabs.jsx';
 import Tab from '../tab/tab.jsx';
-import withActiveItem from '../../hocs/with-active-item/with-active-item';
 import {formatTime, getRatingLevel, isEmpty} from '../../utils/utils';
 import {getReviews} from '../../store/reviews/selectors';
 import {Operation as ReviewsOperation} from '../../store/reviews/reviews.js';
@@ -15,17 +14,7 @@ import {Operation as MoviesOperation} from '../../store/movies/movies.js';
 import {connect} from 'react-redux';
 import {getActiveMovie, getMoviesList} from '../../store/movies/selectors';
 import UserBlock from '../user-block/user-block';
-import withStatus from '../../hocs/with-status/with-status';
 import FavoriteButton from '../favorite-button/favorite-button';
-
-const TabsWrapped = withActiveItem(Tabs);
-const FavoriteButtonWrapped = withStatus(FavoriteButton);
-
-const TabNames = {
-  OVERVIEW: `Overview`,
-  DETAILS: `Details`,
-  REVIEWS: `Reviews`,
-};
 
 class MovieScreen extends PureComponent {
   constructor(props) {
@@ -118,7 +107,7 @@ class MovieScreen extends PureComponent {
                   </svg>
                   <span>Play</span>
                 </Link>
-                <FavoriteButtonWrapped id={id} isFavorite={isFavorite}/>
+                <FavoriteButton id={id} isFavorite={isFavorite}/>
                 <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
               </div>
             </div>
@@ -131,7 +120,7 @@ class MovieScreen extends PureComponent {
               <img src={cover} alt={title} width="218" height="327" />
             </div>
 
-            <TabsWrapped>
+            <Tabs>
               <Tab title={TabNames.OVERVIEW}>
                 <div className="movie-rating">
                   <div className="movie-rating__score">{score}</div>
@@ -201,7 +190,7 @@ class MovieScreen extends PureComponent {
                   </div>
                 </div>
               </Tab>
-            </TabsWrapped>
+            </Tabs>
           </div>
         </div>
       </section>
