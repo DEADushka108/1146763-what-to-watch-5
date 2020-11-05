@@ -11,7 +11,7 @@ exports[`Should render Tabs component correctly 1`] = `
       className="movie-nav__list"
     >
       <li
-        className="movie-nav__item movie-nav__item--active"
+        className="movie-nav__item "
         onClick={[Function]}
       >
         <a
@@ -20,6 +20,5 @@ exports[`Should render Tabs component correctly 1`] = `
       </li>
     </ul>
   </nav>
-  <div />
 </div>
 `;

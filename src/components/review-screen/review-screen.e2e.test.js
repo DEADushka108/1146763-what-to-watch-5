@@ -22,6 +22,7 @@ const match = {
 };
 
 const onSubmit = jest.fn();
+// const handleSubmit = jest.fn();
 const noop = () => {};
 
 it(`Should pass correct comment and rating on review form submit`, () => {
@@ -41,15 +42,14 @@ it(`Should pass correct comment and rating on review form submit`, () => {
             match={match}
             movieInfo={featuredMovie}
             rating={`3`}
+            validation={true}
             text={`This is at least 50 characters long text review`}
-            isValid={true}
             status={HttpCode.OK}
-            onSubmit={onSubmit}
-            onRatingChange={noop}
-            onTextInput={noop}
-            onValidityCheck={noop}
             redirect={noop}
             loadMovie={noop}
+            updatePostStatus={noop}
+            onSubmit={onSubmit}
+            // handleSubmit={handleSubmit}
           />
         </MemoryRouter>
       </Provider>
