@@ -5,6 +5,13 @@ export const AppRoute = {
   FAVORITE: `/mylist`,
   ROOT: `/`,
 };
+
+export const TabNames = {
+  OVERVIEW: `Overview`,
+  DETAILS: `Details`,
+  REVIEWS: `Reviews`,
+};
+
 export const FilterSettings = {
   DEFAULT_VALUE: `All genres`,
   MAX_COUNT: 9,
@@ -49,3 +56,11 @@ export const HttpCode = {
 };
 
 export const MINUTES_PER_HOUR = 60;
+
+export const ReviewSettingns = {
+  MIN_RATING: 1,
+  TEXT: {
+    MIN_LENGTH: 50,
+    MAX_LENGTH: 400,
+  },
+};
