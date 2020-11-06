@@ -2,18 +2,17 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {movieDetails} from '../../types/types';
 import {getTimeString} from '../../utils/utils';
+import {redirectToRoute} from '../../store/redirect/redirect';
+import {connect} from 'react-redux';
+import {AppRoute} from '../../utils/const';
 
 const PlayerScreen = (props) => {
-  const {movie, history} = props;
-  const {title, backgroundImage, videoSrc} = movie;
+  const {movie, redirect} = props;
+  const {id, title, backgroundImage, videoSrc} = movie;
   const video = useRef();
   const [playingStatus, setPlayingStatus] = useState(false);
   const [duration, setDuration] = useState(0);
   const [progress, setProgress] = useState(0);
-
-  const handleExitButtonClick = useCallback(() => {
-    history.goBack();
-  });
 
   const handleDurationUpdate = useCallback((time)=> {
     setDuration(time);
@@ -27,19 +26,21 @@ const PlayerScreen = (props) => {
       setProgress(Math.floor(video.current.currentTime));
     }, 1000);
     return;
-  }, [progress]);
+  }, []);
 
   return <React.Fragment>
     <div className="player">
       <video poster={backgroundImage} src={videoSrc} className="player__video" ref={video}/>
 
-      <button type="button" className="player__exit" onClick={handleExitButtonClick}>Exit</button>
+      <button type="button" className="player__exit" onClick={() => {
+        redirect(`${AppRoute.MOVIE}/${id}`);
+      }}>Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
             <progress className="player__progress" value={progress} max={duration}></progress>
-            <div className="player__toggler" style={{left: duration ? `${(progress / duration) * 100}%` : `0%`}}>Toggler</div>
+            <div className="player__toggler" style={{left: playingStatus ? `${(progress / duration) * 100}%` : `0%`}}>Toggler</div>
           </div>
           <div className="player__time-value">{getTimeString(duration - progress)}</div>
         </div>
@@ -77,9 +78,15 @@ const PlayerScreen = (props) => {
 
 PlayerScreen.propTypes = {
   movie: movieDetails,
-  history: PropTypes.shape({
-    goBack: PropTypes.func.isRequired,
-  }).isRequired,
+  redirect: PropTypes.func.isRequired,
 };
 
-export default PlayerScreen;
+const mapDispatchToProps = (dispatch) => ({
+  redirect(route) {
+    dispatch(redirectToRoute(route));
+  },
+});
+
+export {PlayerScreen};
+export default connect(null, mapDispatchToProps)(PlayerScreen);
+
