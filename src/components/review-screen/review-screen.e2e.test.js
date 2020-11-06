@@ -40,9 +40,6 @@ it(`Should pass correct comment and rating on review form submit`, () => {
           <ReviewScreen
             match={match}
             movieInfo={featuredMovie}
-            setRating={`3`}
-            validation={true}
-            setText={`This is at least 50 characters long text review`}
             status={HttpCode.OK}
             redirect={noop}
             loadMovie={noop}
@@ -54,8 +51,18 @@ it(`Should pass correct comment and rating on review form submit`, () => {
   );
   const reviewForm = reviewScreen.find(`form.add-review__form`);
   const commentField = reviewScreen.find(`textarea.add-review__textarea`);
+  const thirdStar = reviewScreen.find(`input.rating__input`).at(2);
 
-  commentField.instance().value = `This is at least 50 characters long text review`;
+  commentField.simulate(`change`, {
+    target: {
+      value: `This is at least 50 characters long text review`,
+    },
+  });
+  thirdStar.simulate(`change`, {
+    target: {
+      value: `3`,
+    }
+  });
   reviewForm.simulate(`submit`);
   expect(onSubmit).toHaveBeenCalledTimes(1);
   expect(onSubmit).toHaveBeenCalledWith({

@@ -23,17 +23,6 @@ const ReviewScreen = (props) => {
   const [text, setText] = useState(``);
   const [validation, setValidation] = useState(false);
 
-  // const handleSubmit = useCallback((evt) => {
-  //   evt.preventDefault();
-  //   if (validation) {
-  //     onSubmit({
-  //       id,
-  //       rating,
-  //       text,
-  //     });
-  //   }
-  // }, [text || rating]);
-
   const handleRatingChange = useCallback((evt) => {
     setRating(evt.target.value);
     setValidation(validateText(text) && validateRating(rating));
@@ -111,7 +100,7 @@ const ReviewScreen = (props) => {
                       checked={star === rating}
                       onChange={handleRatingChange}
                     />
-                    <label className="rating__label" htmlFor={`star-${star}`}> {`Rating ${star}`}</label>
+                    <label className="rating__label" htmlFor={`star-${star}`}>{`Rating ${star}`}</label>
                   </React.Fragment>
                 );
               })}

@@ -139,7 +139,6 @@ exports[`Should render ReviewScreen component correctly 1`] = `
             className="rating__label"
             htmlFor="star-1"
           >
-             
             Rating 1
           </label>
           <input
@@ -155,7 +154,6 @@ exports[`Should render ReviewScreen component correctly 1`] = `
             className="rating__label"
             htmlFor="star-2"
           >
-             
             Rating 2
           </label>
           <input
@@ -171,7 +169,6 @@ exports[`Should render ReviewScreen component correctly 1`] = `
             className="rating__label"
             htmlFor="star-3"
           >
-             
             Rating 3
           </label>
           <input
@@ -187,7 +184,6 @@ exports[`Should render ReviewScreen component correctly 1`] = `
             className="rating__label"
             htmlFor="star-4"
           >
-             
             Rating 4
           </label>
           <input
@@ -203,7 +199,6 @@ exports[`Should render ReviewScreen component correctly 1`] = `
             className="rating__label"
             htmlFor="star-5"
           >
-             
             Rating 5
           </label>
         </div>
