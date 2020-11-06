@@ -22,7 +22,6 @@ const match = {
 };
 
 const onSubmit = jest.fn();
-// const handleSubmit = jest.fn();
 const noop = () => {};
 
 it(`Should pass correct comment and rating on review form submit`, () => {
@@ -41,21 +40,22 @@ it(`Should pass correct comment and rating on review form submit`, () => {
           <ReviewScreen
             match={match}
             movieInfo={featuredMovie}
-            rating={`3`}
+            setRating={`3`}
             validation={true}
-            text={`This is at least 50 characters long text review`}
+            setText={`This is at least 50 characters long text review`}
             status={HttpCode.OK}
             redirect={noop}
             loadMovie={noop}
             updatePostStatus={noop}
             onSubmit={onSubmit}
-            // handleSubmit={handleSubmit}
           />
         </MemoryRouter>
       </Provider>
   );
   const reviewForm = reviewScreen.find(`form.add-review__form`);
+  const commentField = reviewScreen.find(`textarea.add-review__textarea`);
 
+  commentField.instance().value = `This is at least 50 characters long text review`;
   reviewForm.simulate(`submit`);
   expect(onSubmit).toHaveBeenCalledTimes(1);
   expect(onSubmit).toHaveBeenCalledWith({

@@ -4,14 +4,9 @@ import {MemoryRouter} from 'react-router-dom';
 import {moviesList} from '../../__test-mock__/movies.js';
 import {MovieCardSmall} from './movie-card-small.jsx';
 
-const mock = {
-  children: <div/>,
-};
-
 const noop = () => {};
 
 it(`Should MovieCardSmall component render correctly`, () => {
-  const {children} = mock;
   const tree = renderer
     .create(
         <MemoryRouter>
@@ -20,7 +15,6 @@ it(`Should MovieCardSmall component render correctly`, () => {
             onPlayStatusChange={noop}
             redirect={noop}
           >
-            {children}
           </MovieCardSmall>
         </MemoryRouter>
     )

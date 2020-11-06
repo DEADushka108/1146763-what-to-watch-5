@@ -10,7 +10,13 @@ exports[`Should MovieCardSmall component render correctly 1`] = `
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div />
+    <video
+      height="175"
+      muted={true}
+      poster="img/macbeth.jpg"
+      src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+      width="280"
+    />
   </div>
   <h3
     className="small-movie-card__title"
