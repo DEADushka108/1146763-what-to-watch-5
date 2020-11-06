@@ -26,11 +26,11 @@ const MovieScreen = (props) => {
   const routeId = Number(match.params.id);
 
   useEffect(() => {
+    loadReviews(routeId);
     if (routeId === id) {
       return;
     }
     loadMovie(routeId);
-    loadReviews(routeId);
   }, [routeId]);
 
   return <React.Fragment>

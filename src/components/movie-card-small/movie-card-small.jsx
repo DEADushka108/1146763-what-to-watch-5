@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {AppRoute} from '../../utils/const';
@@ -7,8 +7,9 @@ import {redirectToRoute} from '../../store/redirect/redirect.js';
 import {connect} from 'react-redux';
 
 const MovieCardSmall = (props) => {
-  const {movie, children, onPlayStatusChange, redirect} = props;
-  const {id, title} = movie;
+  const {movie, redirect} = props;
+  const {id, title, poster, previewSrc} = movie;
+  const video = useRef();
   let timeout;
 
   return <article className="small-movie-card catalog__movies-card" >
@@ -16,12 +17,14 @@ const MovieCardSmall = (props) => {
       redirect(`${AppRoute.MOVIE}/${id}`);
     }}
     onMouseEnter={() => {
-      timeout = setTimeout(onPlayStatusChange, 1000);
+      timeout = setTimeout(() => {
+        video.current.play();
+      }, 1000);
     }} onMouseLeave={() => {
       clearTimeout(timeout);
-      onPlayStatusChange();
+      video.current.load();
     }}>
-      {children}
+      <video muted={true} src={previewSrc} poster={poster} width="280" height="175" ref={video}/>
     </div>
     <h3 className="small-movie-card__title">
       <Link to={`${AppRoute.MOVIE}/${id}`} className="small-movie-card__link">{title}</Link>
@@ -32,11 +35,6 @@ const MovieCardSmall = (props) => {
 MovieCardSmall.propTypes = {
   movie: movieDetails,
   redirect: PropTypes.func.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
-  onPlayStatusChange: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({

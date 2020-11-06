@@ -23,16 +23,16 @@ const ReviewScreen = (props) => {
   const [text, setText] = useState(``);
   const [validation, setValidation] = useState(false);
 
-  const handleSubmit = useCallback((evt) => {
-    evt.preventDefault();
-    if (validation) {
-      onSubmit({
-        id,
-        rating,
-        text,
-      });
-    }
-  }, [text || rating]);
+  // const handleSubmit = useCallback((evt) => {
+  //   evt.preventDefault();
+  //   if (validation) {
+  //     onSubmit({
+  //       id,
+  //       rating,
+  //       text,
+  //     });
+  //   }
+  // }, [text || rating]);
 
   const handleRatingChange = useCallback((evt) => {
     setRating(evt.target.value);
@@ -94,7 +94,14 @@ const ReviewScreen = (props) => {
 
       <div className="add-review">
         {status === HttpCode.SERVER_ERROR && <p className="movie-card__text">Error {status} occurred. Please try again later.</p>}
-        <form action="#" className="add-review__form" onSubmit={handleSubmit}>
+        <form action="#" className="add-review__form" onSubmit={(evt) => {
+          evt.preventDefault();
+          onSubmit({
+            id,
+            rating,
+            text,
+          });
+        }}>
           <div className="rating">
             <div className="rating__stars">
               {REVIEW_RATINGS.map((star) => {

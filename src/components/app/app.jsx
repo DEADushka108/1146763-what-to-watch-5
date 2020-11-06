@@ -12,11 +12,8 @@ import PlayerScreen from '../player-screen/player-screen.jsx';
 import {findItemById} from '../../utils/utils.js';
 import {AppRoute} from '../../utils/const.js';
 import {movieDetails} from '../../types/types.js';
-import withVideo from '../../hocs/with-video/with-video.jsx';
 import {getMoviesList} from '../../store/movies/selectors.js';
 import PrivateRoute from '../../routing/private-route.jsx';
-
-const PlayerScreenWrapped = withVideo(PlayerScreen);
 
 const App = (props) => {
   const {moviesList} = props;
@@ -43,7 +40,7 @@ const App = (props) => {
           const id = routeProps.match.params.id;
           const movie = findItemById(id, moviesList);
 
-          return <PlayerScreenWrapped movie={movie} isPreview={false} isPlaying={false} isMuted={false} {...routeProps}/>;
+          return <PlayerScreen movie={movie} {...routeProps}/>;
         }} />
       </Switch>
     </BrowserRouter>
