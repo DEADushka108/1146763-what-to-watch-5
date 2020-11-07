@@ -19,12 +19,13 @@ const MovieCardSmall = (props) => {
     onMouseEnter={() => {
       timeout = setTimeout(() => {
         video.current.play();
+        video.current.muted = true;
       }, 1000);
     }} onMouseLeave={() => {
       clearTimeout(timeout);
       video.current.load();
     }}>
-      <video muted={true} src={previewSrc} poster={poster} width="280" height="175" ref={video}/>
+      <video src={previewSrc} poster={poster} width="280" height="175" ref={video}/>
     </div>
     <h3 className="small-movie-card__title">
       <Link to={`${AppRoute.MOVIE}/${id}`} className="small-movie-card__link">{title}</Link>

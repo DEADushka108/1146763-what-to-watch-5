@@ -19,14 +19,14 @@ const PlayerScreen = (props) => {
   });
 
   useEffect(() => {
-    if (!video.current) {
-      return;
+    if (video.current) {
+      const interval = setInterval(() => {
+        setProgress(Math.floor(video.current.currentTime));
+      }, 1000);
+      return () => clearInterval(interval);
     }
-    setInterval(() => {
-      setProgress(Math.floor(video.current.currentTime));
-    }, 1000);
-    return;
-  }, []);
+    return true;
+  }, [progress]);
 
   return <React.Fragment>
     <div className="player">
@@ -39,8 +39,8 @@ const PlayerScreen = (props) => {
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
-            <progress className="player__progress" value={progress} max={duration}></progress>
-            <div className="player__toggler" style={{left: playingStatus ? `${(progress / duration) * 100}%` : `0%`}}>Toggler</div>
+            <progress className="player__progress" value={progress} max={duration ? duration : 0}></progress>
+            <div className="player__toggler" style={{left: duration ? `${(progress / duration) * 100}%` : `0%`}}>Toggler</div>
           </div>
           <div className="player__time-value">{getTimeString(duration - progress)}</div>
         </div>

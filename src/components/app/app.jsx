@@ -40,7 +40,7 @@ const App = (props) => {
           const id = routeProps.match.params.id;
           const movie = findItemById(id, moviesList);
 
-          return <PlayerScreen movie={movie} {...routeProps}/>;
+          return <PlayerScreen movie={movie}/>;
         }} />
       </Switch>
     </BrowserRouter>
