@@ -15,7 +15,6 @@ exports[`Should render MoviesList component correctly 1`] = `
     >
       <video
         height="175"
-        muted={true}
         poster="img/macbeth.jpg"
         src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
         width="280"
@@ -44,7 +43,6 @@ exports[`Should render MoviesList component correctly 1`] = `
     >
       <video
         height="175"
-        muted={true}
         poster="img/we-need-to-talk-about-kevin.jpg"
         src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
         width="280"
@@ -73,7 +71,6 @@ exports[`Should render MoviesList component correctly 1`] = `
     >
       <video
         height="175"
-        muted={true}
         poster="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
         src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
         width="280"
@@ -102,7 +99,6 @@ exports[`Should render MoviesList component correctly 1`] = `
     >
       <video
         height="175"
-        muted={true}
         poster="img/shutter-island.jpg"
         src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
         width="280"
@@ -131,7 +127,6 @@ exports[`Should render MoviesList component correctly 1`] = `
     >
       <video
         height="175"
-        muted={true}
         poster="img/snatch.jpg"
         src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
         width="280"
@@ -160,7 +155,6 @@ exports[`Should render MoviesList component correctly 1`] = `
     >
       <video
         height="175"
-        muted={true}
         poster="img/pulp-fiction.jpg"
         src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
         width="280"
@@ -189,7 +183,6 @@ exports[`Should render MoviesList component correctly 1`] = `
     >
       <video
         height="175"
-        muted={true}
         poster="img/revenant.jpg"
         src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
         width="280"
@@ -218,7 +211,6 @@ exports[`Should render MoviesList component correctly 1`] = `
     >
       <video
         height="175"
-        muted={true}
         poster="img/bohemian-rhapsody.jpg"
         src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
         width="280"
