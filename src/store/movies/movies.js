@@ -120,6 +120,7 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         featuredMovie: state.featuredMovie.id === action.payload.id ? action.payload : state.featuredMovie,
         moviesList: state.moviesList.map((movie) => (movie.id === action.payload.id) ? action.payload : movie),
+        activeMovie: action.payload,
       });
   }
   return state;
