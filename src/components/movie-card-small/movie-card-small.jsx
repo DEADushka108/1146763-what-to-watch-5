@@ -18,6 +18,7 @@ const MovieCardSmall = (props) => {
       setPlayStatus(false);
       return;
     }
+    return;
   }, [video.current]);
 
   return <article className="small-movie-card catalog__movies-card" >
@@ -25,7 +26,7 @@ const MovieCardSmall = (props) => {
       redirect(`${AppRoute.MOVIE}/${id}`);
     }}
     onMouseEnter={() => {
-      setPlayStatus(!isPlay);
+      setPlayStatus(true);
       timeout = setTimeout(() => {
         if (isPlay) {
           video.current.play();
@@ -33,7 +34,7 @@ const MovieCardSmall = (props) => {
         }
       }, 1000);
     }} onMouseLeave={() => {
-      setPlayStatus(() => !isPlay);
+      setPlayStatus(false);
       clearTimeout(timeout);
       video.current.load();
     }}>
