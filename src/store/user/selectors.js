@@ -2,20 +2,22 @@ import {createSelector} from 'reselect';
 import {AuthorizationStatus} from '../../utils/const.js';
 import NameSpace from '../name-space.js';
 
+const USER = NameSpace.USER;
+
 const getAuthorizationStatus = (state) => {
-  return state[NameSpace.USER].authorizationStatus;
+  return state[USER].authorizationStatus;
 };
 
 const getFavoriteList = (state) => {
-  return state[NameSpace.USER].favoriteList;
+  return state[USER].favoriteList;
 };
 
 const getUserInfo = (state) => {
-  return state[NameSpace.USER].userInfo;
+  return state[USER].userInfo;
 };
 
 const getLoginStatus = (state) => {
-  return state[NameSpace.USER].loginStatus;
+  return state[USER].loginStatus;
 };
 
 const getAuthorization = createSelector(

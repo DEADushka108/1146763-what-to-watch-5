@@ -8,6 +8,8 @@ import {connect} from 'react-redux';
 import {AppRoute} from '../../utils/const';
 import {getActiveMovie} from '../../store/movies/selectors';
 
+const VIDEO_PLAYER_INTERVAL = 1000;
+
 const PlayerScreen = (props) => {
   const {movie, onExitButtonClick, loadMovie, match} = props;
   const {id, title, backgroundImage, videoSrc} = movie;
@@ -32,7 +34,7 @@ const PlayerScreen = (props) => {
     if (video.current) {
       const interval = setInterval(() => {
         setProgress(Math.floor(video.current.currentTime));
-      }, 1000);
+      }, VIDEO_PLAYER_INTERVAL);
       return () => clearInterval(interval);
     }
     return true;

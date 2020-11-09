@@ -6,6 +6,8 @@ import {movieDetails} from '../../types/types';
 import {redirectToRoute} from '../../store/redirect/redirect.js';
 import {connect} from 'react-redux';
 
+const VIDEO_PLAY_TIMEOUT = 1000;
+
 const MovieCardSmall = (props) => {
   const {movie, onCardClick} = props;
   const {id, title, poster, previewSrc} = movie;
@@ -20,7 +22,7 @@ const MovieCardSmall = (props) => {
         video.current.muted = true;
         video.current.play();
       }
-    }, 1000);
+    }, VIDEO_PLAY_TIMEOUT);
   }, [video]);
 
   const handleMouseLeave = useCallback(() => {

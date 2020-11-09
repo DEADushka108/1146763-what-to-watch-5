@@ -160,13 +160,11 @@ const MovieScreen = (props) => {
     </section>
 
     <div className="page-content">
-      {(similarMoviesList === 0) ? null :
-        <section className="catalog catalog--like-this">
-          <h2 className="catalog__title">More like this</h2>
+      <section className="catalog catalog--like-this">
+        <h2 className="catalog__title">More like this</h2>
 
-          <MoviesList movies={similarMoviesList} count={CardCount.SIMILAR}/>
-        </section>
-      }
+        <MoviesList movies={similarMoviesList} count={CardCount.SIMILAR}/>
+      </section>
       <footer className="page-footer">
         <div className="logo">
           <Link to={`${AppRoute.ROOT}`} className="logo__link logo__link--light">

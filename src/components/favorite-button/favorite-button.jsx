@@ -6,6 +6,11 @@ import {getAuthorization} from '../../store/user/selectors.js';
 import {redirectToRoute} from '../../store/redirect/redirect.js';
 import {AppRoute} from '../../utils/const.js';
 
+const MovieStatus = {
+  FAVORITE: 1,
+  NOT_FAVORITE: 0,
+};
+
 const FavoriteButton = (props) => {
   const {id, onClick, isFavorite, isAuthorized, onUnauthorizedClick} = props;
 
@@ -17,7 +22,7 @@ const FavoriteButton = (props) => {
       return;
     }
 
-    onClick(id, status ? 0 : 1);
+    onClick(id, status ? MovieStatus.NOT_FAVORITE : MovieStatus.FAVORITE);
     setStatus(!status);
   }, [status]);
 

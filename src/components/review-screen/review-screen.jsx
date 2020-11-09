@@ -14,13 +14,18 @@ import {validateRating, validateText} from '../../utils/utils.js';
 
 const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
 
+const InitialReviewState = {
+  RATING: `0`,
+  TEXT: ``,
+};
+
 const ReviewScreen = (props) => {
   const {match, movieInfo, loadMovie, status, onSuccessSubmit, onSubmit, updatePostStatus} = props;
   const {id, title, cover, backgroundImage, backgroundColor} = movieInfo;
   const routeId = Number(match.params.id);
   const form = useRef();
-  const [rating, setRating] = useState(`0`);
-  const [text, setText] = useState(``);
+  const [rating, setRating] = useState(InitialReviewState.RATING);
+  const [text, setText] = useState(InitialReviewState.TEXT);
   const [validation, setValidation] = useState(false);
 
   const handleRatingChange = useCallback((evt) => {
