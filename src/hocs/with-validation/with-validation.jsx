@@ -9,8 +9,12 @@ const Review = {
   },
 };
 
-const validateReview = (rating, text) => {
-  return (Number(rating) >= Review.MIN_RATING) && (text.length >= Review.TEXT.MIN_LENGTH && text.length <= Review.TEXT.MAX_LENGTH);
+const validateText = (text) => {
+  return text.length >= Review.TEXT.MIN_LENGTH && text.length <= Review.TEXT.MAX_LENGTH;
+};
+
+const validateRating = (rating) => {
+  return Number(rating) >= Review.MIN_RATING;
 };
 
 const withValidation = (Component) => {
@@ -28,7 +32,7 @@ const withValidation = (Component) => {
     _handleValidation() {
       const {rating, text} = this.props;
 
-      if (validateReview(rating, text)) {
+      if (validateRating(rating) && validateText(text)) {
         this.setState({
           isValid: true,
         });

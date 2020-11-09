@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should render withVideo correctly 1`] = `
+<div>
+  <video
+    height="175"
+    width="280"
+  />
+</div>
+`;

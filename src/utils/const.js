@@ -47,3 +47,5 @@ export const HttpCode = {
   UNAUTHORIZED: 401,
   SERVER_ERROR: 500,
 };
+
+export const MINUTES_PER_HOUR = 60;

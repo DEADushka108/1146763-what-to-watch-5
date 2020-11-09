@@ -84,6 +84,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_FEATURED_MOVIE:
       return extend(state, {
         featuredMovie: action.payload,
+        activeMovie: action.payload,
       });
     case ActionType.LOAD_MOVIES:
       return extend(state, {

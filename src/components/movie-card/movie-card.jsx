@@ -5,6 +5,8 @@ import {getFeaturedMovie} from '../../store/movies/selectors.js';
 import UserBlock from '../user-block/user-block';
 import withStatus from '../../hocs/with-status/with-status';
 import FavoriteButton from '../favorite-button/favorite-button';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../utils/const';
 
 const FavoriteButtonWrapped = withStatus(FavoriteButton);
 
@@ -43,14 +45,13 @@ const MovieCard = (props) => {
             <span className="movie-card__genre">{genre}</span>
             <span className="movie-card__year">{releaseDate}</span>
           </p>
-
           <div className="movie-card__buttons">
-            <button className="btn btn--play movie-card__button" type="button">
+            <Link to={`${AppRoute.PLAYER}/${id}`} className="btn btn--play movie-card__button" type="button">
               <svg viewBox="0 0 19 19" width="19" height="19">
                 <use xlinkHref="#play-s"/>
               </svg>
               <span>Play</span>
-            </button>
+            </Link>
             <FavoriteButtonWrapped id={id} isFavorite={isFavorite}/>
           </div>
         </div>

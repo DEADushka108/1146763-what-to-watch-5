@@ -2,9 +2,9 @@ import React, {createRef, PureComponent} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import history from '../../routing/history.js';
-import {AppRoute} from '../../utils/const.js';
-import {getAuthorization} from '../../store/user/selectors.js';
-import {Operation as UserOperation} from '../../store/user/user.js';
+import {AppRoute, HttpCode} from '../../utils/const.js';
+import {getAuthorization, getLoginStatus} from '../../store/user/selectors.js';
+import {ActionCreator as UserAction, Operation as UserOperation} from '../../store/user/user.js';
 import {connect} from 'react-redux';
 
 class LoginScreen extends PureComponent {
@@ -14,6 +14,7 @@ class LoginScreen extends PureComponent {
     this._loginRef = createRef();
     this._passwordRef = createRef();
     this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleFocus = this._handleFocus.bind(this);
   }
 
   componentDidUpdate() {
@@ -35,7 +36,15 @@ class LoginScreen extends PureComponent {
     });
   }
 
+  _handleFocus() {
+    const {onFocus} = this.props;
+
+    onFocus();
+  }
+
   render() {
+    const {loginStatus} = this.props;
+
     return <div className="user-page">
       <header className="page-header user-page__head">
         <div className="logo">
@@ -51,13 +60,21 @@ class LoginScreen extends PureComponent {
 
       <div className="sign-in user-page__content">
         <form action="#" className="sign-in__form" onSubmit={this._handleSubmit}>
+          {loginStatus === HttpCode.BAD_REQUEST && <div className="sign-in__message">
+            <p>Please enter a valid email address</p>
+          </div>}
+          {loginStatus === HttpCode.SERVER_ERROR && <div className="sign-in__message">
+            <p>We can’t recognize this email <br/> and password combination. Please try again.</p>
+          </div>}
           <div className="sign-in__fields">
-            <div className="sign-in__field">
-              <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" ref={this._loginRef}/>
+            <div className={`sign-in__field ${loginStatus === HttpCode.BAD_REQUEST ? `sign-in__field--error` : ``}`}>
+              <input className="sign-in__input" type="email" inputMode="email" placeholder="Email address" name="user-email"
+                id="user-email" onFocus={this._handleFocus} ref={this._loginRef} autoComplete="email"/>
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
             <div className="sign-in__field">
-              <input className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" ref={this._passwordRef}/>
+              <input className="sign-in__input" type="password" placeholder="Password" name="user-password"
+                id="user-password" autoComplete="current-password" ref={this._passwordRef}/>
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>
           </div>
@@ -87,15 +104,21 @@ class LoginScreen extends PureComponent {
 LoginScreen.propTypes = {
   isAuthorized: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  loginStatus: PropTypes.number.isRequired,
+  onFocus: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthorized: getAuthorization(state),
+  loginStatus: getLoginStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(userData) {
     dispatch(UserOperation.login(userData));
+  },
+  onFocus() {
+    dispatch(UserAction.updateLoginStatus(HttpCode.OK));
   },
 });
 
