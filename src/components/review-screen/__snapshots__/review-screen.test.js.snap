@@ -209,6 +209,8 @@ exports[`Should render ReviewScreen component correctly 1`] = `
         <textarea
           className="add-review__textarea"
           id="review-text"
+          maxLength={400}
+          minLength={50}
           name="reviewText"
           onChange={[Function]}
           placeholder="Review text"
