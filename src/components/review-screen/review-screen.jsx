@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import {AppRoute, HttpCode} from '../../utils/const.js';
+import {AppRoute, HttpCode, ReviewSettingns} from '../../utils/const.js';
 import {movieDetails} from '../../types/types.js';
 import {redirectToRoute} from '../../store/redirect/redirect.js';
 import UserBlock from '../user-block/user-block.jsx';
@@ -108,7 +108,10 @@ const ReviewScreen = (props) => {
           </div>
 
           <div className="add-review__text">
-            <textarea className="add-review__textarea" name="reviewText" id="review-text" placeholder="Review text" onChange={handleTextInput}></textarea>
+            <textarea className="add-review__textarea" name="reviewText" id="review-text" placeholder="Review text"
+              minLength={ReviewSettingns.TEXT.MIN_LENGTH}
+              maxLength={ReviewSettingns.TEXT.MAX_LENGTH}
+              onChange={handleTextInput}></textarea>
             <div className="add-review__submit">
               <button className="add-review__btn" type="submit" disabled={!validation}>Post</button>
             </div>

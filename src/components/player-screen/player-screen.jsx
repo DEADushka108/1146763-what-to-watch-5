@@ -2,13 +2,16 @@ import React, {useCallback, useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {movieDetails} from '../../types/types';
 import {getTimeString} from '../../utils/utils';
+import {Operation as MoviesOperation} from '../../store/movies/movies.js';
 import {redirectToRoute} from '../../store/redirect/redirect';
 import {connect} from 'react-redux';
 import {AppRoute} from '../../utils/const';
+import {getActiveMovie} from '../../store/movies/selectors';
 
 const PlayerScreen = (props) => {
-  const {movie, redirect} = props;
+  const {movie, redirect, loadMovie, match} = props;
   const {id, title, backgroundImage, videoSrc} = movie;
+  const routeId = Number(match.params.id);
   const video = useRef();
   const [playingStatus, setPlayingStatus] = useState(false);
   const [duration, setDuration] = useState(0);
@@ -17,6 +20,13 @@ const PlayerScreen = (props) => {
   const handleDurationUpdate = useCallback((time)=> {
     setDuration(time);
   });
+
+  useEffect(() => {
+    if (routeId === id) {
+      return;
+    }
+    loadMovie(routeId);
+  }, [routeId]);
 
   useEffect(() => {
     if (video.current) {
@@ -79,14 +89,27 @@ const PlayerScreen = (props) => {
 PlayerScreen.propTypes = {
   movie: movieDetails,
   redirect: PropTypes.func.isRequired,
+  loadMovie: PropTypes.func.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  movie: getActiveMovie(state),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   redirect(route) {
     dispatch(redirectToRoute(route));
   },
+  loadMovie(id) {
+    dispatch(MoviesOperation.loadMovie(id));
+  },
 });
 
 export {PlayerScreen};
-export default connect(null, mapDispatchToProps)(PlayerScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerScreen);
 
