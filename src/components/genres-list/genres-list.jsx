@@ -17,7 +17,7 @@ const GenresList = (props) => {
         onGenreClick(genre);
         setActiveGenre(genre);
       }}>
-        <a href="#" className="catalog__genres-link">{genre}</a>
+        <a className="catalog__genres-link">{genre}</a>
       </li>;
     })}
   </ul>;

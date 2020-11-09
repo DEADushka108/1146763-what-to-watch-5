@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {AppRoute} from '../../utils/const';
@@ -13,6 +13,22 @@ const MovieCardSmall = (props) => {
   const [isPlay, setPlayStatus] = useState(false);
   let timeout;
 
+  const handleMouseEnter = useCallback(() => {
+    setPlayStatus(true);
+    timeout = setTimeout(() => {
+      if (!isPlay && video.current) {
+        video.current.play();
+        video.current.muted = true;
+      }
+    }, 1000);
+  }, [video]);
+
+  const handleMouseLeave = useCallback(() => {
+    setPlayStatus(false);
+    clearTimeout(timeout);
+    video.current.load();
+  }, [video]);
+
   useEffect(() => {
     if (!video.current) {
       setPlayStatus(false);
@@ -25,19 +41,7 @@ const MovieCardSmall = (props) => {
     <div className="small-movie-card__image" onClick={() => {
       redirect(`${AppRoute.MOVIE}/${id}`);
     }}
-    onMouseEnter={() => {
-      setPlayStatus(true);
-      timeout = setTimeout(() => {
-        if (isPlay) {
-          video.current.play();
-          video.current.muted = true;
-        }
-      }, 1000);
-    }} onMouseLeave={() => {
-      setPlayStatus(false);
-      clearTimeout(timeout);
-      video.current.load();
-    }}>
+    onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <video src={previewSrc} poster={poster} width="280" height="175" ref={video}/>
     </div>
     <h3 className="small-movie-card__title">

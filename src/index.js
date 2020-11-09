@@ -8,12 +8,11 @@ import store from './store/store.js';
 
 const rootElement = document.querySelector(`#root`);
 
-const init = () => {
-  Promise.all([
-    store.dispatch(MoviesOperation.loadFeaturedMovie()),
-    store.dispatch(MoviesOperation.loadMovies()),
-    store.dispatch(UserOperation.checkAuthorization()),
-  ])
+Promise.all([
+  store.dispatch(MoviesOperation.loadFeaturedMovie()),
+  store.dispatch(MoviesOperation.loadMovies()),
+  store.dispatch(UserOperation.checkAuthorization()),
+])
   .then(() => {
     ReactDOM.render(
         <Provider store={store}>
@@ -22,6 +21,3 @@ const init = () => {
         rootElement
     );
   });
-};
-
-init();

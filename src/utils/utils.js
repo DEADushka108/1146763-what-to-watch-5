@@ -50,10 +50,6 @@ export const getRatingLevel = (score) => {
   return ``;
 };
 
-export const isEmpty = (obj) => {
-  return Boolean(Object.keys(obj).length);
-};
-
 export const formatTime = (time) => {
   const hours = Math.trunc(time / MINUTES_PER_HOUR);
   const minutes = time % MINUTES_PER_HOUR;
