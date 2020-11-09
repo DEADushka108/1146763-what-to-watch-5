@@ -13,7 +13,7 @@ it(`Should MovieCardSmall component render correctly`, () => {
           <MovieCardSmall
             movie={moviesList[0]}
             onPlayStatusChange={noop}
-            redirect={noop}
+            onCardClick={noop}
           >
           </MovieCardSmall>
         </MemoryRouter>

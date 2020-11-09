@@ -34,7 +34,7 @@ it(`Should render ReviewScreen component correctly`, () => {
               movieInfo={featuredMovie}
               status={HttpCode.OK}
               onSubmit={noop}
-              redirect={noop}
+              onSuccessSubmit={noop}
               loadMovie={noop}
               updatePostStatus={noop}
             />

@@ -7,13 +7,13 @@ import {redirectToRoute} from '../../store/redirect/redirect.js';
 import {AppRoute} from '../../utils/const.js';
 
 const FavoriteButton = (props) => {
-  const {id, onClick, isFavorite, isAuthorized, redirect} = props;
+  const {id, onClick, isFavorite, isAuthorized, onUnauthorizedClick} = props;
 
   const [status, setStatus] = useState(isFavorite);
 
   const handleButtonClick = useCallback(() => {
     if (!isAuthorized) {
-      redirect(AppRoute.LOGIN);
+      onUnauthorizedClick(AppRoute.LOGIN);
       return;
     }
 
@@ -38,7 +38,7 @@ FavoriteButton.propTypes = {
   isFavorite: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
   isAuthorized: PropTypes.bool.isRequired,
-  redirect: PropTypes.func.isRequired,
+  onUnauthorizedClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch) => ({
   onClick(id, status) {
     dispatch(MoviesOperation.updateMovieStatus(id, status));
   },
-  redirect(route) {
+  onUnauthorizedClick(route) {
     dispatch(redirectToRoute(route));
   },
 });

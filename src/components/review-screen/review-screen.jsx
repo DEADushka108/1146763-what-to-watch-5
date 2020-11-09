@@ -15,7 +15,7 @@ import {validateRating, validateText} from '../../utils/utils.js';
 const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
 
 const ReviewScreen = (props) => {
-  const {match, movieInfo, loadMovie, status, redirect, onSubmit, updatePostStatus} = props;
+  const {match, movieInfo, loadMovie, status, onSuccessSubmit, onSubmit, updatePostStatus} = props;
   const {id, title, cover, backgroundImage, backgroundColor} = movieInfo;
   const routeId = Number(match.params.id);
   const form = useRef();
@@ -36,7 +36,7 @@ const ReviewScreen = (props) => {
   useEffect(() => {
     if (status === HttpCode.OK) {
       updatePostStatus(0);
-      redirect(`${AppRoute.MOVIE}/${id}`);
+      onSuccessSubmit(`${AppRoute.MOVIE}/${id}`);
     }
     if (routeId === id) {
       return;
@@ -137,7 +137,7 @@ ReviewScreen.propTypes = {
   }).isRequired,
   status: PropTypes.number,
   onSubmit: PropTypes.func.isRequired,
-  redirect: PropTypes.func.isRequired,
+  onSuccessSubmit: PropTypes.func.isRequired,
   loadMovie: PropTypes.func.isRequired,
   updatePostStatus: PropTypes.func.isRequired,
 };
@@ -151,7 +151,7 @@ const mapDispatchToProps = (dispatch) => ({
   onSubmit(review) {
     dispatch(ReviewsOperation.postReview(review));
   },
-  redirect(route) {
+  onSuccessSubmit(route) {
     dispatch(redirectToRoute(route));
   },
   loadMovie(id) {

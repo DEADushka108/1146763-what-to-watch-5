@@ -8,7 +8,7 @@ import {connect} from 'react-redux';
 import {redirectToRoute} from '../../store/redirect/redirect.js';
 
 const LoginScreen = (props) => {
-  const {isAuthorized, redirect, onSubmit, onFocus, loginStatus} = props;
+  const {isAuthorized, onSuccessAuthoriztion, onSubmit, onFocus, loginStatus} = props;
   const loginRef = useRef();
   const passwordRef = useRef();
 
@@ -26,7 +26,7 @@ const LoginScreen = (props) => {
 
   useEffect(() => {
     if (isAuthorized) {
-      redirect(AppRoute.ROOT);
+      onSuccessAuthoriztion(AppRoute.ROOT);
     }
   }, [isAuthorized]);
 
@@ -90,7 +90,7 @@ LoginScreen.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   loginStatus: PropTypes.number.isRequired,
   onFocus: PropTypes.func.isRequired,
-  redirect: PropTypes.func.isRequired,
+  onSuccessAuthoriztion: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -105,7 +105,7 @@ const mapDispatchToProps = (dispatch) => ({
   onFocus() {
     dispatch(UserAction.updateLoginStatus(HttpCode.OK));
   },
-  redirect(route) {
+  onSuccessAuthoriztion(route) {
     dispatch(redirectToRoute(route));
   },
 });

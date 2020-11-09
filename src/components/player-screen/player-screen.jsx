@@ -9,7 +9,7 @@ import {AppRoute} from '../../utils/const';
 import {getActiveMovie} from '../../store/movies/selectors';
 
 const PlayerScreen = (props) => {
-  const {movie, redirect, loadMovie, match} = props;
+  const {movie, onExitButtonClick, loadMovie, match} = props;
   const {id, title, backgroundImage, videoSrc} = movie;
   const routeId = Number(match.params.id);
   const video = useRef();
@@ -43,7 +43,7 @@ const PlayerScreen = (props) => {
       <video poster={backgroundImage} src={videoSrc} className="player__video" ref={video}/>
 
       <button type="button" className="player__exit" onClick={() => {
-        redirect(`${AppRoute.MOVIE}/${id}`);
+        onExitButtonClick(`${AppRoute.MOVIE}/${id}`);
       }}>Exit</button>
 
       <div className="player__controls">
@@ -88,7 +88,7 @@ const PlayerScreen = (props) => {
 
 PlayerScreen.propTypes = {
   movie: movieDetails,
-  redirect: PropTypes.func.isRequired,
+  onExitButtonClick: PropTypes.func.isRequired,
   loadMovie: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
@@ -102,7 +102,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  redirect(route) {
+  onExitButtonClick(route) {
     dispatch(redirectToRoute(route));
   },
   loadMovie(id) {

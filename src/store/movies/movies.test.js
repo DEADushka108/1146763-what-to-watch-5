@@ -70,12 +70,14 @@ it(`Should reducer update movie status`, () => {
   expect(reducer({
     featuredMovie: {id: 1, isFavorite: false},
     moviesList: [{id: 1, isFavorite: false}],
+    activeMovie: {id: 1, isFavorite: false},
   }, {
     type: ActionType.UPDATE_MOVIE_STATUS,
     payload: {id: 1, isFavorite: true},
   })).toEqual({
     featuredMovie: {id: 1, isFavorite: true},
     moviesList: [{id: 1, isFavorite: true}],
+    activeMovie: {id: 1, isFavorite: true},
   });
 });
 

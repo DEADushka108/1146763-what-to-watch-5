@@ -28,7 +28,7 @@ it(`Should render PlayerScreen component correctly`, () => {
             <PlayerScreen
               match={match}
               loadMovie={noop}
-              redirect={noop}
+              onExitButtonClick={noop}
             />
           </MemoryRouter>
         </Provider>

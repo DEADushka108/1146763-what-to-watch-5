@@ -7,7 +7,7 @@ import {redirectToRoute} from '../../store/redirect/redirect.js';
 import {connect} from 'react-redux';
 
 const MovieCardSmall = (props) => {
-  const {movie, redirect} = props;
+  const {movie, onCardClick} = props;
   const {id, title, poster, previewSrc} = movie;
   const video = useRef();
   const [isPlay, setPlayStatus] = useState(false);
@@ -39,7 +39,7 @@ const MovieCardSmall = (props) => {
 
   return <article className="small-movie-card catalog__movies-card" >
     <div className="small-movie-card__image" onClick={() => {
-      redirect(`${AppRoute.MOVIE}/${id}`);
+      onCardClick(`${AppRoute.MOVIE}/${id}`);
     }}
     onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       <video src={previewSrc} poster={poster} width="280" height="175" ref={video}/>
@@ -52,11 +52,11 @@ const MovieCardSmall = (props) => {
 
 MovieCardSmall.propTypes = {
   movie: movieDetails,
-  redirect: PropTypes.func.isRequired,
+  onCardClick: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  redirect(route) {
+  onCardClick(route) {
     dispatch(redirectToRoute(route));
   },
 });

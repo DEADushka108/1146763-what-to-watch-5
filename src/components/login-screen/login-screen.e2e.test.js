@@ -21,7 +21,7 @@ it(`Should render error message if login fails`, () => {
           loginStatus={400}
           onSubmit={onSubmit}
           onFocus={noop}
-          redirect={noop}
+          onSuccessAuthoriztion={noop}
         />
       </MemoryRouter>
   );
@@ -39,7 +39,7 @@ it(`Should pass correct email and password on form submit`, () => {
           loginStatus={400}
           onSubmit={onSubmit}
           onFocus={noop}
-          redirect={noop}
+          onSuccessAuthoriztion={noop}
         />
       </MemoryRouter>
   );

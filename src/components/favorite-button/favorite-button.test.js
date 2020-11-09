@@ -10,7 +10,7 @@ it(`Should render FavoriteButton component correctly`, () => {
         <FavoriteButton
           onClick={noop}
           onFavoriteStatusChange={noop}
-          redirect={noop}
+          onUnauthorizedClick={noop}
           isAuthorized={true}
         />
     )
