@@ -17,8 +17,8 @@ const MovieCardSmall = (props) => {
     setPlayStatus(true);
     timeout = setTimeout(() => {
       if (!isPlay && video.current) {
-        video.current.play();
         video.current.muted = true;
+        video.current.play();
       }
     }, 1000);
   }, [video]);
