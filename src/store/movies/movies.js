@@ -57,12 +57,18 @@ const Operation = {
     return api.get(URL.FEATURED)
       .then((response) => {
         dispatch(ActionCreator.loadFeaturedMovie(createMovie(response.data)));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.updateStatus(HttpCode.BAD_REQUEST));
       });
   },
   loadMovies: () => (dispatch, _getState, api) => {
     return api.get(URL.MOVIES)
       .then((response) => {
         dispatch(ActionCreator.loadMovies(createMoviesList(response.data)));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.updateStatus(HttpCode.BAD_REQUEST));
       });
   },
   updateMovieStatus: (id, status) => (dispatch, _getState, api) => {
@@ -75,6 +81,9 @@ const Operation = {
     return api.get(`${URL.MOVIES}/${id}`)
       .then((response) => {
         dispatch(ActionCreator.loadMovie(createMovie(response.data)));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.updateStatus(HttpCode.BAD_REQUEST));
       });
   }
 };
