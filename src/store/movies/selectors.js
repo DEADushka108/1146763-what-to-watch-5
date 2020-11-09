@@ -10,12 +10,6 @@ const getMoviesList = (state) => {
   return state[NameSpace.MOVIES].moviesList;
 };
 
-const getMovieById = (state, id) => {
-  return getMoviesList(state).find((item) => {
-    return item.id === id;
-  });
-};
-
 const getMoviesCount = (state) => {
   return state[NameSpace.MOVIES].moviesCount;
 };
@@ -42,4 +36,4 @@ const getFilteredList = createSelector(
     }
 );
 
-export {getFeaturedMovie, getActiveMovie, getMovieById, getActiveGenre, getMoviesCount, getFilteredList, getMoviesList, getStatus};
+export {getFeaturedMovie, getActiveMovie, getActiveGenre, getMoviesCount, getFilteredList, getMoviesList, getStatus};

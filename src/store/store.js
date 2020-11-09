@@ -10,7 +10,8 @@ import {createAPI} from '../services/api.js';
 import {redirect} from './redirect/redirect.js';
 import {HttpCode} from '../utils/const.js';
 
-const onUnauthorized = () => {
+const onUnauthorized = (status) => {
+  store.dispatch(UserAction.updateLoginStatus(status));
   store.dispatch(UserAction.requireAuthorization(AuthorizationStatus.NO_AUTH));
 };
 

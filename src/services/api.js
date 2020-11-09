@@ -25,7 +25,7 @@ export const createAPI = (onUnauthorized, onError, onLoginError, onReviewError, 
           redirect(AppRoute.LOGIN);
         }
 
-        onUnauthorized();
+        onUnauthorized(status);
         throw err;
       case HttpCode.BAD_REQUEST:
         if (url === URL.LOGIN && method === `post`) {
