@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import moment from 'moment';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import {AppRoute, MOVIE_SCREEN_COUNT, TabNames} from '../../utils/const';
+import {AppRoute, CardCount, TabNames} from '../../utils/const';
 import {movieDetails, reviewsDetails} from '../../types/types';
 import MoviesList from '../movies-list/movies-list';
 import Tabs from '../tabs/tabs.jsx';
@@ -164,7 +164,7 @@ const MovieScreen = (props) => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <MoviesList movies={similarMoviesList} count={MOVIE_SCREEN_COUNT}/>
+          <MoviesList movies={similarMoviesList} count={CardCount.SIMILAR}/>
         </section>
       }
       <footer className="page-footer">

@@ -17,8 +17,10 @@ export const FilterSettings = {
   MAX_COUNT: 9,
 };
 
-export const MAX_MOVIES_COUNT = 8;
-export const MOVIE_SCREEN_COUNT = 4;
+export const CardCount = {
+  MAX: 8,
+  SIMILAR: 4,
+};
 
 export const Rating = {
   BAD: 3,

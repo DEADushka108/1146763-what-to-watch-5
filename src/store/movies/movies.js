@@ -1,4 +1,4 @@
-import {FilterSettings, HttpCode, MAX_MOVIES_COUNT, URL} from '../../utils/const.js';
+import {CardCount, FilterSettings, HttpCode, URL} from '../../utils/const.js';
 import {extend} from '../../utils/utils.js';
 import {createMovie, createMoviesList} from '../../services/adapters/movies';
 
@@ -6,7 +6,7 @@ const initialState = {
   featuredMovie: {},
   moviesList: [],
   activeGenre: FilterSettings.DEFAULT_VALUE,
-  moviesCount: MAX_MOVIES_COUNT,
+  moviesCount: CardCount.MAX,
   status: HttpCode.OK,
   activeMovie: {},
 };
@@ -40,7 +40,7 @@ const ActionCreator = {
   }),
   setMoviesCount: () => ({
     type: ActionType.SET_MOVIES_COUNT,
-    payload: MAX_MOVIES_COUNT,
+    payload: CardCount.MAX,
   }),
   updateStatus: (status) => ({
     type: ActionType.UPDATE_STATUS,
@@ -106,7 +106,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_ACTIVE_GENRE:
       return extend(state, {
         activeGenre: action.payload,
-        moviesCount: MAX_MOVIES_COUNT,
+        moviesCount: CardCount.MAX,
       });
     case ActionType.SET_MOVIES_COUNT:
       return extend(state, {
