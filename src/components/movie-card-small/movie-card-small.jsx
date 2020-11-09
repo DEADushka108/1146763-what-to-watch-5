@@ -16,6 +16,7 @@ const MovieCardSmall = (props) => {
   let timeout;
 
   const handleMouseEnter = useCallback(() => {
+    video.current.load();
     setPlayStatus(true);
     timeout = setTimeout(() => {
       if (!isPlay && video.current) {
