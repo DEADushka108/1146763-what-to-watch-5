@@ -172,7 +172,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            href="#"
           >
             All genres
           </a>
@@ -183,7 +182,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            href="#"
           >
             Adventure
           </a>
@@ -194,7 +192,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            href="#"
           >
             Biography
           </a>
@@ -205,7 +202,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            href="#"
           >
             Comedy
           </a>
@@ -216,7 +212,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            href="#"
           >
             Drama
           </a>
@@ -227,7 +222,6 @@ Array [
         >
           <a
             className="catalog__genres-link"
-            href="#"
           >
             Mystery
           </a>
