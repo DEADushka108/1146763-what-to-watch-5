@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {AppRoute, HttpCode, ReviewSettingns} from '../../utils/const.js';
@@ -18,8 +18,8 @@ const ReviewScreen = (props) => {
   const {match, movieInfo, loadMovie, status, redirect, onSubmit, updatePostStatus} = props;
   const {id, title, cover, backgroundImage, backgroundColor} = movieInfo;
   const routeId = Number(match.params.id);
-
-  const [rating, setRating] = useState(REVIEW_RATINGS[0]);
+  const form = useRef();
+  const [rating, setRating] = useState(`0`);
   const [text, setText] = useState(``);
   const [validation, setValidation] = useState(false);
 
@@ -40,6 +40,9 @@ const ReviewScreen = (props) => {
     }
     if (routeId === id) {
       return;
+    }
+    if (status !== HttpCode.OK) {
+      form.current.disabled = false;
     }
     loadMovie(routeId);
   }, [routeId, status]);
@@ -83,13 +86,14 @@ const ReviewScreen = (props) => {
 
       <div className="add-review">
         {status === HttpCode.SERVER_ERROR && <p className="movie-card__text">Error {status} occurred. Please try again later.</p>}
-        <form action="#" className="add-review__form" onSubmit={(evt) => {
+        <form action="#" className="add-review__form" ref={form} onSubmit={(evt) => {
           evt.preventDefault();
           onSubmit({
             id,
             rating,
             text,
           });
+          form.current.disabled = true;
         }}>
           <div className="rating">
             <div className="rating__stars">
