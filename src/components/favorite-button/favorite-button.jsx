@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Operation as MoviesOperation} from '../../store/movies/movies.js';
 import {connect} from 'react-redux';
@@ -20,6 +20,10 @@ const FavoriteButton = (props) => {
     onClick(id, status ? 0 : 1);
     setStatus(!status);
   }, [status]);
+
+  useEffect(() => {
+    setStatus(isFavorite);
+  }, [isFavorite]);
 
   return <button className="btn btn--list movie-card__button" type="button" onClick={handleButtonClick}>
     <svg viewBox="0 0 19 20" width="19" height="20">
