@@ -1,14 +1,11 @@
 import React from 'react';
 import {configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import Tabs from './tabs.jsx';
 
 configure({
   adapter: new Adapter(),
 });
-
-const TabsWrapped = withActiveItem(Tabs);
 
 const mock = {
   children: [<div key="first" title="first-child" className="child">
@@ -25,9 +22,9 @@ const mock = {
 it(`Should change Tab on click`, () => {
   const {children} = mock;
   const tabs = mount(
-      <TabsWrapped>
+      <Tabs>
         {children}
-      </TabsWrapped>
+      </Tabs>
   );
   const thirdTab = tabs.find(`li.movie-nav__item`).at(2);
 

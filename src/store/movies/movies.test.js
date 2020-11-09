@@ -3,7 +3,7 @@ import {createAPI} from '../../services/api.js';
 import {featuredMovie, moviesList} from '../../__test-mock__/movies.js';
 import {createMovie, createMoviesList} from '../../services/adapters/movies.js';
 import {reducer, ActionType, Operation} from './movies';
-import {FilterSettings, HttpCode, MAX_MOVIES_COUNT} from '../../utils/const.js';
+import {CardCount, FilterSettings, HttpCode} from '../../utils/const.js';
 
 const noop = () => {};
 
@@ -14,7 +14,7 @@ it(`Should reducer return initial state without additional parameters`, () => {
     featuredMovie: {},
     moviesList: [],
     activeGenre: FilterSettings.DEFAULT_VALUE,
-    moviesCount: MAX_MOVIES_COUNT,
+    moviesCount: CardCount.MAX,
     status: HttpCode.OK,
     activeMovie: {},
   });
@@ -46,7 +46,7 @@ it(`Should reducer update movies list`, () => {
 
 it(`Should reducer update movies count`, () => {
   expect(reducer({
-    moviesCount: MAX_MOVIES_COUNT,
+    moviesCount: CardCount.MAX,
   }, {
     type: ActionType.SET_MOVIES_COUNT,
     payload: 8,
@@ -70,12 +70,14 @@ it(`Should reducer update movie status`, () => {
   expect(reducer({
     featuredMovie: {id: 1, isFavorite: false},
     moviesList: [{id: 1, isFavorite: false}],
+    activeMovie: {id: 1, isFavorite: false},
   }, {
     type: ActionType.UPDATE_MOVIE_STATUS,
     payload: {id: 1, isFavorite: true},
   })).toEqual({
     featuredMovie: {id: 1, isFavorite: true},
     moviesList: [{id: 1, isFavorite: true}],
+    activeMovie: {id: 1, isFavorite: true},
   });
 });
 
@@ -88,7 +90,7 @@ it(`Should reducer update active and reset movies count`, () => {
     payload: `Action`,
   })).toEqual({
     activeGenre: `Action`,
-    moviesCount: MAX_MOVIES_COUNT,
+    moviesCount: CardCount.MAX,
   });
 });
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {AppRoute} from '../../utils/const';
@@ -6,22 +6,46 @@ import {movieDetails} from '../../types/types';
 import {redirectToRoute} from '../../store/redirect/redirect.js';
 import {connect} from 'react-redux';
 
+const VIDEO_PLAY_TIMEOUT = 1000;
+
 const MovieCardSmall = (props) => {
-  const {movie, children, onPlayStatusChange, redirect} = props;
-  const {id, title} = movie;
+  const {movie, onCardClick} = props;
+  const {id, title, poster, previewSrc} = movie;
+  const video = useRef();
+  const [isPlay, setPlayStatus] = useState(false);
   let timeout;
+
+  const handleMouseEnter = useCallback(() => {
+    video.current.load();
+    setPlayStatus(true);
+    timeout = setTimeout(() => {
+      if (!isPlay && video.current) {
+        video.current.muted = true;
+        video.current.play();
+      }
+    }, VIDEO_PLAY_TIMEOUT);
+  }, [video]);
+
+  const handleMouseLeave = useCallback(() => {
+    setPlayStatus(false);
+    clearTimeout(timeout);
+    video.current.load();
+  }, [video]);
+
+  useEffect(() => {
+    if (!video.current) {
+      setPlayStatus(false);
+      return;
+    }
+    return;
+  }, [video.current]);
 
   return <article className="small-movie-card catalog__movies-card" >
     <div className="small-movie-card__image" onClick={() => {
-      redirect(`${AppRoute.MOVIE}/${id}`);
+      onCardClick(`${AppRoute.MOVIE}/${id}`);
     }}
-    onMouseEnter={() => {
-      timeout = setTimeout(onPlayStatusChange, 1000);
-    }} onMouseLeave={() => {
-      clearTimeout(timeout);
-      onPlayStatusChange();
-    }}>
-      {children}
+    onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <video src={previewSrc} poster={poster} width="280" height="175" ref={video}/>
     </div>
     <h3 className="small-movie-card__title">
       <Link to={`${AppRoute.MOVIE}/${id}`} className="small-movie-card__link">{title}</Link>
@@ -31,16 +55,11 @@ const MovieCardSmall = (props) => {
 
 MovieCardSmall.propTypes = {
   movie: movieDetails,
-  redirect: PropTypes.func.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
-  onPlayStatusChange: PropTypes.func.isRequired,
+  onCardClick: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  redirect(route) {
+  onCardClick(route) {
     dispatch(redirectToRoute(route));
   },
 });

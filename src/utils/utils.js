@@ -1,4 +1,4 @@
-import {FilterSettings, Rating, RatingLevel, MINUTES_PER_HOUR} from './const.js';
+import {FilterSettings, Rating, RatingLevel, MINUTES_PER_HOUR, ReviewSettingns} from './const.js';
 
 const getGenresList = (list) => {
   return list.map((it) => {
@@ -50,10 +50,6 @@ export const getRatingLevel = (score) => {
   return ``;
 };
 
-export const isEmpty = (obj) => {
-  return Boolean(Object.keys(obj).length);
-};
-
 export const formatTime = (time) => {
   const hours = Math.trunc(time / MINUTES_PER_HOUR);
   const minutes = time % MINUTES_PER_HOUR;
@@ -66,4 +62,12 @@ export const getTimeString = (time) => {
   const seconds = Math.floor(time % MINUTES_PER_HOUR);
 
   return `${addLeadingZero(hours)}:${addLeadingZero(minutes)}:${addLeadingZero(seconds)}`;
+};
+
+export const validateText = (text) => {
+  return text.length >= ReviewSettingns.TEXT.MIN_LENGTH && text.length <= ReviewSettingns.TEXT.MAX_LENGTH;
+};
+
+export const validateRating = (rating) => {
+  return Number(rating) >= ReviewSettingns.MIN_RATING;
 };

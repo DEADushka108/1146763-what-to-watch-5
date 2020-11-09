@@ -10,7 +10,6 @@ exports[`Should render GenresList component correctly 1`] = `
   >
     <a
       className="catalog__genres-link"
-      href="#"
     >
       All genres
     </a>
@@ -21,7 +20,6 @@ exports[`Should render GenresList component correctly 1`] = `
   >
     <a
       className="catalog__genres-link"
-      href="#"
     >
       Adventure
     </a>
@@ -32,7 +30,6 @@ exports[`Should render GenresList component correctly 1`] = `
   >
     <a
       className="catalog__genres-link"
-      href="#"
     >
       Biography
     </a>
@@ -43,7 +40,6 @@ exports[`Should render GenresList component correctly 1`] = `
   >
     <a
       className="catalog__genres-link"
-      href="#"
     >
       Comedy
     </a>
@@ -54,7 +50,6 @@ exports[`Should render GenresList component correctly 1`] = `
   >
     <a
       className="catalog__genres-link"
-      href="#"
     >
       Drama
     </a>
@@ -65,7 +60,6 @@ exports[`Should render GenresList component correctly 1`] = `
   >
     <a
       className="catalog__genres-link"
-      href="#"
     >
       Mystery
     </a>

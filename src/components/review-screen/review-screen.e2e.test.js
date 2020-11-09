@@ -40,22 +40,29 @@ it(`Should pass correct comment and rating on review form submit`, () => {
           <ReviewScreen
             match={match}
             movieInfo={featuredMovie}
-            rating={`3`}
-            text={`This is at least 50 characters long text review`}
-            isValid={true}
             status={HttpCode.OK}
-            onSubmit={onSubmit}
-            onRatingChange={noop}
-            onTextInput={noop}
-            onValidityCheck={noop}
-            redirect={noop}
+            onSuccessSubmit={noop}
             loadMovie={noop}
+            updatePostStatus={noop}
+            onSubmit={onSubmit}
           />
         </MemoryRouter>
       </Provider>
   );
   const reviewForm = reviewScreen.find(`form.add-review__form`);
+  const commentField = reviewScreen.find(`textarea.add-review__textarea`);
+  const thirdStar = reviewScreen.find(`input.rating__input`).at(2);
 
+  commentField.simulate(`change`, {
+    target: {
+      value: `This is at least 50 characters long text review`,
+    },
+  });
+  thirdStar.simulate(`change`, {
+    target: {
+      value: `3`,
+    }
+  });
   reviewForm.simulate(`submit`);
   expect(onSubmit).toHaveBeenCalledTimes(1);
   expect(onSubmit).toHaveBeenCalledWith({

@@ -1,7 +1,6 @@
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
-import {AuthorizationStatus} from '../utils/const.js';
 import {ActionCreator as UserAction} from './user/user.js';
 import {ActionCreator as MoviesAction} from './movies/movies.js';
 import {ActionCreator as ReviewsAction} from './reviews/reviews.js';
@@ -10,8 +9,8 @@ import {createAPI} from '../services/api.js';
 import {redirect} from './redirect/redirect.js';
 import {HttpCode} from '../utils/const.js';
 
-const onUnauthorized = () => {
-  store.dispatch(UserAction.requireAuthorization(AuthorizationStatus.NO_AUTH));
+const onUnauthorized = (status) => {
+  store.dispatch(UserAction.updateLoginStatus(status));
 };
 
 const onError = (status) => {

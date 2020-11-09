@@ -16,6 +16,7 @@ it(`Should render LoginScreen component correctly`, () => {
             loginStatus={200}
             onSubmit={noop}
             onFocus={noop}
+            onSuccessAuthoriztion={noop}
           />
         </MemoryRouter>
     )

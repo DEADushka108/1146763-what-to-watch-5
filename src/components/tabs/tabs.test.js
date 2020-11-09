@@ -8,16 +8,11 @@ const mock = {
   </div>],
 };
 
-const noop = () => {};
-
 it(`Should render Tabs component correctly`, () => {
   const {children} = mock;
   const tree = renderer
     .create(
-        <Tabs
-          activeItem={0}
-          onActiveItemChange={noop}
-        >
+        <Tabs>
           {children}
         </Tabs>
     )

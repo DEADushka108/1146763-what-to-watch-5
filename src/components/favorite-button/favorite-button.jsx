@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Operation as MoviesOperation} from '../../store/movies/movies.js';
 import {connect} from 'react-redux';
@@ -6,43 +6,44 @@ import {getAuthorization} from '../../store/user/selectors.js';
 import {redirectToRoute} from '../../store/redirect/redirect.js';
 import {AppRoute} from '../../utils/const.js';
 
-class FavoriteButton extends PureComponent {
-  constructor(props) {
-    super(props);
-    this._handleButtonClick = this._handleButtonClick.bind(this);
-  }
+const MovieStatus = {
+  FAVORITE: 1,
+  NOT_FAVORITE: 0,
+};
 
-  _handleButtonClick() {
-    const {id, onClick, isFavorite, onFavoriteStatusChange, isAuthorized, redirect} = this.props;
+const FavoriteButton = (props) => {
+  const {id, onClick, isFavorite, isAuthorized, onUnauthorizedClick} = props;
 
+  const [status, setStatus] = useState(isFavorite);
+
+  const handleButtonClick = useCallback(() => {
     if (!isAuthorized) {
-      redirect(AppRoute.LOGIN);
+      onUnauthorizedClick(AppRoute.LOGIN);
       return;
     }
 
-    onClick(id, isFavorite ? 0 : 1);
-    onFavoriteStatusChange();
-  }
+    onClick(id, status ? MovieStatus.NOT_FAVORITE : MovieStatus.FAVORITE);
+    setStatus(!status);
+  }, [status]);
 
-  render() {
-    const {isFavorite} = this.props;
+  useEffect(() => {
+    setStatus(isFavorite);
+  }, [isFavorite]);
 
-    return <button className="btn btn--list movie-card__button" type="button" onClick={this._handleButtonClick}>
-      <svg viewBox="0 0 19 20" width="19" height="20">
-        <use xlinkHref={isFavorite ? `#in-list` : `#add`}/>
-      </svg>
-      <span>My list</span>
-    </button>;
-  }
-}
+  return <button className="btn btn--list movie-card__button" type="button" onClick={handleButtonClick}>
+    <svg viewBox="0 0 19 20" width="19" height="20">
+      <use xlinkHref={status ? `#in-list` : `#add`}/>
+    </svg>
+    <span>My list</span>
+  </button>;
+};
 
 FavoriteButton.propTypes = {
   id: PropTypes.number,
   isFavorite: PropTypes.bool,
   onClick: PropTypes.func.isRequired,
-  onFavoriteStatusChange: PropTypes.func.isRequired,
   isAuthorized: PropTypes.bool.isRequired,
-  redirect: PropTypes.func.isRequired,
+  onUnauthorizedClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -53,7 +54,7 @@ const mapDispatchToProps = (dispatch) => ({
   onClick(id, status) {
     dispatch(MoviesOperation.updateMovieStatus(id, status));
   },
-  redirect(route) {
+  onUnauthorizedClick(route) {
     dispatch(redirectToRoute(route));
   },
 });

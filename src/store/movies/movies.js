@@ -1,4 +1,4 @@
-import {FilterSettings, HttpCode, MAX_MOVIES_COUNT, URL} from '../../utils/const.js';
+import {CardCount, FilterSettings, HttpCode, URL} from '../../utils/const.js';
 import {extend} from '../../utils/utils.js';
 import {createMovie, createMoviesList} from '../../services/adapters/movies';
 
@@ -6,7 +6,7 @@ const initialState = {
   featuredMovie: {},
   moviesList: [],
   activeGenre: FilterSettings.DEFAULT_VALUE,
-  moviesCount: MAX_MOVIES_COUNT,
+  moviesCount: CardCount.MAX,
   status: HttpCode.OK,
   activeMovie: {},
 };
@@ -40,7 +40,7 @@ const ActionCreator = {
   }),
   setMoviesCount: () => ({
     type: ActionType.SET_MOVIES_COUNT,
-    payload: MAX_MOVIES_COUNT,
+    payload: CardCount.MAX,
   }),
   updateStatus: (status) => ({
     type: ActionType.UPDATE_STATUS,
@@ -57,12 +57,18 @@ const Operation = {
     return api.get(URL.FEATURED)
       .then((response) => {
         dispatch(ActionCreator.loadFeaturedMovie(createMovie(response.data)));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.updateStatus(HttpCode.BAD_REQUEST));
       });
   },
   loadMovies: () => (dispatch, _getState, api) => {
     return api.get(URL.MOVIES)
       .then((response) => {
         dispatch(ActionCreator.loadMovies(createMoviesList(response.data)));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.updateStatus(HttpCode.BAD_REQUEST));
       });
   },
   updateMovieStatus: (id, status) => (dispatch, _getState, api) => {
@@ -75,6 +81,9 @@ const Operation = {
     return api.get(`${URL.MOVIES}/${id}`)
       .then((response) => {
         dispatch(ActionCreator.loadMovie(createMovie(response.data)));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.updateStatus(HttpCode.BAD_REQUEST));
       });
   }
 };
@@ -97,7 +106,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_ACTIVE_GENRE:
       return extend(state, {
         activeGenre: action.payload,
-        moviesCount: MAX_MOVIES_COUNT,
+        moviesCount: CardCount.MAX,
       });
     case ActionType.SET_MOVIES_COUNT:
       return extend(state, {
@@ -111,6 +120,7 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         featuredMovie: state.featuredMovie.id === action.payload.id ? action.payload : state.featuredMovie,
         moviesList: state.moviesList.map((movie) => (movie.id === action.payload.id) ? action.payload : movie),
+        activeMovie: action.payload,
       });
   }
   return state;

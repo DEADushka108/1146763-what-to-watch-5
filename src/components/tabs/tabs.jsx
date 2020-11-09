@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-
+import {TabNames} from '../../utils/const.js';
 
 const Tabs = (props) => {
-  const {children, activeItem, onActiveItemChange} = props;
+  const [activeItem, setActiveItem] = useState(TabNames.OVERVIEW);
+  const {children} = props;
 
   return <div className="movie-card__desc">
     <nav className="movie-nav movie-card__nav">
@@ -11,19 +12,19 @@ const Tabs = (props) => {
         {children.map((child, index) => {
           const {title} = child.props;
           return <li key={`${title}-${index}`}
-            className={`movie-nav__item ${(activeItem === index) ? `movie-nav__item--active` : ``}`}
+            className={`movie-nav__item ${(activeItem === title) ? `movie-nav__item--active` : ``}`}
             onClick={() => {
-              onActiveItemChange(index);
+              setActiveItem(title);
             }}>
             <a className="movie-nav__link">{title}</a>
           </li>;
         })}
       </ul>
     </nav>
-    {children.map((child, index) => {
-      const {children: content} = child.props;
+    {children.map((child) => {
+      const {title, children: content} = child.props;
 
-      return index === activeItem ? content : null;
+      return (title === activeItem) ? content : null;
     })}
   </div>;
 };
@@ -33,8 +34,6 @@ Tabs.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  activeItem: PropTypes.number.isRequired,
-  onActiveItemChange: PropTypes.func.isRequired,
 };
 
 export default Tabs;

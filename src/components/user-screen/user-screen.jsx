@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {useEffect} from 'react';
 import MoviesList from '../movies-list/movies-list';
 import PropTypes from 'prop-types';
 import {movieDetails} from '../../types/types';
@@ -9,64 +9,51 @@ import {connect} from 'react-redux';
 import UserBlock from '../user-block/user-block';
 import {Operation as UserOperation} from '../../store/user/user.js';
 
-class UserScreen extends PureComponent {
-  constructor(props) {
-    super(props);
+const UserScreen = (props) => {
+  const {moviesList, loadFavoriteList} = props;
 
-    this._handleMoviesLoad = this._handleMoviesLoad.bind(this);
-  }
-
-  _handleMoviesLoad() {
-    const {loadFavoriteList} = this.props;
+  useEffect(() => {
     loadFavoriteList();
-  }
+  }, [moviesList.length]);
 
-  componentDidMount() {
-    this._handleMoviesLoad();
-  }
+  return <React.Fragment>
+    <div className="user-page">
+      <header className="page-header user-page__head">
+        <div className="logo">
+          <Link to={AppRoute.ROOT} className="logo__link">
+            <span className="logo__letter logo__letter--1">W</span>
+            <span className="logo__letter logo__letter--2">T</span>
+            <span className="logo__letter logo__letter--3">W</span>
+          </Link>
+        </div>
 
-  render() {
-    const {moviesList} = this.props;
+        <h1 className="page-title user-page__title">My list</h1>
 
-    return <React.Fragment>
-      <div className="user-page">
-        <header className="page-header user-page__head">
-          <div className="logo">
-            <Link to={AppRoute.ROOT} className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
+        <UserBlock/>
+      </header>
 
-          <h1 className="page-title user-page__title">My list</h1>
+      <section className="catalog">
+        <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <UserBlock/>
-        </header>
+        <MoviesList movies={moviesList} count={moviesList.length}/>
+      </section>
 
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
+      <footer className="page-footer">
+        <div className="logo">
+          <Link to={AppRoute.ROOT} className="logo__link logo__link--light">
+            <span className="logo__letter logo__letter--1">W</span>
+            <span className="logo__letter logo__letter--2">T</span>
+            <span className="logo__letter logo__letter--3">W</span>
+          </Link>
+        </div>
 
-          <MoviesList movies={moviesList} count={moviesList.length}/>
-        </section>
-
-        <footer className="page-footer">
-          <div className="logo">
-            <Link to={AppRoute.ROOT} className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
-          <div className="copyright">
-            <p>© 2020 What to watch Ltd.</p>
-          </div>
-        </footer>
-      </div>
-    </React.Fragment>;
-  }
-}
+        <div className="copyright">
+          <p>© 2020 What to watch Ltd.</p>
+        </div>
+      </footer>
+    </div>
+  </React.Fragment>;
+};
 
 UserScreen.propTypes = {
   moviesList: PropTypes.arrayOf(movieDetails).isRequired,
@@ -85,3 +72,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 export {UserScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(UserScreen);
+

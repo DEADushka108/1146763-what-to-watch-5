@@ -3,12 +3,9 @@ import {connect} from 'react-redux';
 import {movieDetails} from '../../types/types';
 import {getFeaturedMovie} from '../../store/movies/selectors.js';
 import UserBlock from '../user-block/user-block';
-import withStatus from '../../hocs/with-status/with-status';
 import FavoriteButton from '../favorite-button/favorite-button';
 import {Link} from 'react-router-dom';
 import {AppRoute} from '../../utils/const';
-
-const FavoriteButtonWrapped = withStatus(FavoriteButton);
 
 const MovieCard = (props) => {
   const {featuredMovie} = props;
@@ -52,7 +49,7 @@ const MovieCard = (props) => {
               </svg>
               <span>Play</span>
             </Link>
-            <FavoriteButtonWrapped id={id} isFavorite={isFavorite}/>
+            <FavoriteButton id={id} isFavorite={isFavorite}/>
           </div>
         </div>
       </div>

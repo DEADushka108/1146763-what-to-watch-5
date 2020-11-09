@@ -2,34 +2,30 @@ import {createSelector} from 'reselect';
 import {FilterSettings} from '../../utils/const.js';
 import NameSpace from '../name-space.js';
 
+const MOVIES = NameSpace.MOVIES;
+
 const getFeaturedMovie = (state) => {
-  return state[NameSpace.MOVIES].featuredMovie;
+  return state[MOVIES].featuredMovie;
 };
 
 const getMoviesList = (state) => {
-  return state[NameSpace.MOVIES].moviesList;
-};
-
-const getMovieById = (state, id) => {
-  return getMoviesList(state).find((item) => {
-    return item.id === id;
-  });
+  return state[MOVIES].moviesList;
 };
 
 const getMoviesCount = (state) => {
-  return state[NameSpace.MOVIES].moviesCount;
+  return state[MOVIES].moviesCount;
 };
 
 const getActiveGenre = (state) => {
-  return state[NameSpace.MOVIES].activeGenre;
+  return state[MOVIES].activeGenre;
 };
 
 const getStatus = (state) => {
-  return state[NameSpace.MOVIES].status;
+  return state[MOVIES].status;
 };
 
 const getActiveMovie = (state) => {
-  return state[NameSpace.MOVIES].activeMovie;
+  return state[MOVIES].activeMovie;
 };
 
 const getFilteredList = createSelector(
@@ -42,4 +38,4 @@ const getFilteredList = createSelector(
     }
 );
 
-export {getFeaturedMovie, getActiveMovie, getMovieById, getActiveGenre, getMoviesCount, getFilteredList, getMoviesList, getStatus};
+export {getFeaturedMovie, getActiveMovie, getActiveGenre, getMoviesCount, getFilteredList, getMoviesList, getStatus};

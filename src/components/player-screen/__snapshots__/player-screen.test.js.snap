@@ -4,7 +4,11 @@ exports[`Should render PlayerScreen component correctly 1`] = `
 <div
   className="player"
 >
-  <div />
+  <video
+    className="player__video"
+    poster="img/the-grand-budapest-hotel-poster.jpg"
+    src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+  />
   <button
     className="player__exit"
     onClick={[Function]}
@@ -23,7 +27,7 @@ exports[`Should render PlayerScreen component correctly 1`] = `
       >
         <progress
           className="player__progress"
-          max={100}
+          max={0}
           value={0}
         />
         <div
@@ -40,7 +44,7 @@ exports[`Should render PlayerScreen component correctly 1`] = `
       <div
         className="player__time-value"
       >
-        00:01:40
+        00:00:00
       </div>
     </div>
     <div

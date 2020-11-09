@@ -32,16 +32,11 @@ it(`Should render ReviewScreen component correctly`, () => {
             <ReviewScreen
               match={match}
               movieInfo={featuredMovie}
-              rating={`1`}
-              text={``}
-              isValid={false}
               status={HttpCode.OK}
               onSubmit={noop}
-              onRatingChange={noop}
-              onTextInput={noop}
-              onValidityCheck={noop}
-              redirect={noop}
+              onSuccessSubmit={noop}
               loadMovie={noop}
+              updatePostStatus={noop}
             />
           </MemoryRouter>
         </Provider>

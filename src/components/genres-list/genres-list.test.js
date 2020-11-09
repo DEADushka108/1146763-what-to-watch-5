@@ -11,9 +11,8 @@ it(`Should render GenresList component correctly`, () => {
     .create(
         <GenresList
           moviesList={moviesList}
-          onGenreChange={noop}
           onGenreClick={noop}
-          activeGenre={FilterSettings.DEFAULT_VALUE}
+          currentGenre={FilterSettings.DEFAULT_VALUE}
         />
     ).toJSON();
 
