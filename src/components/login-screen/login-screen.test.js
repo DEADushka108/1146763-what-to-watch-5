@@ -1,10 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {MemoryRouter} from 'react-router-dom';
-import {authorizationStatus} from '../../__test-mock__/user.js';
+import {AuthorizationStatus, noop} from '../../mocks/mocks.js';
 import {LoginScreen} from './login-screen.jsx';
-
-const noop = () => {};
 
 it(`Should render LoginScreen component correctly`, () => {
   const tree = renderer
@@ -12,7 +10,7 @@ it(`Should render LoginScreen component correctly`, () => {
         <MemoryRouter>
           <LoginScreen
             isAuthorized={false}
-            authorizationStatus={authorizationStatus}
+            authorizationStatus={AuthorizationStatus.AUTH}
             loginStatus={200}
             onSubmit={noop}
             onFocus={noop}

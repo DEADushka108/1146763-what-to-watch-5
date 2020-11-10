@@ -2,7 +2,7 @@ import React from 'react';
 import {configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {MemoryRouter} from 'react-router-dom';
-import {authorizationStatus} from '../../__test-mock__/user.js';
+import {AuthorizationStatus, noop} from '../../mocks/mocks.js';
 import {LoginScreen} from './login-screen.jsx';
 
 configure({
@@ -10,14 +10,13 @@ configure({
 });
 
 const onSubmit = jest.fn();
-const noop = () =>{};
 
 it(`Should render error message if login fails`, () => {
   const loginScreen = mount(
       <MemoryRouter>
         <LoginScreen
           isAuthorized={false}
-          authorizationStatus={authorizationStatus}
+          authorizationStatus={AuthorizationStatus.AUTH}
           loginStatus={400}
           onSubmit={onSubmit}
           onFocus={noop}
@@ -35,7 +34,7 @@ it(`Should pass correct email and password on form submit`, () => {
       <MemoryRouter>
         <LoginScreen
           isAuthorized={false}
-          authorizationStatus={authorizationStatus}
+          authorizationStatus={AuthorizationStatus.AUTH}
           loginStatus={400}
           onSubmit={onSubmit}
           onFocus={noop}

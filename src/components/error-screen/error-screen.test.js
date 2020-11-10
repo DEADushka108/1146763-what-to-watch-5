@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {HttpCode} from '../../utils/const';
+import {HttpCode} from '../../mocks/mocks.js';
 import ErrorScreen from './error-screen';
 
 it(`Should render ErrorScreen component correctly`, () => {

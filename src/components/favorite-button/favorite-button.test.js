@@ -1,8 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {noop} from '../../mocks/mocks';
 import {FavoriteButton} from './favorite-button';
-
-const noop = () => {};
 
 it(`Should render FavoriteButton component correctly`, () => {
   const tree = renderer

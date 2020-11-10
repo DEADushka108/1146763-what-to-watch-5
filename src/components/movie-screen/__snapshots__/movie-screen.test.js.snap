@@ -58,11 +58,19 @@ Array [
           className="user-block"
         >
           <a
-            className="user-block__link"
-            href="/login"
+            href="/mylist"
             onClick={[Function]}
           >
-            Sign in
+            <div
+              className="user-block__avatar"
+            >
+              <img
+                alt="batman"
+                height="63"
+                src="https://assets.htmlacademy.ru/intensives/javascript-3/avatar/4.jpg"
+                width="63"
+              />
+            </div>
           </a>
         </div>
       </header>

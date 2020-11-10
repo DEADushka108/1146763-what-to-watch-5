@@ -1,12 +1,10 @@
 import MockAdapter from 'axios-mock-adapter';
 import {AuthorizationStatus} from '../../utils/const';
 import {createAPI} from '../../services/api';
-import {moviesList} from '../../__test-mock__/movies';
+import {moviesList, noop} from '../../mocks/mocks.js';
 import {createMoviesList} from '../../services/adapters/movies';
 import {createUserInfo} from '../../services/adapters/user.js';
 import {reducer, ActionType, Operation} from './user';
-
-const noop = () => {};
 
 const api = createAPI(noop, noop, noop, noop, noop);
 

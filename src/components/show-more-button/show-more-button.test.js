@@ -1,9 +1,7 @@
 import React from 'react';
-import {moviesList} from '../../__test-mock__/movies';
+import {moviesList, noop} from '../../mocks/mocks.js';
 import renderer from 'react-test-renderer';
 import {ShowMoreButton} from './show-more-button.jsx';
-
-const noop = () => {};
 
 it(`Should render ShowMoreButton component correctly`, () => {
   const tree = renderer

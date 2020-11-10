@@ -12,8 +12,8 @@ exports[`Should MovieCardSmall component render correctly 1`] = `
   >
     <video
       height="175"
-      poster="img/macbeth.jpg"
-      src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+      poster="img/pulp-fiction.jpg"
+      src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
       width="280"
     />
   </div>
@@ -25,7 +25,7 @@ exports[`Should MovieCardSmall component render correctly 1`] = `
       href="/films/1"
       onClick={[Function]}
     >
-      Macbeth
+      Pulp Fiction
     </a>
   </h3>
 </article>

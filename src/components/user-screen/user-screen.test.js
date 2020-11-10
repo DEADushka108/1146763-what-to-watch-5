@@ -1,26 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
-import configureStore from 'redux-mock-store';
 import {MemoryRouter} from 'react-router-dom';
-import {moviesList} from '../../__test-mock__/movies.js';
-import {userInfo} from '../../__test-mock__/user.js';
-import NameSpace from '../../store/name-space.js';
+import {moviesList, store, noop} from '../../mocks/mocks.js';
 import {UserScreen} from './user-screen.jsx';
 
-const mockStore = configureStore([]);
-const noop = () => {};
 describe(`Render UserScreen`, () => {
   it(`Should render UserScreen component correctly`, () => {
-    const store = mockStore({
-      [NameSpace.MOVIES]: {
-        moviesList,
-      },
-      [NameSpace.USER]: {
-        authorizationStatus: `AUTH`,
-        userInfo,
-      },
-    });
     const tree = renderer
       .create((
         <Provider store={store}>
@@ -41,4 +27,3 @@ describe(`Render UserScreen`, () => {
     expect(tree).toMatchSnapshot();
   });
 });
-

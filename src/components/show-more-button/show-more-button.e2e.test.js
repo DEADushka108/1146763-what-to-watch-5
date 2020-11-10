@@ -1,7 +1,7 @@
 import React from 'react';
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {moviesList} from '../../__test-mock__/movies';
+import {moviesList} from '../../mocks/mocks.js';
 import {ShowMoreButton} from './show-more-button.jsx';
 
 configure({

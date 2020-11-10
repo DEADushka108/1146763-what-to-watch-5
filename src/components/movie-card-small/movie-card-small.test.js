@@ -1,17 +1,15 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {MemoryRouter} from 'react-router-dom';
-import {moviesList} from '../../__test-mock__/movies.js';
+import {featuredMovie, noop} from '../../mocks/mocks.js';
 import {MovieCardSmall} from './movie-card-small.jsx';
-
-const noop = () => {};
 
 it(`Should MovieCardSmall component render correctly`, () => {
   const tree = renderer
     .create(
         <MemoryRouter>
           <MovieCardSmall
-            movie={moviesList[0]}
+            movie={featuredMovie}
             onPlayStatusChange={noop}
             onCardClick={noop}
           >
