@@ -11,9 +11,15 @@ const UserBlock = (props) => {
   const {avatar, name} = userInfo;
 
   return <div className="user-block">
-    {isAuthorized ? <Link to={AppRoute.FAVORITE}><div className="user-block__avatar">
-      <img src={avatar} alt={name} width="63" height="63"/>
-    </div></Link> : <Link to={AppRoute.LOGIN} className="user-block__link">Sign in</Link>}
+    {isAuthorized ?
+      <Link to={AppRoute.FAVORITE}>
+        <div className="user-block__avatar">
+          <img src={avatar} alt={name} width="63" height="63"/>
+        </div>
+      </Link> :
+      <Link to={AppRoute.LOGIN} className="user-block__link">
+        Sign in
+      </Link>}
   </div>;
 };
 

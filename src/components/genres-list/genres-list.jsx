@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {movieDetails} from '../../types/types.js';
 import {ActionCreator} from '../../store/movies/movies';
-import {getMoviesList} from '../../store/movies/selectors.js';
+import {getActiveGenre, getMoviesList} from '../../store/movies/selectors.js';
 import {connect} from 'react-redux';
 import {getUniqueGenresList} from '../../utils/utils.js';
 
@@ -31,6 +31,7 @@ GenresList.propTypes = {
 
 const mapStateToProps = (state) => ({
   moviesList: getMoviesList(state),
+  currentGenre: getActiveGenre(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

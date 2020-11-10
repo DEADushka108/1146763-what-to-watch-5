@@ -5,12 +5,12 @@ import {movieDetails} from '../../types/types.js';
 import GenresList from '../genres-list/genres-list.jsx';
 import ShowMoreButton from '../show-more-button/show-more-button.jsx';
 import MovieCard from '../movie-card/movie-card.jsx';
-import {getActiveGenre, getFilteredList, getMoviesCount} from '../../store/movies/selectors.js';
+import {getFilteredList, getMoviesCount} from '../../store/movies/selectors.js';
 import {connect} from 'react-redux';
 
 
 const Main = (props) => {
-  const {filteredMoviesList, moviesCount, activeGenre} = props;
+  const {filteredMoviesList, moviesCount} = props;
 
   return <React.Fragment>
     <MovieCard/>
@@ -19,7 +19,7 @@ const Main = (props) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <GenresList currentGenre={activeGenre}/>
+        <GenresList/>
 
         <MoviesList movies={filteredMoviesList} count={moviesCount}/>
 
@@ -46,13 +46,11 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  activeGenre: PropTypes.string.isRequired,
   filteredMoviesList: PropTypes.arrayOf(movieDetails).isRequired,
   moviesCount: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  activeGenre: getActiveGenre(state),
   filteredMoviesList: getFilteredList(state),
   moviesCount: getMoviesCount(state),
 });
