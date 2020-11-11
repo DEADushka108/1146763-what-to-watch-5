@@ -19,8 +19,21 @@ const PlayerScreen = (props) => {
   const [duration, setDuration] = useState(0);
   const [progress, setProgress] = useState(0);
 
-  const handleDurationUpdate = useCallback((time)=> {
-    setDuration(time);
+  const handlePlayButtonClick = useCallback(() => {
+    setPlayingStatus(!playingStatus);
+    if (!playingStatus) {
+      video.current.play();
+    } else {
+      video.current.pause();
+    }
+  });
+
+  const handleExitButtonClick = useCallback(() => {
+    onExitButtonClick(`${AppRoute.MOVIE}/${id}`);
+  });
+
+  const handleFullScreenButtonClick = useCallback(() => {
+    video.current.requestFullscreen();
   });
 
   useEffect(() => {
@@ -37,16 +50,21 @@ const PlayerScreen = (props) => {
       }, VIDEO_PLAYER_INTERVAL);
       return () => clearInterval(interval);
     }
-    return true;
+    return null;
   }, [progress]);
+
+  useEffect(() => {
+    if (video.current) {
+      setDuration(Math.floor(video.current.duration));
+    }
+    return;
+  }, [playingStatus]);
 
   return <React.Fragment>
     <div className="player">
       <video poster={backgroundImage} src={videoSrc} className="player__video" ref={video}/>
 
-      <button type="button" className="player__exit" onClick={() => {
-        onExitButtonClick(`${AppRoute.MOVIE}/${id}`);
-      }}>Exit</button>
+      <button type="button" className="player__exit" onClick={handleExitButtonClick}>Exit</button>
 
       <div className="player__controls">
         <div className="player__controls-row">
@@ -54,19 +72,11 @@ const PlayerScreen = (props) => {
             <progress className="player__progress" value={progress} max={duration ? duration : 0}></progress>
             <div className="player__toggler" style={{left: duration ? `${(progress / duration) * 100}%` : `0%`}}>Toggler</div>
           </div>
-          <div className="player__time-value">{getTimeString(duration - progress)}</div>
+          <div className="player__time-value">{duration ? getTimeString(duration - progress) : `00:00:00`}</div>
         </div>
 
         <div className="player__controls-row">
-          <button type="button" className="player__play" onClick={() => {
-            setPlayingStatus(!playingStatus);
-            if (!playingStatus) {
-              video.current.play();
-              handleDurationUpdate(Math.floor(video.current.duration));
-            } else {
-              video.current.pause();
-            }
-          }}>
+          <button type="button" className="player__play" onClick={handlePlayButtonClick}>
             <svg viewBox="0 0 19 19" width="19" height="19">
               <use xlinkHref={playingStatus ? `#pause` : `#play-s`}></use>
             </svg>
@@ -74,9 +84,7 @@ const PlayerScreen = (props) => {
           </button>
           <div className="player__name">{title}</div>
 
-          <button type="button" className="player__full-screen" onClick={() => {
-            video.current.requestFullscreen();
-          }}>
+          <button type="button" className="player__full-screen" onClick={handleFullScreenButtonClick}>
             <svg viewBox="0 0 27 27" width="27" height="27">
               <use xlinkHref="#full-screen"></use>
             </svg>
