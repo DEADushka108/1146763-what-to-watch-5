@@ -31,6 +31,7 @@ const MovieScreen = (props) => {
       return;
     }
     loadMovie(routeId);
+    return;
   }, [routeId]);
 
   return <React.Fragment>

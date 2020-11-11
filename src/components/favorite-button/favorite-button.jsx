@@ -24,7 +24,7 @@ const FavoriteButton = (props) => {
 
     onClick(id, status ? MovieStatus.NOT_FAVORITE : MovieStatus.FAVORITE);
     setStatus(!status);
-  }, [status]);
+  }, [id, status]);
 
   useEffect(() => {
     setStatus(isFavorite);
