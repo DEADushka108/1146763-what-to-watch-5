@@ -44,9 +44,10 @@ const ReviewScreen = (props) => {
         text
       });
       form.current.disabled = true;
+      return;
     }
     updatePostStatus(PostStatus.INVALID);
-  }, [id, status, text, rating]);
+  }, [status, text, rating]);
 
   useEffect(() => {
     if (status === HttpCode.OK) {
@@ -55,15 +56,16 @@ const ReviewScreen = (props) => {
       return;
     }
     if (routeId === id) {
-      return;
-    }
-    if (status !== HttpCode.OK) {
       form.current.disabled = false;
       return;
     }
     loadMovie(routeId);
     return;
   }, [routeId, status]);
+
+  useEffect(() => {
+    updatePostStatus(PostStatus.VALID);
+  }, [routeId]);
 
   return (
     <section className="movie-card movie-card--full" style={{backgroundColor: `${backgroundColor}`}}>
@@ -109,7 +111,7 @@ const ReviewScreen = (props) => {
         </p>}
         {status === PostStatus.INVALID &&
         <p className="movie-card__text">
-          Please rate and write some word about movie `{title}`.
+          Please rate and write some word about movie &quot;{title}&quot;.
         </p>}
         <form action="#" className="add-review__form" ref={form} onSubmit={handleFormSubmit}>
           <div className="rating">
