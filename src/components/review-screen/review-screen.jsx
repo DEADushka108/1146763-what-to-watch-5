@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import {AppRoute, HttpCode, ReviewSettingns} from '../../utils/const.js';
+import {AppRoute, HttpCode, PostStatus, ReviewSettingns} from '../../utils/const.js';
 import {movieDetails} from '../../types/types.js';
 import {redirectToRoute} from '../../store/redirect/redirect.js';
 import UserBlock from '../user-block/user-block.jsx';
@@ -26,30 +26,43 @@ const ReviewScreen = (props) => {
   const form = useRef();
   const [rating, setRating] = useState(InitialReviewState.RATING);
   const [text, setText] = useState(InitialReviewState.TEXT);
-  const [validation, setValidation] = useState(false);
 
   const handleRatingChange = useCallback((evt) => {
     setRating(evt.target.value);
-    setValidation(validateText(text) && validateRating(rating));
   }, [rating]);
 
   const handleTextInput = useCallback((evt) => {
     setText(evt.target.value);
-    setValidation(validateText(text) && validateRating(rating));
   }, [text]);
+
+  const handleFormSubmit = useCallback((evt) => {
+    evt.preventDefault();
+    if (validateText(text) && validateRating(rating)) {
+      onSubmit({
+        id,
+        rating,
+        text
+      });
+      form.current.disabled = true;
+    }
+    updatePostStatus(PostStatus.INVALID);
+  }, [id, status, text, rating]);
 
   useEffect(() => {
     if (status === HttpCode.OK) {
-      updatePostStatus(0);
+      updatePostStatus(PostStatus.VALID);
       onSuccessSubmit(`${AppRoute.MOVIE}/${id}`);
+      return;
     }
     if (routeId === id) {
       return;
     }
     if (status !== HttpCode.OK) {
       form.current.disabled = false;
+      return;
     }
     loadMovie(routeId);
+    return;
   }, [routeId, status]);
 
   return (
@@ -90,16 +103,15 @@ const ReviewScreen = (props) => {
       </div>
 
       <div className="add-review">
-        {status === HttpCode.SERVER_ERROR && <p className="movie-card__text">Error {status} occurred. Please try again later.</p>}
-        <form action="#" className="add-review__form" ref={form} onSubmit={(evt) => {
-          evt.preventDefault();
-          onSubmit({
-            id,
-            rating,
-            text,
-          });
-          form.current.disabled = true;
-        }}>
+        {status === HttpCode.SERVER_ERROR &&
+        <p className="movie-card__text">
+          Error {status} occurred. Please try again later.
+        </p>}
+        {status === PostStatus.INVALID &&
+        <p className="movie-card__text">
+          Please rate and write some word about movie `{title}`.
+        </p>}
+        <form action="#" className="add-review__form" ref={form} onSubmit={handleFormSubmit}>
           <div className="rating">
             <div className="rating__stars">
               {REVIEW_RATINGS.map((star) => {
@@ -122,7 +134,7 @@ const ReviewScreen = (props) => {
               maxLength={ReviewSettingns.TEXT.MAX_LENGTH}
               onChange={handleTextInput}></textarea>
             <div className="add-review__submit">
-              <button className="add-review__btn" type="submit" disabled={!validation}>Post</button>
+              <button className="add-review__btn" type="submit">Post</button>
             </div>
 
           </div>

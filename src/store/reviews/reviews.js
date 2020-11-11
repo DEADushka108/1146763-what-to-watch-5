@@ -1,10 +1,10 @@
 import {extend} from '../../utils/utils.js';
 import {createReviewsList} from '../../services/adapters/reviews';
-import {HttpCode, URL} from '../../utils/const.js';
+import {HttpCode, PostStatus, URL} from '../../utils/const.js';
 
 const initialState = {
   reviews: [],
-  postStatus: 0,
+  postStatus: PostStatus.VALID,
 };
 
 const ActionType = {

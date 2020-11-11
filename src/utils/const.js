@@ -66,3 +66,8 @@ export const ReviewSettingns = {
     MAX_LENGTH: 400,
   },
 };
+
+export const PostStatus = {
+  VALID: 1,
+  INVALID: 0
+};
