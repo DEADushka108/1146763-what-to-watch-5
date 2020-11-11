@@ -71,7 +71,7 @@ const MovieScreen = (props) => {
                 </svg>
                 <span>Play</span>
               </Link>
-              <FavoriteButton id={id} isFavorite={isFavorite}/>
+              <FavoriteButton id={routeId} isFavorite={isFavorite}/>
               <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
             </div>
           </div>

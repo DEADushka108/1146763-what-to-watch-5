@@ -28,6 +28,7 @@ const FavoriteButton = (props) => {
 
   useEffect(() => {
     setStatus(isFavorite);
+    return;
   }, [isFavorite]);
 
   return <button className="btn btn--list movie-card__button" type="button" onClick={handleButtonClick}>
