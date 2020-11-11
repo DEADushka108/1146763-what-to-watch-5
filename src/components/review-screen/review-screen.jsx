@@ -12,7 +12,7 @@ import {connect} from 'react-redux';
 import {getActiveMovie} from '../../store/movies/selectors.js';
 import {validateRating, validateText} from '../../utils/utils.js';
 
-const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
+const REVIEW_RATINGS = [`5`, `4`, `3`, `2`, `1`];
 
 const InitialReviewState = {
   RATING: `0`,

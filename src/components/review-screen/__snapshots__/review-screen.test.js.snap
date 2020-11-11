@@ -129,47 +129,17 @@ exports[`Should render ReviewScreen component correctly 1`] = `
           <input
             checked={false}
             className="rating__input"
-            id="star-1"
+            id="star-5"
             name="rating"
             onChange={[Function]}
             type="radio"
-            value="1"
+            value="5"
           />
           <label
             className="rating__label"
-            htmlFor="star-1"
+            htmlFor="star-5"
           >
-            Rating 1
-          </label>
-          <input
-            checked={false}
-            className="rating__input"
-            id="star-2"
-            name="rating"
-            onChange={[Function]}
-            type="radio"
-            value="2"
-          />
-          <label
-            className="rating__label"
-            htmlFor="star-2"
-          >
-            Rating 2
-          </label>
-          <input
-            checked={false}
-            className="rating__input"
-            id="star-3"
-            name="rating"
-            onChange={[Function]}
-            type="radio"
-            value="3"
-          />
-          <label
-            className="rating__label"
-            htmlFor="star-3"
-          >
-            Rating 3
+            Rating 5
           </label>
           <input
             checked={false}
@@ -189,17 +159,47 @@ exports[`Should render ReviewScreen component correctly 1`] = `
           <input
             checked={false}
             className="rating__input"
-            id="star-5"
+            id="star-3"
             name="rating"
             onChange={[Function]}
             type="radio"
-            value="5"
+            value="3"
           />
           <label
             className="rating__label"
-            htmlFor="star-5"
+            htmlFor="star-3"
           >
-            Rating 5
+            Rating 3
+          </label>
+          <input
+            checked={false}
+            className="rating__input"
+            id="star-2"
+            name="rating"
+            onChange={[Function]}
+            type="radio"
+            value="2"
+          />
+          <label
+            className="rating__label"
+            htmlFor="star-2"
+          >
+            Rating 2
+          </label>
+          <input
+            checked={false}
+            className="rating__input"
+            id="star-1"
+            name="rating"
+            onChange={[Function]}
+            type="radio"
+            value="1"
+          />
+          <label
+            className="rating__label"
+            htmlFor="star-1"
+          >
+            Rating 1
           </label>
         </div>
       </div>
