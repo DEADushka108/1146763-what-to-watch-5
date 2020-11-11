@@ -3,7 +3,7 @@ import {configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {Provider} from 'react-redux';
 import {MemoryRouter} from 'react-router-dom';
-import {featuredMovie, store, match, HttpCode, noop} from '../../mocks/mocks.js';
+import {featuredMovie, store, match, noop, PostStatus} from '../../mocks/mocks.js';
 import {ReviewScreen} from './review-screen.jsx';
 
 configure({
@@ -20,7 +20,7 @@ it(`Should pass correct comment and rating on review form submit`, () => {
           <ReviewScreen
             match={match}
             movieInfo={featuredMovie}
-            status={HttpCode.OK}
+            status={PostStatus.VALID}
             onSuccessSubmit={noop}
             loadMovie={noop}
             updatePostStatus={noop}
@@ -35,7 +35,7 @@ it(`Should pass correct comment and rating on review form submit`, () => {
 
   commentField.simulate(`change`, {
     target: {
-      value: `This is at least 50 characters long text review`,
+      value: `This is at least 50 characters long text review in that moment`,
     },
   });
   thirdStar.simulate(`change`, {
@@ -48,6 +48,6 @@ it(`Should pass correct comment and rating on review form submit`, () => {
   expect(onSubmit).toHaveBeenCalledWith({
     id: Number(match.params.id),
     rating: `3`,
-    text: `This is at least 50 characters long text review`
+    text: `This is at least 50 characters long text review in that moment`
   });
 });

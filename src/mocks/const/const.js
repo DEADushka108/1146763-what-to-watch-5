@@ -26,4 +26,9 @@ const match = {
   }
 };
 
-export {FilterSettings, CardCount, AuthorizationStatus, HttpCode, match};
+const PostStatus = {
+  VALID: 1,
+  INVALID: 0
+};
+
+export {FilterSettings, CardCount, AuthorizationStatus, HttpCode, match, PostStatus};

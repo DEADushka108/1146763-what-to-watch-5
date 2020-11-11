@@ -2,9 +2,8 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {MemoryRouter} from 'react-router-dom';
-import {featuredMovie, store, noop, match} from '../../mocks/mocks.js';
+import {featuredMovie, store, noop, match, PostStatus} from '../../mocks/mocks.js';
 import {ReviewScreen} from './review-screen.jsx';
-import {HttpCode} from '../../utils/const.js';
 
 it(`Should render ReviewScreen component correctly`, () => {
   const tree = renderer
@@ -14,7 +13,7 @@ it(`Should render ReviewScreen component correctly`, () => {
             <ReviewScreen
               match={match}
               movieInfo={featuredMovie}
-              status={HttpCode.OK}
+              status={PostStatus.VALID}
               onSubmit={noop}
               onSuccessSubmit={noop}
               loadMovie={noop}
