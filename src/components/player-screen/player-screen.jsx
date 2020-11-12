@@ -57,7 +57,6 @@ const PlayerScreen = (props) => {
     if (video.current) {
       setDuration(Math.floor(video.current.duration));
     }
-    return;
   }, [playingStatus]);
 
   return <React.Fragment>
