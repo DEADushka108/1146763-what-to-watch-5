@@ -37,6 +37,9 @@ const Operation = {
     })
       .then(() => {
         dispatch(ActionCreator.updatePostStatus(HttpCode.OK));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.updatePostStatus(HttpCode.BAD_REQUEST));
       });
   }
 };

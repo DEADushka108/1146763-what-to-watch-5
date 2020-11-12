@@ -109,6 +109,10 @@ const ReviewScreen = (props) => {
         <p className="movie-card__text">
           Error {status} occurred. Please try again later.
         </p>}
+        {status === HttpCode.BAD_REQUEST &&
+        <p className="movie-card__text">
+          Somthing goes wrong. Please check the Internet connection and try again later.
+        </p>}
         {status === PostStatus.INVALID &&
         <p className="movie-card__text">
           Please rate and write some word about movie &quot;{title}&quot;.
