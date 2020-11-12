@@ -46,6 +46,7 @@ const PlayerScreen = (props) => {
 
   useEffect(() => {
     if (video.current) {
+      setDuration(Math.floor(video.current.duration));
       const interval = setInterval(() => {
         setProgress(Math.floor(video.current.currentTime));
       }, VIDEO_PLAYER_INTERVAL);
@@ -53,12 +54,6 @@ const PlayerScreen = (props) => {
     }
     return null;
   }, [progress]);
-
-  useEffect(() => {
-    if (video.current) {
-      setDuration(Math.floor(video.current.duration));
-    }
-  }, [playingStatus]);
 
   return <React.Fragment>
     <div className="player">
