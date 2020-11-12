@@ -162,10 +162,15 @@ const MovieScreen = (props) => {
 
     <div className="page-content">
       <section className="catalog catalog--like-this">
-        <h2 className="catalog__title">More like this</h2>
-
-        <MoviesList movies={similarMoviesList} count={CardCount.SIMILAR}/>
+        {similarMoviesList.length !== 0 ?
+          <React.Fragment>
+            <h2 className="catalog__title">More like this</h2>
+            <MoviesList movies={similarMoviesList} count={CardCount.SIMILAR}/>
+          </React.Fragment> :
+          <h2 className="catalog__title">There are no movies like this.</h2>
+        }
       </section>
+
       <footer className="page-footer">
         <div className="logo">
           <Link to={`${AppRoute.ROOT}`} className="logo__link logo__link--light">
