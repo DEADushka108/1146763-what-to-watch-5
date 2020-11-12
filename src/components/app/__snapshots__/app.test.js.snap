@@ -509,6 +509,7 @@ exports[`Should render App component correctly on server error 1`] = `
     >
       <a
         className="logo__link"
+        href="/"
       >
         <span
           className="logo__letter logo__letter--1"
@@ -552,6 +553,7 @@ exports[`Should render App component correctly on server error 1`] = `
     >
       <a
         className="logo__link logo__link--light"
+        href="/"
       >
         <span
           className="logo__letter logo__letter--1"
