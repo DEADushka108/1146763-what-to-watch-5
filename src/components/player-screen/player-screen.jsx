@@ -29,6 +29,7 @@ const PlayerScreen = (props) => {
   });
 
   const handleExitButtonClick = useCallback(() => {
+    video.current.pause();
     onExitButtonClick(`${AppRoute.MOVIE}/${id}`);
   });
 
