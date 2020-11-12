@@ -112,7 +112,7 @@ const MovieScreen = (props) => {
                   </p>
                   <p className="movie-card__details-item">
                     <strong className="movie-card__details-name">Starring</strong>
-                    <span className="movie-card__details-value">{cast.join(`, `)}</span>
+                    <span className="movie-card__details-value">{cast.join(`,\n`)}</span>
                   </p>
                 </div>
 
