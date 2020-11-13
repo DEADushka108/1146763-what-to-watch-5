@@ -16,41 +16,44 @@ export const createAPI = (onUnauthorized, onError, onLoginError, onReviewError, 
 
   const onFail = (err) => {
     const {response, config} = err;
-    const {method, url} = config;
-    const {status} = response;
+    if (response) {
+      const {method, url} = config;
+      const {status} = response;
 
-    switch (response.status) {
-      case HttpCode.UNAUTHORIZED:
-        if (url !== URL.LOGIN && method === `post`) {
-          redirect(AppRoute.LOGIN);
-        }
+      switch (response.status) {
+        case HttpCode.UNAUTHORIZED:
+          if (url !== URL.LOGIN && method === `post`) {
+            redirect(AppRoute.LOGIN);
+          }
 
-        onUnauthorized(status);
-        throw err;
-      case HttpCode.BAD_REQUEST:
-        if (url === URL.LOGIN && method === `post`) {
-          onLoginError(status);
+          onUnauthorized(status);
           throw err;
-        }
+        case HttpCode.BAD_REQUEST:
+          if (url === URL.LOGIN && method === `post`) {
+            onLoginError(status);
+            throw err;
+          }
 
-        if (url.includes(URL.REVIEWS) && method === `post`) {
-          onReviewError(status);
-          throw err;
-        }
+          if (url.includes(URL.REVIEWS) && method === `post`) {
+            onReviewError(status);
+            throw err;
+          }
 
-        onError(status);
-        break;
-      case HttpCode.SERVER_ERROR:
-        if (url === URL.LOGIN && method === `post`) {
-          onLoginError(status);
-          throw err;
-        }
+          onError(status);
+          break;
+        case HttpCode.SERVER_ERROR:
+          if (url === URL.LOGIN && method === `post`) {
+            onLoginError(status);
+            throw err;
+          }
 
-        onServerError();
-        break;
+          onServerError();
+          break;
+      }
+
+      throw err;
     }
-
-    throw err;
+    throw err.message;
   };
 
   api.interceptors.response.use(onSuccess, onFail);
