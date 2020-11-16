@@ -134,6 +134,10 @@ const MovieScreen = (props) => {
               </div>
             </Tab>
             <Tab title={TabNames.REVIEWS}>
+              {reviews.length === 0 &&
+                <p className="movie-card__text">
+                  There are no reviews yet.
+                </p>}
               {reviews.length !== 0 && <div className="movie-card__reviews movie-card__row">
                 <div className="movie-card__reviews-col">
                   {reviews.slice(0, middleIndex).map((review) => {
