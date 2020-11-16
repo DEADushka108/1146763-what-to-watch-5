@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {AppRoute} from '../utils/const';
-import {getAuthorization} from '../store/user/selectors';
+import {AppRoute} from '../../utils/const.js';
+import {getAuthorization} from '../../store/user/selectors.js';
 
 
 const PrivateRoute = (props) => {

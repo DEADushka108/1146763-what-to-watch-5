@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import {Router as BrowserRouter, Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 import Main from '../main/main.jsx';
-import history from '../../routing/history';
+import history from '../../history/history';
 import LoginScreen from '../login-screen/login-screen.jsx';
 import UserScreen from '../user-screen/user-screen.jsx';
 import MovieScreen from '../movie-screen/movie-screen.jsx';
 import ReviewScreen from '../review-screen/review-screen.jsx';
 import PlayerScreen from '../player-screen/player-screen.jsx';
 import {AppRoute, HttpCode} from '../../utils/const.js';
-import PrivateRoute from '../../routing/private-route.jsx';
+import PrivateRoute from '../private-route/private-route.jsx';
 import ErrorScreen from '../error-screen/error-screen.jsx';
 import {getStatus} from '../../store/movies/selectors.js';
 
