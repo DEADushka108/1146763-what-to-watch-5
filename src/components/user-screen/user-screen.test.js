@@ -13,7 +13,7 @@ describe(`Render UserScreen`, () => {
           <MemoryRouter>
             <UserScreen
               moviesList={moviesList}
-              loadFavoriteList={noop}
+              onLoadFavoriteList={noop}
             />
           </MemoryRouter>
         </Provider>

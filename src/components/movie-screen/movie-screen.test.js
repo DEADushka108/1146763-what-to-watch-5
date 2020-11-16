@@ -15,8 +15,8 @@ it(`Should render MovieScreen component correctly`, () => {
             movieInfo={featuredMovie}
             moviesList={moviesList}
             reviews={reviews}
-            loadMovie={noop}
-            loadReviews={noop}
+            onLoadMovie={noop}
+            onLoadReviews={noop}
           />
         </MemoryRouter>
       </Provider>

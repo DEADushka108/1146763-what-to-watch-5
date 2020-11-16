@@ -2,7 +2,7 @@ import React from 'react';
 import {configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {MemoryRouter} from 'react-router-dom';
-import {AuthorizationStatus, noop} from '../../mocks/mocks.js';
+import {AuthorizationStatus, noop, AppRoute} from '../../mocks/mocks.js';
 import {LoginScreen} from './login-screen.jsx';
 
 configure({
@@ -10,6 +10,7 @@ configure({
 });
 
 const onSubmit = jest.fn();
+const onSuccessAuthoriztion = jest.fn();
 
 it(`Should render error message if login fails`, () => {
   const loginScreen = mount(
@@ -51,4 +52,22 @@ it(`Should pass correct email and password on form submit`, () => {
   loginForm.simulate(`submit`);
   expect(onSubmit).toHaveBeenCalledTimes(1);
   expect(onSubmit).toHaveBeenCalledWith({login: `name@mail.com`, password: `qwer123`});
+});
+
+it(`Should redirect on root screen on success authorization`, () => {
+  mount(
+      <MemoryRouter>
+        <LoginScreen
+          isAuthorized={true}
+          authorizationStatus={AuthorizationStatus.AUTH}
+          loginStatus={200}
+          onSubmit={noop}
+          onFocus={noop}
+          onSuccessAuthoriztion={onSuccessAuthoriztion}
+        />
+      </MemoryRouter>
+  );
+
+  expect(onSuccessAuthoriztion).toHaveBeenCalledTimes(1);
+  expect(onSuccessAuthoriztion).toHaveBeenCalledWith(AppRoute.ROOT);
 });

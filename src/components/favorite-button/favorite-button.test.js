@@ -7,10 +7,11 @@ it(`Should render FavoriteButton component correctly`, () => {
   const tree = renderer
     .create(
         <FavoriteButton
+          id={1}
           onClick={noop}
-          onFavoriteStatusChange={noop}
-          onUnauthorizedClick={noop}
+          isFavorite={false}
           isAuthorized={true}
+          onUnauthorizedClick={noop}
         />
     )
     .toJSON();

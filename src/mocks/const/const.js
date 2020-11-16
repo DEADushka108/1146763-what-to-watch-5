@@ -31,4 +31,12 @@ const PostStatus = {
   INVALID: 0
 };
 
-export {FilterSettings, CardCount, AuthorizationStatus, HttpCode, match, PostStatus};
+const AppRoute = {
+  LOGIN: `/login`,
+  MOVIE: `/films`,
+  PLAYER: `/player`,
+  FAVORITE: `/mylist`,
+  ROOT: `/`,
+};
+
+export {FilterSettings, CardCount, AuthorizationStatus, HttpCode, match, PostStatus, AppRoute};

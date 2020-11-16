@@ -14,10 +14,10 @@ it(`Should render ReviewScreen component correctly`, () => {
               match={match}
               movieInfo={featuredMovie}
               status={PostStatus.VALID}
-              onSubmit={noop}
               onSuccessSubmit={noop}
-              loadMovie={noop}
-              updatePostStatus={noop}
+              onLoadMovie={noop}
+              onUpdatePostStatus={noop}
+              onSubmit={noop}
             />
           </MemoryRouter>
         </Provider>

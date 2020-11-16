@@ -22,8 +22,8 @@ it(`Should pass correct comment and rating on review form submit`, () => {
             movieInfo={featuredMovie}
             status={PostStatus.VALID}
             onSuccessSubmit={noop}
-            loadMovie={noop}
-            updatePostStatus={noop}
+            onLoadMovie={noop}
+            onUpdatePostStatus={noop}
             onSubmit={onSubmit}
           />
         </MemoryRouter>
