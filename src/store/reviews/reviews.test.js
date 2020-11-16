@@ -1,6 +1,6 @@
 import MockAdapter from 'axios-mock-adapter';
 import {createAPI} from '../../services/api.js';
-import {reviews, noop, PostStatus} from '../../mocks/mocks.js';
+import {reviews, noop, PostStatus, HttpCode} from '../../mocks/mocks.js';
 import {createReviewsList} from '../../services/adapters/reviews.js';
 import {reducer, ActionType, Operation} from './reviews.js';
 
@@ -53,6 +53,26 @@ describe(`Reviews operation works correctly`, () => {
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: ActionType.LOAD_REVIEWS,
           payload: createReviewsList(responseMock),
+        });
+      });
+  });
+
+  it(`Should make a correct request post to /comments/:id`, () => {
+    const apiMock = new MockAdapter(api);
+    const postMock = {id: 1, rating: `1`, text: `12345`};
+    const dispatch = jest.fn();
+    const reviewsLoader = Operation.postReview(postMock);
+
+    apiMock
+      .onPost(`/comments/${postMock.id}`)
+      .reply(200);
+
+    return reviewsLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.UPDATE_POST_STATUS,
+          payload: HttpCode.OK,
         });
       });
   });

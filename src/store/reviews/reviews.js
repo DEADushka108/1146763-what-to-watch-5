@@ -35,8 +35,8 @@ const Operation = {
       rating: review.rating,
       comment: review.text,
     })
-      .then(() => {
-        dispatch(ActionCreator.updatePostStatus(HttpCode.OK));
+      .then((response) => {
+        dispatch(ActionCreator.updatePostStatus(response.status));
       })
       .catch(() => {
         dispatch(ActionCreator.updatePostStatus(HttpCode.BAD_REQUEST));
