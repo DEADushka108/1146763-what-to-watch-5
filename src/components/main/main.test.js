@@ -11,9 +11,7 @@ it(`Should render Main component correctly`, () => {
       <Provider store={store}>
         <MemoryRouter>
           <Main
-            activeGenre={`All genres`}
             filteredMoviesList={moviesList}
-            moviesList={moviesList}
             moviesCount={8}
           />
         </MemoryRouter>

@@ -10,7 +10,6 @@ it(`Should MovieCardSmall component render correctly`, () => {
         <MemoryRouter>
           <MovieCardSmall
             movie={featuredMovie}
-            onPlayStatusChange={noop}
             onCardClick={noop}
           >
           </MovieCardSmall>

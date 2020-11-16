@@ -15,9 +15,7 @@ it(`Sould render correct number of cards`, () => {
       <Provider store={store}>
         <MemoryRouter>
           <Main
-            activeGenre={`All genres`}
             filteredMoviesList={moviesList}
-            moviesList={moviesList}
             moviesCount={4}
           />
         </MemoryRouter>
@@ -35,9 +33,7 @@ it(`Should not render showMoreButton if all cards open`, () => {
       <Provider store={store}>
         <MemoryRouter>
           <Main
-            activeGenre={`All genres`}
             filteredMoviesList={moviesList}
-            moviesList={moviesList}
             moviesCount={20}
           />
         </MemoryRouter>
