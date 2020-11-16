@@ -24,7 +24,7 @@ const Main = (props) => {
         <MoviesList movies={filteredMoviesList} count={moviesCount}/>
 
         <div className="catalog__more">
-          <ShowMoreButton list={filteredMoviesList} count={moviesCount} />
+          <ShowMoreButton cardCount={filteredMoviesList.length} count={moviesCount} />
         </div>
       </section>
 
