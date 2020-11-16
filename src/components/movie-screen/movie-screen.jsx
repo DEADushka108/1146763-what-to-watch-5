@@ -7,7 +7,7 @@ import {movieDetails, reviewsDetails} from '../../types/types';
 import MoviesList from '../movies-list/movies-list';
 import Tabs from '../tabs/tabs.jsx';
 import Tab from '../tab/tab.jsx';
-import {formatTime, getRatingLevel} from '../../utils/utils';
+import {findMiddleIndex, formatTime, getRatingLevel} from '../../utils/utils';
 import {getReviews} from '../../store/reviews/selectors';
 import {Operation as ReviewsOperation} from '../../store/reviews/reviews.js';
 import {Operation as MoviesOperation} from '../../store/movies/movies.js';
@@ -17,20 +17,21 @@ import UserBlock from '../user-block/user-block';
 import FavoriteButton from '../favorite-button/favorite-button';
 
 const MovieScreen = (props) => {
-  const {movieInfo, moviesList, reviews, match, loadReviews, loadMovie} = props;
+  const {movieInfo, moviesList, reviews, match, onLoadReviews, onLoadMovie} = props;
   const {id, isFavorite, title, genre, releaseDate, runTime, cover, rating, description, director, cast, backgroundImage, backgroundColor} = movieInfo;
   const {score, count} = rating;
+  const middleIndex = findMiddleIndex(reviews.length);
   const similarMoviesList = moviesList.filter((item) => {
     return item.genre === genre && item.title !== title;
   });
   const routeId = Number(match.params.id);
 
   useEffect(() => {
-    loadReviews(routeId);
+    onLoadReviews(routeId);
     if (routeId === id) {
       return;
     }
-    loadMovie(routeId);
+    onLoadMovie(routeId);
     return;
   }, [routeId]);
 
@@ -133,9 +134,9 @@ const MovieScreen = (props) => {
               </div>
             </Tab>
             <Tab title={TabNames.REVIEWS}>
-              <div className="movie-card__reviews movie-card__row">
+              {reviews.length !== 0 && <div className="movie-card__reviews movie-card__row">
                 <div className="movie-card__reviews-col">
-                  {reviews.map((review) => {
+                  {reviews.slice(0, middleIndex).map((review) => {
                     const {id: reviewId, author, text, date, rating: reviewRating} = review;
                     const {name} = author;
 
@@ -153,7 +154,26 @@ const MovieScreen = (props) => {
                     </div>;
                   })}
                 </div>
-              </div>
+                <div className="movie-card__reviews-col">
+                  {reviews.slice(middleIndex).map((review) => {
+                    const {id: reviewId, author, text, date, rating: reviewRating} = review;
+                    const {name} = author;
+
+                    return <div key={reviewId} className="review">
+                      <blockquote className="review__quote">
+                        <p className="review__text">{text}</p>
+
+                        <footer className="review__details">
+                          <cite className="review__author">{name}</cite>
+                          <time className="review__date" dateTime={date}>{moment(date).format(`MMMM DD, YYYY`)}</time>
+                        </footer>
+                      </blockquote>
+
+                      <div className="review__rating">{reviewRating}</div>
+                    </div>;
+                  })}
+                </div>
+              </div>}
             </Tab>
           </Tabs>
         </div>
@@ -197,8 +217,8 @@ MovieScreen.propTypes = {
       id: PropTypes.string,
     }),
   }).isRequired,
-  loadReviews: PropTypes.func.isRequired,
-  loadMovie: PropTypes.func.isRequired,
+  onLoadReviews: PropTypes.func.isRequired,
+  onLoadMovie: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -208,10 +228,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadReviews(id) {
+  onLoadReviews(id) {
     dispatch(ReviewsOperation.loadReviews(id));
   },
-  loadMovie(id) {
+  onLoadMovie(id) {
     dispatch(MoviesOperation.loadMovie(id));
   }
 });

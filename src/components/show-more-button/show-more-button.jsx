@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {ActionCreator} from '../../store/movies/movies';
 import {connect} from 'react-redux';
+import {movieDetails} from '../../types/types';
 
 const ShowMoreButton = (props) => {
   const {list, count, onClick} = props;
@@ -10,7 +11,7 @@ const ShowMoreButton = (props) => {
 };
 
 ShowMoreButton.propTypes = {
-  list: PropTypes.array.isRequired,
+  list: PropTypes.arrayOf(movieDetails).isRequired,
   count: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
 };

@@ -10,10 +10,10 @@ import UserBlock from '../user-block/user-block';
 import {Operation as UserOperation} from '../../store/user/user.js';
 
 const UserScreen = (props) => {
-  const {moviesList, loadFavoriteList} = props;
+  const {moviesList, onLoadFavoriteList} = props;
 
   useEffect(() => {
-    loadFavoriteList();
+    onLoadFavoriteList();
   }, [moviesList.length]);
 
   return <React.Fragment>
@@ -57,7 +57,7 @@ const UserScreen = (props) => {
 
 UserScreen.propTypes = {
   moviesList: PropTypes.arrayOf(movieDetails).isRequired,
-  loadFavoriteList: PropTypes.func.isRequired,
+  onLoadFavoriteList: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -65,7 +65,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadFavoriteList() {
+  onLoadFavoriteList() {
     dispatch(UserOperation.loadFavoriteList());
   }
 });

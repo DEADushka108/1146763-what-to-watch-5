@@ -71,3 +71,7 @@ export const validateText = (text) => {
 export const validateRating = (rating) => {
   return Number(rating) >= ReviewSettingns.MIN_RATING;
 };
+
+export const findMiddleIndex = (number) => {
+  return Math.ceil(number / 2);
+};

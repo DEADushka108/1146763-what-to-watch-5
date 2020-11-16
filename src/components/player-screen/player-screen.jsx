@@ -11,7 +11,7 @@ import {getActiveMovie} from '../../store/movies/selectors';
 const VIDEO_PLAYER_INTERVAL = 1000;
 
 const PlayerScreen = (props) => {
-  const {movie, onExitButtonClick, loadMovie, match} = props;
+  const {movie, onExitButtonClick, onLoadMovie, match} = props;
   const {id, title, backgroundImage, videoSrc} = movie;
   const routeId = Number(match.params.id);
   const video = useRef();
@@ -29,7 +29,6 @@ const PlayerScreen = (props) => {
   });
 
   const handleExitButtonClick = useCallback(() => {
-    video.current.pause();
     onExitButtonClick(`${AppRoute.MOVIE}/${id}`);
   });
 
@@ -41,7 +40,7 @@ const PlayerScreen = (props) => {
     if (routeId === id) {
       return;
     }
-    loadMovie(routeId);
+    onLoadMovie(routeId);
   }, [routeId]);
 
   useEffect(() => {
@@ -54,6 +53,13 @@ const PlayerScreen = (props) => {
     }
     return null;
   }, [progress]);
+
+  useEffect(() => {
+    if (video.current) {
+      setPlayingStatus(true);
+      video.current.play();
+    }
+  }, [id]);
 
   return <React.Fragment>
     <div className="player">
@@ -94,7 +100,7 @@ const PlayerScreen = (props) => {
 PlayerScreen.propTypes = {
   movie: movieDetails,
   onExitButtonClick: PropTypes.func.isRequired,
-  loadMovie: PropTypes.func.isRequired,
+  onLoadMovie: PropTypes.func.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string,
@@ -110,7 +116,7 @@ const mapDispatchToProps = (dispatch) => ({
   onExitButtonClick(route) {
     dispatch(redirectToRoute(route));
   },
-  loadMovie(id) {
+  onLoadMovie(id) {
     dispatch(MoviesOperation.loadMovie(id));
   },
 });

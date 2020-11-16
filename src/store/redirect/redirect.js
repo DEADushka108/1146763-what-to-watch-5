@@ -1,4 +1,4 @@
-import history from '../../routing/history.js';
+import history from '../../history/history.js';
 
 const ActionType = {
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,

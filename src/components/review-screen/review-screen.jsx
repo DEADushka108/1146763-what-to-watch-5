@@ -20,20 +20,23 @@ const InitialReviewState = {
 };
 
 const ReviewScreen = (props) => {
-  const {match, movieInfo, loadMovie, status, onSuccessSubmit, onSubmit, updatePostStatus} = props;
+  const {match, movieInfo, onLoadMovie, status, onSuccessSubmit, onSubmit, onUpdatePostStatus} = props;
   const {id, title, cover, backgroundImage, backgroundColor} = movieInfo;
   const routeId = Number(match.params.id);
   const form = useRef();
   const [rating, setRating] = useState(InitialReviewState.RATING);
   const [text, setText] = useState(InitialReviewState.TEXT);
+  const [isValid, setValid] = useState(false);
 
   const handleRatingChange = useCallback((evt) => {
     setRating(evt.target.value);
-  }, [rating]);
+    setValid(validateText(text) && validateRating(rating));
+  }, [rating, text]);
 
   const handleTextInput = useCallback((evt) => {
     setText(evt.target.value);
-  }, [text]);
+    setValid(validateText(text) && validateRating(rating));
+  }, [text, rating]);
 
   const handleFormSubmit = useCallback((evt) => {
     evt.preventDefault();
@@ -46,12 +49,12 @@ const ReviewScreen = (props) => {
       form.current.disabled = true;
       return;
     }
-    updatePostStatus(PostStatus.INVALID);
+    onUpdatePostStatus(PostStatus.INVALID);
   }, [status, text, rating]);
 
   useEffect(() => {
     if (status === HttpCode.OK) {
-      updatePostStatus(PostStatus.VALID);
+      onUpdatePostStatus(PostStatus.VALID);
       onSuccessSubmit(`${AppRoute.MOVIE}/${id}`);
       return;
     }
@@ -59,12 +62,12 @@ const ReviewScreen = (props) => {
       form.current.disabled = false;
       return;
     }
-    loadMovie(routeId);
+    onLoadMovie(routeId);
     return;
   }, [routeId, status]);
 
   useEffect(() => {
-    updatePostStatus(PostStatus.VALID);
+    onUpdatePostStatus(PostStatus.VALID);
   }, [routeId]);
 
   return (
@@ -140,7 +143,7 @@ const ReviewScreen = (props) => {
               maxLength={ReviewSettingns.TEXT.MAX_LENGTH}
               onChange={handleTextInput}></textarea>
             <div className="add-review__submit">
-              <button className="add-review__btn" type="submit">Post</button>
+              <button className="add-review__btn" type="submit" disabled={!isValid}>Post</button>
             </div>
 
           </div>
@@ -161,8 +164,8 @@ ReviewScreen.propTypes = {
   status: PropTypes.number,
   onSubmit: PropTypes.func.isRequired,
   onSuccessSubmit: PropTypes.func.isRequired,
-  loadMovie: PropTypes.func.isRequired,
-  updatePostStatus: PropTypes.func.isRequired,
+  onLoadMovie: PropTypes.func.isRequired,
+  onUpdatePostStatus: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -177,10 +180,10 @@ const mapDispatchToProps = (dispatch) => ({
   onSuccessSubmit(route) {
     dispatch(redirectToRoute(route));
   },
-  loadMovie(id) {
+  onLoadMovie(id) {
     dispatch(MoviesOperation.loadMovie(id));
   },
-  updatePostStatus(status) {
+  onUpdatePostStatus(status) {
     dispatch(ReviewsCreator.updatePostStatus(status));
   },
 });

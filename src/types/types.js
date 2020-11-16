@@ -16,7 +16,7 @@ export const movieDetails = PropTypes.shape({
   }).isRequired,
   description: PropTypes.string.isRequired,
   director: PropTypes.string.isRequired,
-  cast: PropTypes.array.isRequired,
+  cast: PropTypes.arrayOf(PropTypes.string).isRequired,
   backgroundImage: PropTypes.string.isRequired,
   backgroundColor: PropTypes.string.isRequired,
 }).isRequired;
