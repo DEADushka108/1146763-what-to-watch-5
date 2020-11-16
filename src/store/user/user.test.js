@@ -1,10 +1,11 @@
 import MockAdapter from 'axios-mock-adapter';
 import {AuthorizationStatus} from '../../utils/const';
 import {createAPI} from '../../services/api';
-import {moviesList, noop} from '../../mocks/mocks.js';
+import {AppRoute, moviesList, noop} from '../../mocks/mocks.js';
 import {createMoviesList} from '../../services/adapters/movies';
 import {createUserInfo} from '../../services/adapters/user.js';
 import {reducer, ActionType, Operation} from './user';
+import {ActionType as RedirectAction} from '../redirect/redirect.js';
 
 const api = createAPI(noop, noop, noop, noop, noop);
 
@@ -113,6 +114,10 @@ describe(`User operations should work correctly`, () => {
         expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: ActionType.GET_USER_INFO,
           payload: createUserInfo(responseMock)
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
+          type: RedirectAction.REDIRECT_TO_ROUTE,
+          payload: AppRoute.ROOT,
         });
       });
   });

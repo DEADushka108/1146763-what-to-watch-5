@@ -152,4 +152,26 @@ describe(`Movies operation works correctly`, () => {
         });
       });
   });
+
+  it(`Should make a correct post request to /favorite/:id/status`, () => {
+    const apiMock = new MockAdapter(api);
+    const id = 1;
+    const status = 1;
+    const responseMock = [{fake: true}];
+    const dispatch = jest.fn();
+    const moviesLoader = Operation.updateMovieStatus(id, status);
+
+    apiMock
+      .onPost(`/favorite/${id}/${status}`)
+      .reply(200, responseMock);
+
+    return moviesLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.UPDATE_MOVIE_STATUS,
+          payload: createMovie(responseMock),
+        });
+      });
+  });
 });
