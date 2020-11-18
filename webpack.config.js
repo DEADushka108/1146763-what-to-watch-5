@@ -3,7 +3,7 @@ const path = require('path');
 const publicDirection = path.resolve(__dirname, 'public');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     filename: 'bundle.js',
     path: publicDirection,
@@ -27,10 +27,14 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
+      {
+        test: /\.(tsx|ts)?$/,
+        loader: 'ts-loader'
+      },
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.ts', 'tsx', '.js', '.json']
   },
   devtool: 'source-map',
   plugins: [
